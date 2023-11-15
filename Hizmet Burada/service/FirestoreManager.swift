@@ -31,6 +31,9 @@ class FirestoreManager {
                 }
             }
             
+            
+            
+            
             completion(list, nil)
         }
     }
