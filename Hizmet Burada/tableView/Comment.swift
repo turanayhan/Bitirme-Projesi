@@ -1,0 +1,109 @@
+//
+//  Comment.swift
+//  Hizmet Burada
+//
+//  Created by turan on 14.11.2023.
+//
+
+import Foundation
+import UIKit
+class Comment: UICollectionViewCell {
+    
+    var modelic : WorkModel? {
+           didSet {
+        
+           }
+       }
+    
+    let titleLabel: UILabel = {
+           let label = UILabel()
+           label.font = UIFont.boldSystemFont(ofSize: 14)
+           label.numberOfLines = 0
+           label.textAlignment = .center
+           label.text = "Turan Ayhan"
+           label.backgroundColor = UIColor.clear
+           return label
+       }()
+
+       let date: UITextView = {
+           let date = UITextView()
+           date.isEditable = false
+           date.isScrollEnabled = false
+           date.backgroundColor = UIColor.clear
+           date.textAlignment = .center
+           date.text = "14 Kasım 2023"
+           date.font = UIFont.systemFont(ofSize: 8)
+           return date
+       }()
+    
+    let commentStar: UIImageView = {
+        let commentStar = UIImageView()
+        commentStar.image = UIImage(systemName: "star.fill")
+        return commentStar
+    }()
+    
+    
+    let commentText: UITextView = {
+        let commentText = UITextView()
+        commentText.isEditable = false
+        commentText.isScrollEnabled = false
+        commentText.textAlignment = .center
+        commentText.backgroundColor = UIColor.clear
+        commentText.text = "Çok Memnun kaldım teşekkür ediyorum."
+        commentText.font = UIFont.systemFont(ofSize: 12)
+        return commentText
+    }()
+   
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: .zero)
+        contentView.backgroundColor = UIColor(red: 255/255, green: 250/255, blue: 250/255, alpha: 1.0)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(date)
+        contentView.addSubview(commentStar)
+        contentView.addSubview(commentText)
+        contentView.layer.cornerRadius = 6
+        
+        desing()
+        
+  
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func desing(){
+        
+        titleLabel.anchor(top: contentView.topAnchor, 
+                          bottom: nil,
+                          leading: contentView.leadingAnchor,
+                          trailing: contentView.trailingAnchor,
+                          size: .init(width: 0, height: 30)
+        )
+     
+        date.anchor(top: titleLabel.bottomAnchor,
+                    bottom: nil,
+                    leading:contentView.leadingAnchor,
+                    trailing: contentView.trailingAnchor)
+        
+        commentStar.anchor(top: date.bottomAnchor, 
+                           bottom: nil, leading: nil,
+                           trailing: nil,
+                           size: .init(width: 12,
+                                       height: 12))
+        commentStar.centerXAnchor.constraint(equalTo: date.centerXAnchor).isActive = true
+        
+        commentText.anchor(top: commentStar.bottomAnchor, bottom: nil, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor,padding: .init(top: 5, left: 25, bottom: 0, right: 25))
+   
+
+        
+        
+    }
+    
+
+
+}
