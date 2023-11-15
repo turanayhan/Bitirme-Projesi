@@ -248,7 +248,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
           
-           print("Tıklanan öğe indeksi: \(indexPath.item)")
+           print("Tıklanan öğe indeksiiii: \(indexPath.item)")
         
         
        
