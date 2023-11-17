@@ -45,6 +45,7 @@ class SplashScreen: UIViewController {
         super.viewDidLoad()
         
         //ekrana geçme fonksiyonu
+        
         logoTimer()
         
         view.backgroundColor = .white

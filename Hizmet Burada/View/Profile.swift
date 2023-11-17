@@ -10,6 +10,26 @@ import UIKit
 
 class Profile: UIViewController {
     
+    
+    lazy var container:UIView = {
+    
+        let container = UIView()
+        container.isHidden = App.shared.container
+        return container
+        
+    }()
+    
+    
+    lazy var containerProfile:UIView = {
+    
+        let container = UIView()
+        container.isHidden = App.shared.containerProfile
+        container.backgroundColor = .blue
+        return container
+        
+    }()
+    
+    
     lazy var stackView:UIStackView = {
         
         let stackView = UIStackView()
@@ -80,19 +100,32 @@ class Profile: UIViewController {
     
     
     func desing (){
+        
+        
+        view.addSubview(container)
+        view.addSubview(containerProfile)
+        
+        
         stackView.addArrangedSubview(registerBtn)
         stackView.addArrangedSubview(loginBtn)
-        view.addSubview(stackView)
+        container.addSubview(stackView)
         view.backgroundColor = .white
-        view.addSubview(logo)
-        view.addSubview(infoText)
-    
+        container.addSubview(logo)
+        container.addSubview(infoText)
+        container.anchor(top: view.topAnchor,
+                         bottom: view.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor)
         
-        //constrait atama fonksiyonu
+        containerProfile.anchor(top: view.topAnchor,
+                         bottom: view.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor)
+       
         stackView.anchor(top: nil,
                          bottom: nil,
-                         leading: view.leadingAnchor,
-                         trailing: view.trailingAnchor,
+                         leading: container.leadingAnchor,
+                         trailing: container.trailingAnchor,
                          padding: .init(top: 0, left: 32, bottom: 0, right: 32),
                          size: .init(width: 0, height: 90))
         stackView.centerAnchor()
@@ -100,8 +133,8 @@ class Profile: UIViewController {
         
         logo.anchor(top: view.topAnchor,
                     bottom: infoText.topAnchor,
-                    leading: view.leadingAnchor,
-                    trailing: view.trailingAnchor,
+                    leading: container.leadingAnchor,
+                    trailing: container.trailingAnchor,
                     padding: .init(top: 100, left: 30, bottom:6, right: 30),
                     size: .init(width: 0, height: 0))
         
@@ -140,4 +173,7 @@ class Profile: UIViewController {
         
         
     }
+    
+    
+   
 }

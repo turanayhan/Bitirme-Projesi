@@ -128,5 +128,100 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/view/SplashScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "desing()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f09b13"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "596">
+               </Location>
+               <Location
+                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f098b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f09b32"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "600">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FA4A1F11-8E19-48CA-8CB8-5569EE9C1A0A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/view/SplashScreen.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "desing()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5AA1EB00-E7DE-4121-99C1-3A7BB7353D95"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/Service/FirestoreManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "firebasePush(user:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

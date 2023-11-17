@@ -190,6 +190,9 @@ class Register: UIViewController {
               
                 return
             }
+            
+            FirestoreManager().firebasePush(user: User(username: self.nameSurname.text ?? "bos", email: self.mail.text ?? "bos"))
+            
             self.progresBar.dismiss(afterDelay: 3.0)
             print("kullanıcı başarıyla kaydedildi")
             self.navigationItem.title = ""

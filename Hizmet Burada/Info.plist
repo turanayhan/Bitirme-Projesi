@@ -10,9 +10,6 @@
 		<dict/>
 	</dict>
 	<key>UIAppFonts</key>
-	<array>
-		<string>fonts/Chango.ttf</string>
-		<string>Chango.ttf</string>
-	</array>
+	<array/>
 </dict>
 </plist>

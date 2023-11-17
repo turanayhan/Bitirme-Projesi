@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Login: UIViewController {
     
@@ -15,8 +16,6 @@ class Login: UIViewController {
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
         logo.contentMode = .scaleToFill
-        
-        
         return logo
         
         
@@ -70,7 +69,7 @@ class Login: UIViewController {
         loginBtn.setTitle("Giriş Yap", for: .normal)
         loginBtn.backgroundColor = .red
         loginBtn.setTitleShadowColor(.white, for: .focused)
-        loginBtn.addTarget(self, action: #selector(registerClick), for: .touchUpInside)
+        loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         loginBtn.setTitleColor(.white, for: .normal)
         loginBtn.setTitleColor(.red, for: .highlighted)
         loginBtn.isEnabled = true
@@ -152,13 +151,36 @@ class Login: UIViewController {
         
     }
 
-    @objc func registerClick(click : UIButton!){
+    @objc func loginClick(click : UIButton!){
         
         print("firebase işlemleri")
+      
+        
+        
+        
+        Auth.auth().signIn(withEmail: self.mail.text ?? "", password: self.password.text ?? "") { [weak self] authResult, error in
+                   guard let self = self else { return }
+
+                   if let error = error {
+                       print("Giriş hatası: \(error.localizedDescription)")
+                   } else {
+                       print("Giriş başarılı loooo!")
+                       
+                       App.shared.containerProfile = false
+                       App.shared.container = true
+                       self.navigationItem.title = ""
+                       self.navigationController?.pushViewController(Profile(), animated: true)
+                       self.navigationController?.isNavigationBarHidden = true
+                       
+                   }
+               }
     }
 
     @objc func passwordtBtnClick(click : UIButton!){
         
         
     }
+   
+    
+    
 }

@@ -108,15 +108,3 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
 
 
 
-struct MyFirestoreData: Codable {
-    var header: String
-    var itemMethods: [String]
-
-    // Diğer özellikler varsa buraya ekleyebilirsiniz.
-
-    enum CodingKeys: String, CodingKey {
-        case header
-        case itemMethods
-        // Diğer özelliklerin CodingKeys tanımlamaları
-    }
-}

@@ -44,22 +44,15 @@ class FirestoreManager {
     
     
     
-    func firebasepush(){
-        
+    func firebasePush(user : User){
         
         let db = Firestore.firestore()
-        
-     
-        
-        // Firestore'a eklemek için veri oluştur
-        
-        // Firestore koleksiyonuna belirli bir belge kimliği (ID) ile belge eklemek için
         do {
-            let jsonData = try JSONEncoder().encode("newData")
+            let jsonData = try JSONEncoder().encode(user)
             let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
             
             if let jsonDictionary = jsonObject as? [String: Any] {
-                let documentID = "hizmetler" // Kendi belge kimliğinizi belirtin veya otomatik bir belge kimliği oluşturun
+                let documentID = "user" // Kendi belge kimliğinizi belirtin veya otomatik bir belge kimliği oluşturun
                 
                 // Firestore'a sözlük olarak veri eklemek için
                 db.collection("HizmetBurada").document(documentID).setData(jsonDictionary) { error in
