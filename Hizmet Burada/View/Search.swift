@@ -13,10 +13,6 @@ import JGProgressHUD
 
 class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
-    
-    
-    
-    
     var listTableView:[ItemModel] = []
     let firestoreManager = FirestoreManager()
     
@@ -28,7 +24,6 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     }()
     
     lazy var progresBar:JGProgressHUD = {
-        
         let progresBar = JGProgressHUD(style: .light)
         return  progresBar
         
@@ -43,15 +38,14 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
         worksTableView.delegate = self
         worksTableView.register(TableItemVertical.self, forCellReuseIdentifier: "re")
         desing()
-        
-        
     }
-    
     
     func desing (){
         
-        worksTableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
-        
+        worksTableView.anchor(top: view.topAnchor, 
+                              bottom: view.bottomAnchor, 
+                              leading: view.leadingAnchor, 
+                              trailing: view.trailingAnchor)
     }
     
     
@@ -69,24 +63,25 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+      
         return 180
         
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+       }
     
     
     func firebase(){
         progresBar.show(in: self.view)
-        
-
         firestoreManager.fetchUsers { (worklist, error) in
-            
             if let error = error {
                 print("Veri çekme hatası: \(error.localizedDescription)")
             } else if let worklist = worklist {
                 
                 for worklist in worklist {
-                    
                     self.listTableView = worklist.veri
                     self.worksTableView.reloadData()
                     self.progresBar.dismiss()
@@ -94,17 +89,5 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
                 }
             }
         }
-    
-       
-
-     
     }
-    
-    
-
-    
 }
-
-
-
-

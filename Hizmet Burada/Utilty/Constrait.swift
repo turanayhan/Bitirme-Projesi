@@ -9,8 +9,6 @@ import UIKit
 
 
 extension UIView{
-    
-    
     func centerAnchor(size : CGSize = .zero) {
         
         translatesAutoresizingMaskIntoConstraints = false
@@ -29,9 +27,7 @@ extension UIView{
             widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
         
-        
     }
-    
     
     func anchor(top : NSLayoutYAxisAnchor?,
                 bottom:NSLayoutYAxisAnchor?,
@@ -76,9 +72,5 @@ extension UIView{
             
             heightAnchor.constraint(equalToConstant: size.height).isActive=true
         }
-        
-        
-        
-        
     }
 }

@@ -16,6 +16,5 @@ struct ItemModel : Codable{
     enum CodingKeys: String, CodingKey {
         case header
         case workList
-        // Diğer özelliklerin CodingKeys tanımlamaları
     }
 }

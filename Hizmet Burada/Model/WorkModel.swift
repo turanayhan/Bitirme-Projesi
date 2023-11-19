@@ -16,7 +16,6 @@ struct WorkModel : Codable{
         case imageUrl
         case workName
         case id
-        // Diğer özelliklerin CodingKeys tanımlamaları
     }
     
 }

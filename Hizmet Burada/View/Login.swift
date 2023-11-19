@@ -10,64 +10,40 @@ import Firebase
 
 class Login: UIViewController {
     
-    
     lazy var logo:UIImageView = {
-        
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
         logo.contentMode = .scaleToFill
         return logo
-        
-        
     }()
     
-    
     lazy var stackView:UIStackView = {
-        
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 9
         return stackView
-        
     }()
     
     lazy var mail:UITextField = {
-  
-        
         let mail = UITextField()
         mail.placeholder = "E-mail"
         mail.borderStyle = .roundedRect
         mail.keyboardType = .emailAddress
-        
         return mail
-        
-        
     }()
     
     lazy var password:UITextField = {
-        
-         
         let password = UITextField()
         password.placeholder = "şifreni gir"
         password.borderStyle = .roundedRect
-        
-        //password.rightView = UIImageView(image: UIImage(named: "email"))
-
-         
-        
-        
-
         return password
-        
-        
     }()
     
     lazy var loginBtn:UIButton = {
-        
         let loginBtn = UIButton()
         loginBtn.setTitle("Giriş Yap", for: .normal)
-        loginBtn.backgroundColor = .red
+        loginBtn.backgroundColor = .systemYellow
         loginBtn.setTitleShadowColor(.white, for: .focused)
         loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         loginBtn.setTitleColor(.white, for: .normal)
@@ -75,44 +51,36 @@ class Login: UIViewController {
         loginBtn.isEnabled = true
         loginBtn.layer.cornerRadius = 4
         return loginBtn
-        
     }()
     
     lazy var passwordBtn:UIButton = {
-        
         let registerBtn = UIButton()
         registerBtn.setTitle("Şifremi unuttum", for: .normal)
         registerBtn.backgroundColor = .white
         registerBtn.setTitleShadowColor(.white, for: .focused)
         registerBtn.addTarget(self, action: #selector(passwordtBtnClick), for: .touchUpInside)
-        registerBtn.setTitleColor(.red, for: .normal)
+        registerBtn.setTitleColor(.systemYellow, for: .normal)
         registerBtn.setTitleColor(.white, for: .highlighted)
         registerBtn.isEnabled = true
         return registerBtn
-        
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Giriş Yap"
+        navigationController?.isNavigationBarHidden = false
         view.backgroundColor = .white
-        
-       
-        desing()
-        
-    }
-    
-    
-    
-    func desing(){
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)
         view.addSubview(stackView)
         view.addSubview(loginBtn)
         view.addSubview(logo)
         view.addSubview(passwordBtn)
-    
+        desing()
         
+    }
+    
+    func desing(){
         
         logo.anchor(top: nil,
                     bottom: stackView.topAnchor,
@@ -120,9 +88,7 @@ class Login: UIViewController {
                     trailing: nil,
                     padding: .init(top: 12, left: 12, bottom: 16, right: 12),size: .init(width: 300, height: 300)
                     )
-        
         logo.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
-        
         
         stackView.anchor(top: nil,
                          bottom: nil,
@@ -147,27 +113,20 @@ class Login: UIViewController {
         
         password.centerXAnchor.constraint(equalTo: loginBtn.centerXAnchor).isActive = true
         
-        
-        
     }
 
     @objc func loginClick(click : UIButton!){
         
         print("firebase işlemleri")
-      
         
-        
-        
-        Auth.auth().signIn(withEmail: self.mail.text ?? "", password: self.password.text ?? "") { [weak self] authResult, error in
+        Auth.auth().signIn(withEmail: self.mail.text ?? "",
+                           password: self.password.text ?? "") { [weak self] authResult, error in
                    guard let self = self else { return }
 
                    if let error = error {
                        print("Giriş hatası: \(error.localizedDescription)")
                    } else {
-                       print("Giriş başarılı loooo!")
-                       
-                       App.shared.containerProfile = false
-                       App.shared.container = true
+                       print("Giriş başarılı")
                        self.navigationItem.title = ""
                        self.navigationController?.pushViewController(Profile(), animated: true)
                        self.navigationController?.isNavigationBarHidden = true
@@ -177,10 +136,7 @@ class Login: UIViewController {
     }
 
     @objc func passwordtBtnClick(click : UIButton!){
-        
-        
+        print("şifremi unuttum")
     }
-   
-    
-    
+
 }

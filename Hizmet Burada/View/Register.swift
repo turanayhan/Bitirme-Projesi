@@ -9,87 +9,68 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-
-
 class Register: UIViewController {
     
-    
-
     lazy var progresBar:JGProgressHUD = {
-        
         let progresBar = JGProgressHUD(style: .light)
         progresBar.textLabel.text = "Kaydınız Gerçekleşiyor"
         return  progresBar
-        
     }()
     
     lazy var logo:UIImageView = {
-        
         let logo = UIImageView()
         logo.image = UIImage(named: "logo")
         logo.contentMode = .scaleAspectFit
-        
         return logo
     }()
     
-    
     lazy var stackView:UIStackView = {
-        
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 9
         return stackView
-        
     }()
     
-    lazy var nameSurname:UITextField = {
-    
-         
+    lazy var name:UITextField = {
         let nameSurname = UITextField()
-        nameSurname.placeholder = "Ad Soyad Gir"
+        nameSurname.placeholder = "Ad"
         nameSurname.borderStyle = .roundedRect
         nameSurname.keyboardType = .emailAddress
         nameSurname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        //nameSurname.rightView = UIImageView(image: UIImage(named: "email"))
         return nameSurname
-        
     }()
     
-    
-    
+    lazy var surname:UITextField = {
+        let surname = UITextField()
+        surname.placeholder = "Soyad"
+        surname.borderStyle = .roundedRect
+        surname.keyboardType = .emailAddress
+        surname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        return surname
+    }()
+
     lazy var mail:UITextField = {
-  
-        
         let mail = UITextField()
         mail.placeholder = "E-mail"
         mail.borderStyle = .roundedRect
         mail.keyboardType = .emailAddress
         mail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
         return mail
-        
     }()
     
     lazy var password:UITextField = {
-        
-         
         let password = UITextField()
         password.placeholder = "şifreni gir"
         password.borderStyle = .roundedRect
         password.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        //password.rightView = UIImageView(image: UIImage(named: "email"))
         return password
-        
-        
     }()
     
     lazy var registerBtn:UIButton = {
-        
         let registerBtn = UIButton()
         registerBtn.setTitle("Kayıt Ol", for: .normal)
-        registerBtn.backgroundColor = .red
+        registerBtn.backgroundColor = .systemYellow
         registerBtn.setTitleShadowColor(.white, for: .focused)
         registerBtn.addTarget(self, action: #selector(registerClick), for: .touchUpInside)
         registerBtn.setTitleColor(.white, for: .normal)
@@ -100,43 +81,24 @@ class Register: UIViewController {
         return registerBtn
         
     }()
-    
-   
-    
-
-
-    
-   
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Kayıt Ol"
+        navigationController?.isNavigationBarHidden = false
         view.backgroundColor = .white
-        
-        
-
-        desing()
-        
-    }
-    
-    
-    
-     
-    
-    
-   
-    
-    func desing(){
-        stackView.addArrangedSubview(nameSurname)
+        stackView.addArrangedSubview(name)
+        stackView.addArrangedSubview(surname)
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)
         view.addSubview(stackView)
         view.addSubview(registerBtn)
         view.addSubview(logo)
-    
-        
-        
+        desing()
+    }
+
+    func desing(){
+     
         logo.anchor(top: nil,
                     bottom: stackView.topAnchor,
                     leading: nil,
@@ -146,13 +108,12 @@ class Register: UIViewController {
         
         logo.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
         
-        
         stackView.anchor(top: nil,
                          bottom: nil,
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
                          padding: .init(top: 0, left: 36, bottom: 0, right: 36),
-                         size: .init(width: 0, height: 135))
+                         size: .init(width: 0, height: view.frame.height/5))
         
         stackView.centerAnchor()
         
@@ -161,14 +122,11 @@ class Register: UIViewController {
                         leading: stackView.leadingAnchor,
                         trailing: stackView.trailingAnchor,
                         padding: .init(top: 12, left: 0, bottom: 0, right: 0))
-        
-        
-        
-        
+  
     }
     
     @objc func textFieldDidChange(textField: UITextField) {
-        if nameSurname.text!.isEmpty || mail.text!.isEmpty || password.text!.isEmpty{
+        if name.text!.isEmpty || mail.text!.isEmpty || password.text!.isEmpty{
             registerBtn.isEnabled = false
             registerBtn.alpha = 0.5
             
@@ -178,8 +136,6 @@ class Register: UIViewController {
         }
     }
     
-    
-
     @objc func registerClick(click : UIButton!){
         progresBar.show(in: self.view)
   
@@ -187,22 +143,26 @@ class Register: UIViewController {
             if let response = response {
                 print("hata")
                 self.progresBar.dismiss(afterDelay: 3.0)
-              
                 return
             }
             
-            FirestoreManager().firebasePush(user: User(username: self.nameSurname.text ?? "bos", email: self.mail.text ?? "bos"))
+            FirestoreManager().firebasePush(user: User(name: self.name.text,
+                                                       surname: self.surname.text,
+                                                       gsm: "",email: self.mail.text))
             
-            self.progresBar.dismiss(afterDelay: 3.0)
+            App.shared.userDefaultsManager.setUser(name: self.name.text!,
+                                                   surname: self.surname.text!,
+                                                   gsm: "05366307326",
+                                                   mail: self.mail.text!)
+            
+            self.progresBar.dismiss(afterDelay: 2.0)
             print("kullanıcı başarıyla kaydedildi")
             self.navigationItem.title = ""
+            self.navigationController?.isNavigationBarHidden = true
             self.navigationController?.pushViewController(Login(), animated: true)
             
         }
         
-        
     }
 
-    
-    
 }

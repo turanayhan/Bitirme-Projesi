@@ -8,17 +8,12 @@
 class App {
 
     static let shared = App() // Singleton örneği
-    
-    var container = false
-    var containerProfile = true
-    
+    var userDefaultsManager = UserDefaultsManager()
     
     private init() {
-       
-    }
-
-    func doSomething() {
         
+    }
+    func doSomething() {
         print("Singleton obje çalıştı.")
     }
 }

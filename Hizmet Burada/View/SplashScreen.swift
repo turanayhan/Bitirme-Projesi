@@ -9,11 +9,8 @@
 import UIKit
 
 class SplashScreen: UIViewController {
-    //logo bekleme süresi
+    
     private var timer: Timer?
-    
-    
-   
     
     lazy  var stackview : UIStackView = {
         let stackview = UIStackView()
@@ -31,6 +28,7 @@ class SplashScreen: UIViewController {
         logoText.textAlignment = .right
         return logoText
     }()
+    
     lazy var logoText2 : UITextView = {
         let logoText2 = UITextView()
         logoText2.text = "Burada"
@@ -47,22 +45,12 @@ class SplashScreen: UIViewController {
         //ekrana geçme fonksiyonu
         
         logoTimer()
-        
         view.backgroundColor = .white
         stackview.addArrangedSubview(logoText)
         stackview.addArrangedSubview(logoText2)
         view.addSubview(stackview)
-       
-    
         desing()
-        
-      
-        
-        
-
     }
-    
-    
     
     func desing(){
         stackview.anchor(top: nil, bottom: nil, 
@@ -70,14 +58,9 @@ class SplashScreen: UIViewController {
                          trailing: view.trailingAnchor,
                          size: .init(width: 0, height: 60))
         stackview.centerAnchor()
-
-    
-      
-    
     }
     
     func logoTimer(){
-        
         self.timer = Timer.scheduledTimer(timeInterval: 5,
                                          target: self,
                                          selector: #selector(
@@ -87,22 +70,10 @@ class SplashScreen: UIViewController {
     }
 
     @objc private func screenTransition() {
-        
         print("ekrana geç...")
         let tabBar = TabBar()
-        
         self.navigationController?.pushViewController(tabBar, animated: true)
-    
         self.timer?.invalidate()
-   
-      
-        
     }
         
     }
-    
-    
-
-   
-
-

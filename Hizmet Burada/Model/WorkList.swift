@@ -15,7 +15,7 @@ struct WorkList:Codable{
     enum CodingKeys: String, CodingKey {
         case veri
     
-        // Diğer özelliklerin CodingKeys tanımlamaları
+
     }
     
 }

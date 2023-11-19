@@ -15,6 +15,10 @@
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
 		0567B1932B07A82E004741D4 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567B1922B07A82E004741D4 /* App.swift */; };
+		0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE02B08C87500FE5CBC /* ProfileCell.swift */; };
+		0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */; };
+		0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */; };
+		0572FCE72B08ED9C00FE5CBC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */; };
 		0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580F1E52B020901005E3DEC /* DetailWork.swift */; };
 		05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */; };
 		05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B5472AFD038900E714B0 /* TableItemVertical.swift */; };
@@ -76,6 +80,10 @@
 		0542497A2B03D0270069F214 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		054FCFE72AF4DA3600A8555B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0567B1922B07A82E004741D4 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		0572FCE02B08C87500FE5CBC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
+		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
+		0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordReset.swift; sourceTree = "<group>"; };
+		0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		0580F1E52B020901005E3DEC /* DetailWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWork.swift; sourceTree = "<group>"; };
 		05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05A8B5472AFD038900E714B0 /* TableItemVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemVertical.swift; sourceTree = "<group>"; };
@@ -159,6 +167,7 @@
 				05A8B5472AFD038900E714B0 /* TableItemVertical.swift */,
 				05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */,
 				0542497A2B03D0270069F214 /* Comment.swift */,
+				0572FCE02B08C87500FE5CBC /* ProfileCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -167,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
+				0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -253,6 +263,8 @@
 				05E2A2242AF79F5200FA8057 /* Myworks.swift */,
 				05E2A2262AF79F6300FA8057 /* Login.swift */,
 				0580F1E52B020901005E3DEC /* DetailWork.swift */,
+				0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */,
+				0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,10 +392,12 @@
 			files = (
 				05E024CF2AFE46BE006C20F0 /* ItemModel.swift in Sources */,
 				05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */,
+				0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */,
 				05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */,
 				05E36A392B04F9A600EC5845 /* AppNavigation.swift in Sources */,
 				05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */,
 				05E2A21D2AF79EF400FA8057 /* Profile.swift in Sources */,
+				0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */,
 				05E2A2232AF79F3700FA8057 /* Notification.swift in Sources */,
 				05E2A21F2AF79F0B00FA8057 /* SplashScreen.swift in Sources */,
 				05E2A2252AF79F5200FA8057 /* Myworks.swift in Sources */,
@@ -399,6 +413,8 @@
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,
 				0567B1932B07A82E004741D4 /* App.swift in Sources */,
+				0572FCE72B08ED9C00FE5CBC /* UserDefaultsManager.swift in Sources */,
+				0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */,
 				05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */,
 				05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */,
 			);

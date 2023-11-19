@@ -6,20 +6,17 @@
 //
 
 import Foundation
-
 import FirebaseFirestore
 import FirebaseStorage
 
 class FirestoreManager {
     let db = Firestore.firestore()
-    
     func fetchUsers(completion: @escaping ([WorkList]?, Error?) -> Void) {
         db.collection("HizmetBurada").getDocuments { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 completion(nil, error)
                 return
             }
-            
             let list = documents.compactMap { document -> WorkList? in
                 do {
                     let user = try document.data(as: WorkList.self)
@@ -30,19 +27,9 @@ class FirestoreManager {
                     return nil
                 }
             }
-            
-            
-            
-            
             completion(list, nil)
         }
     }
-    
-    
-    
-    
-    
-    
     
     func firebasePush(user : User){
         
@@ -69,9 +56,6 @@ class FirestoreManager {
  
     }
     
-    
-    
-    
     func downloadImage(from path: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = Storage.storage().reference(withPath: path)
 
@@ -90,9 +74,3 @@ class FirestoreManager {
     }
    
 }
-
-
-
-
-
-
