@@ -9,12 +9,19 @@ import Foundation
 
 class UserDefaultsManager {
     
+    
+    
     // Kullanıcı adını UserDefaults'a kaydetme
     func setUser(name: String,surname :String,gsm:String,mail : String) {
         UserDefaults.standard.set(name, forKey: "name")
         UserDefaults.standard.set(surname, forKey: "surname")
         UserDefaults.standard.set(gsm, forKey: "gsm")
         UserDefaults.standard.set(mail, forKey: "mail")
+        
+    }
+    
+    func setId(id: String) {
+        UserDefaults.standard.set(id, forKey: "id")
     }
     
     // Kullanıcı adını UserDefaults'dan alma
@@ -27,7 +34,8 @@ class UserDefaultsManager {
         let surname = UserDefaults.standard.string(forKey: "surname")
         let gsm = UserDefaults.standard.string(forKey: "gsm")
         let mail = UserDefaults.standard.string(forKey: "mail")
-        return User(name: name,surname: surname,gsm: gsm,email: mail)
+        let id = UserDefaults.standard.string(forKey: "id")
+        return User(name: name,surname: surname,gsm: gsm,email: mail,id: id)
     }
     // Kullanıcı adını UserDefaults'tan silme
     func removeUserName() {

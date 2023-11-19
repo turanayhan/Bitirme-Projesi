@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
 import JGProgressHUD
 
 class Register: UIViewController {
@@ -148,12 +149,15 @@ class Register: UIViewController {
             
             FirestoreManager().firebasePush(user: User(name: self.name.text,
                                                        surname: self.surname.text,
-                                                       gsm: "",email: self.mail.text))
+                                                       gsm: "",
+                                                       email: self.mail.text))
             
             App.shared.userDefaultsManager.setUser(name: self.name.text!,
                                                    surname: self.surname.text!,
-                                                   gsm: "05366307326",
-                                                   mail: self.mail.text!)
+                                                   gsm: "",
+                                                   mail: self.mail.text!
+                                                 
+            )
             
             self.progresBar.dismiss(afterDelay: 2.0)
             print("kullanıcı başarıyla kaydedildi")

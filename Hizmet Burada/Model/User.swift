@@ -12,11 +12,13 @@ struct User: Codable {
     var surname: String?
     var gsm: String?
     var email: String?
+    var id: String?
     
     enum CodingKeys: String, CodingKey {
         case name
         case surname
         case gsm
         case email
+        case id
     }
 }

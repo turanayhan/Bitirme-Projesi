@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseStorage
-
+import Firebase
 class FirestoreManager {
     let db = Firestore.firestore()
     func fetchUsers(completion: @escaping ([WorkList]?, Error?) -> Void) {
@@ -33,28 +33,46 @@ class FirestoreManager {
     
     func firebasePush(user : User){
         
-        let db = Firestore.firestore()
-        do {
-            let jsonData = try JSONEncoder().encode(user)
-            let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
-            
-            if let jsonDictionary = jsonObject as? [String: Any] {
-                let documentID = "user" // Kendi belge kimliğinizi belirtin veya otomatik bir belge kimliği oluşturun
-                
-                // Firestore'a sözlük olarak veri eklemek için
-                db.collection("HizmetBurada").document(documentID).setData(jsonDictionary) { error in
-                    if let error = error {
-                        print("Veri eklenirken hata oluştu: \(error)")
-                    } else {
-                        print("Veri başarıyla eklendi")
-                    }
-                }
-            }
-        } catch {
-            print("Veri kodlanırken hata oluştu: \(error)")
-        }
+        let ref = Database.database().reference()
+        let yeniKullaniciRef = ref.child("User").childByAutoId()
+
+        let yeniKullanici = [
+            "name": user.name,
+            "surname": user.surname,
+            "mail": user.email,
+            "gsm": user.gsm,
+        ]
+        yeniKullaniciRef.setValue(yeniKullanici)
+        // Eklenen kullanıcının ID'sini almak
+        var kullaniciID = yeniKullaniciRef.key ?? "0"
+        App.shared.userDefaultsManager.setId(id: kullaniciID)
+        
  
     }
+    
+    func firebaseUpdate(user : User){
+        
+        let ref = Database.database().reference()
+        let yeniKullaniciRef = ref.child("User").child(App.shared.userDefaultsManager.getUser().id ?? "00")
+
+        let yeniKullanici = [
+            "name": user.name,
+            "surname": user.surname,
+            "mail": user.email,
+            "gsm": user.gsm,
+            "userId": user.id
+        ]
+        
+        // Kullanıcıyı Firebase Realtime Database'e eklemek
+        yeniKullaniciRef.setValue(yeniKullanici)
+        // Eklenen kullanıcının ID'sini almak
+        var kullaniciID = yeniKullaniciRef.key ?? "0"
+        App.shared.userDefaultsManager.setId(id: kullaniciID)
+        
+ 
+    }
+    
+    
     
     func downloadImage(from path: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = Storage.storage().reference(withPath: path)

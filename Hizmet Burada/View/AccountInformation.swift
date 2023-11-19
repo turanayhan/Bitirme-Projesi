@@ -203,7 +203,7 @@ class AccountInformation: UIViewController {
         
         App.shared.userDefaultsManager.setUser(name: self.name.text!, surname: self.surname.text!, gsm: self.gsm.text!, mail: self.mail.text!)
         
-        FirestoreManager().firebasePush(user: User(name: self.name.text,surname: self.surname.text,gsm: self.gsm.text,email: self.mail.text))
+        FirestoreManager().firebaseUpdate(user: User(name: self.name.text,surname: self.surname.text,gsm: self.gsm.text,email: self.mail.text))
         navigationController?.pushViewController(Profile(), animated: true)
         }
 

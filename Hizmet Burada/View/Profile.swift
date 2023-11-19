@@ -12,7 +12,7 @@ import Firebase
 class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
     
-    let profileList = ["Hesap bilgilerim", "Şifre değiştir", "Arkadaşlarına tavsiye et, ","Değerlendir", "Yardım merkezi","Veri ve gizlilik","Çıkış Yap"]
+    let profileList = ["Hesap bilgilerim", "Şifre değiştir", "Arkadaşlarına tavsiye et ","Değerlendir", "Yardım merkezi","Veri ve gizlilik","Çıkış Yap"]
     
     let userModel:User = {
         let model = App.shared.userDefaultsManager.getUser()
@@ -96,7 +96,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         nameSurname.font = UIFont.boldSystemFont(ofSize: 24)
         nameSurname.isEditable = false
         nameSurname.textAlignment = .center
-        nameSurname.text = (userModel.name ?? "hata") + (userModel.surname ?? "hata")
+        nameSurname.text = (userModel.name ?? "hata") + "  "+(userModel.surname ?? "hata")
         return nameSurname
     }()
     
