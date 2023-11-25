@@ -9,25 +9,28 @@
 import UIKit
 import Firebase
 
+struct UserProfile{
+    
+    let id : Int
+    let name : String
+    
+    
+}
+
 class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
     
-    let profileList = ["Hesap bilgilerim", "Şifre değiştir", "Arkadaşlarına tavsiye et ","Değerlendir", "Yardım merkezi","Veri ve gizlilik","Çıkış Yap"]
+    var userProfile = [UserProfile]()
     
-    let userModel:User = {
-        let model = App.shared.userDefaultsManager.getUser()
-        return model
-    }()
+   
     
     lazy var container:UIView = {
         let container = UIView()
-        container.isHidden = App.shared.userDefaultsManager.isUserLoggedIn()
         return container
     }()
     
     lazy var containerProfile:UIView = {
         let container = UIView()
-        container.isHidden = !App.shared.userDefaultsManager.isUserLoggedIn()
         return container
     }()
     
@@ -96,7 +99,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         nameSurname.font = UIFont.boldSystemFont(ofSize: 24)
         nameSurname.isEditable = false
         nameSurname.textAlignment = .center
-        nameSurname.text = (userModel.name ?? "hata") + "  "+(userModel.surname ?? "hata")
+       
         return nameSurname
     }()
     
@@ -114,11 +117,44 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
     lazy var tableView: UITableView = {
            let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(ProfileCell.self, forCellReuseIdentifier: "cell")
            return tableView
        }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            if navigationController != nil {
+                self.navigationController?.setNavigationBarHidden(true, animated: true)
+                self.navigationController?.isNavigationBarHidden = true
+            }
+        if UserManager.shared.isUserLoggedIn(){
+            container.isHidden = true
+            containerProfile.isHidden = false
+        }
+        else{
+            container.isHidden = false
+            containerProfile.isHidden = true
+            
+        }
+        
+        nameSurname.text = (UserManager.shared.getUser().name ?? "hata") + "  "+(UserManager.shared.getUser().surname ?? "hata")
+        userProfile.append(UserProfile(id: 0, name: "Hesap Bilgileri"))
+        userProfile.append(UserProfile(id: 1, name: "Şifre Değiştir"))
+        userProfile.append(UserProfile(id: 2, name: "Yardım merkezi"))
+        userProfile.append(UserProfile(id: 3, name: "Arkadaşlarına tavsiye et"))
+        userProfile.append(UserProfile(id: 4, name: "Hizmet Ver"))
+        userProfile.append(UserProfile(id: 5, name: "Çıkış Yap"))
+        }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        desing()
+    }
+    
+    func desing (){
         navigationItem.title = ""
         self.navigationController?.isNavigationBarHidden = true
         view.addSubview(container)
@@ -132,15 +168,8 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         view.backgroundColor = .white
         container.addSubview(logo)
         container.addSubview(infoText)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(ProfileCell.self, forCellReuseIdentifier: "cell")
-        desing()
-    }
-    
-    
-    
-    func desing (){
+
+        
         
         container.anchor(top: view.topAnchor,
                          bottom: view.bottomAnchor,
@@ -218,14 +247,14 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return profileList.count
+        return userProfile.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileCell
         
-        cell.configure(with: profileList[indexPath.row])
+        cell.configure(with: userProfile[indexPath.row])
         
         return cell
     }
@@ -235,24 +264,22 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         
         tableView.deselectRow(at: indexPath, animated: true)
         
-        switch profileList[indexPath.row] {
-        case "Hesap bilgilerim":
+        switch userProfile[indexPath.row].id {
+        case 0:
             navigationController?.pushViewController(AccountInformation(), animated: true)
-        case "Şifre değiştir":
+        case 1:
             print("Şifre değiştir")
-        case "Arkadaşlarına tavsiye et":
+        case 2:
             print("Arkadaşlarına tavsiye et")
-        case "Değerlendir":
+        case 3:
             print("Değerlendir")
-        case "Yardım merkezi":
+        case 4:
             print("Haftanın beşinci günü")
-        case "Veri ve gizlilik":
-            print("Haftanın altıncı günü")
-        case "Çıkış Yap":
-          loguth()
-            
+        case 5:
+            loguth()
         default:
-            print("Geçersiz gün")
+            break
+          
         }
         
        }
@@ -261,13 +288,9 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
            return 70// Yükseklik değerini istediğiniz değerle değiştirin
        }
     
-    override func viewWillAppear(_ animated: Bool) {
-            super.viewWillAppear(animated)
-            if navigationController != nil {
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                self.navigationController?.isNavigationBarHidden = true
-            }
-        }
+    
+    
+   
     
     
     func loguth(){
@@ -275,7 +298,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         do {
             try Auth.auth().signOut()
             
-            App.shared.userDefaultsManager.removeUserName()
+            UserManager.shared.removeUserName()
             print("Geçersiz günwwcw")
             navigationController?.pushViewController(Profile(), animated: true)
                    

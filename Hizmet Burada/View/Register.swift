@@ -144,27 +144,32 @@ class Register: UIViewController {
             if let response = response {
                 print("hata")
                 self.progresBar.dismiss(afterDelay: 3.0)
+               
+                
                 return
             }
             
             FirestoreManager().firebasePush(user: User(name: self.name.text,
                                                        surname: self.surname.text,
-                                                       gsm: "",
-                                                       email: self.mail.text))
-            
-            App.shared.userDefaultsManager.setUser(name: self.name.text!,
-                                                   surname: self.surname.text!,
-                                                   gsm: "",
-                                                   mail: self.mail.text!
-                                                 
+                                                       gsm: "+90",
+                                                       email: self.mail.text)
             )
             
-            self.progresBar.dismiss(afterDelay: 2.0)
-            print("kullanıcı başarıyla kaydedildi")
-            self.navigationItem.title = ""
-            self.navigationController?.isNavigationBarHidden = true
-            self.navigationController?.pushViewController(Login(), animated: true)
             
+            
+          
+            
+           
+           //popup yapılacak
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        print(Date())
+                self.progresBar.dismiss(afterDelay: 2.0)
+                print("kullanıcı başarıyla kaydedildi")
+                self.navigationItem.title = ""
+                self.navigationController?.isNavigationBarHidden = true
+                self.navigationController?.pushViewController(Login(), animated: true)
+                    }
         }
         
     }

@@ -50,7 +50,7 @@ class ProfileCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with title: String) {
-        titleLabel.text = title
+    func configure(with user: UserProfile) {
+        titleLabel.text = user.name
     }
 }

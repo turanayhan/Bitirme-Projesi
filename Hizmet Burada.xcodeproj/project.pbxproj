@@ -14,11 +14,10 @@
 		054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FCFE72AF4DA3600A8555B /* TabBar.swift */; };
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
-		0567B1932B07A82E004741D4 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0567B1922B07A82E004741D4 /* App.swift */; };
 		0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE02B08C87500FE5CBC /* ProfileCell.swift */; };
 		0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */; };
 		0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */; };
-		0572FCE72B08ED9C00FE5CBC /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */; };
+		0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE62B08ED9C00FE5CBC /* UserManager.swift */; };
 		0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580F1E52B020901005E3DEC /* DetailWork.swift */; };
 		05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */; };
 		05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B5472AFD038900E714B0 /* TableItemVertical.swift */; };
@@ -79,11 +78,10 @@
 		051D12282B05508600689CBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0542497A2B03D0270069F214 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		054FCFE72AF4DA3600A8555B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
-		0567B1922B07A82E004741D4 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		0572FCE02B08C87500FE5CBC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordReset.swift; sourceTree = "<group>"; };
-		0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		0572FCE62B08ED9C00FE5CBC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		0580F1E52B020901005E3DEC /* DetailWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWork.swift; sourceTree = "<group>"; };
 		05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05A8B5472AFD038900E714B0 /* TableItemVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemVertical.swift; sourceTree = "<group>"; };
@@ -176,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
-				0572FCE62B08ED9C00FE5CBC /* UserDefaultsManager.swift */,
+				0572FCE62B08ED9C00FE5CBC /* UserManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -209,8 +207,8 @@
 		05E642CC2AF3E03F00733AC6 /* Hizmet Burada */ = {
 			isa = PBXGroup;
 			children = (
-				05E36A372B04EF5D00EC5845 /* Delegates */,
 				05A8B54D2AFD091800E714B0 /* Service */,
+				05E36A372B04EF5D00EC5845 /* Delegates */,
 				05A8B5462AFD035900E714B0 /* TableView */,
 				054FCFEF2AF4E5AB00A8555B /* Navigation */,
 				05E642E92AF3E3DE00733AC6 /* Utilty */,
@@ -273,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				05E642EC2AF3E43400733AC6 /* Constrait.swift */,
-				0567B1922B07A82E004741D4 /* App.swift */,
 			);
 			path = Utilty;
 			sourceTree = "<group>";
@@ -412,8 +409,7 @@
 				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,
-				0567B1932B07A82E004741D4 /* App.swift in Sources */,
-				0572FCE72B08ED9C00FE5CBC /* UserDefaultsManager.swift in Sources */,
+				0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */,
 				0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */,
 				05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */,
 				05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */,

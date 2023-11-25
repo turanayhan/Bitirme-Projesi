@@ -45,7 +45,9 @@ class FirestoreManager {
         yeniKullaniciRef.setValue(yeniKullanici)
         // Eklenen kullanıcının ID'sini almak
         var kullaniciID = yeniKullaniciRef.key ?? "0"
-        App.shared.userDefaultsManager.setId(id: kullaniciID)
+        UserManager.shared.setId(id: kullaniciID)
+        UserManager.shared.setUser(user: user)
+        
         
  
     }
@@ -53,7 +55,8 @@ class FirestoreManager {
     func firebaseUpdate(user : User){
         
         let ref = Database.database().reference()
-        let yeniKullaniciRef = ref.child("User").child(App.shared.userDefaultsManager.getUser().id ?? "00")
+        let yeniKullaniciRef = ref.child("User").child(UserManager.shared.getUser().id ?? "00")
+        print(UserManager.shared.getUser().id ?? "00")
 
         let yeniKullanici = [
             "name": user.name,
@@ -65,9 +68,8 @@ class FirestoreManager {
         
         // Kullanıcıyı Firebase Realtime Database'e eklemek
         yeniKullaniciRef.setValue(yeniKullanici)
-        // Eklenen kullanıcının ID'sini almak
-        var kullaniciID = yeniKullaniciRef.key ?? "0"
-        App.shared.userDefaultsManager.setId(id: kullaniciID)
+        UserManager.shared.setUser(user:user)
+       
         
  
     }

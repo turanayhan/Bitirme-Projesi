@@ -7,20 +7,20 @@
 
 import Foundation
 
-class UserDefaultsManager {
+class UserManager {
     
-    
+   static let shared = UserManager()
     
     // Kullanıcı adını UserDefaults'a kaydetme
-    func setUser(name: String,surname :String,gsm:String,mail : String) {
-        UserDefaults.standard.set(name, forKey: "name")
-        UserDefaults.standard.set(surname, forKey: "surname")
-        UserDefaults.standard.set(gsm, forKey: "gsm")
-        UserDefaults.standard.set(mail, forKey: "mail")
+    func setUser(user : User) {
+        UserDefaults.standard.set(user.name, forKey: "name")
+        UserDefaults.standard.set(user.surname, forKey: "surname")
+        UserDefaults.standard.set(user.gsm, forKey: "gsm")
+        UserDefaults.standard.set(user.email, forKey: "mail")
         
     }
     
-    func setId(id: String) {
+    func setId(id: String){
         UserDefaults.standard.set(id, forKey: "id")
     }
     

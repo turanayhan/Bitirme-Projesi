@@ -10,7 +10,7 @@ import UIKit
 class AccountInformation: UIViewController {
     
     let userModel:User = {
-        let model = App.shared.userDefaultsManager.getUser()
+        let model = UserManager.shared.getUser()
         return model
     }()
     
@@ -201,10 +201,11 @@ class AccountInformation: UIViewController {
             print("Button Clicked!")
         
         
-        App.shared.userDefaultsManager.setUser(name: self.name.text!, surname: self.surname.text!, gsm: self.gsm.text!, mail: self.mail.text!)
+        
         
         FirestoreManager().firebaseUpdate(user: User(name: self.name.text,surname: self.surname.text,gsm: self.gsm.text,email: self.mail.text))
-        navigationController?.pushViewController(Profile(), animated: true)
+       // navigationController?.pushViewController(Profile(), animated: true)
+        _ = navigationController?.popToRootViewController(animated: true)
         }
 
     override func viewWillAppear(_ animated: Bool) {
