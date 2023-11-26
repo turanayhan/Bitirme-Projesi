@@ -238,6 +238,6 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
     
     @objc func buttonClicked() {
             print("Button Clicked!")
-            // Buraya tıklandığında gerçekleşmesini istediğiniz eylemi ekleyebilirsiniz.
+        navigationController?.pushViewController(Resarvation(), animated: true)
         }
 }

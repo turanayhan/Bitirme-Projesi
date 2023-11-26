@@ -11,6 +11,9 @@
 		050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A71D82AF8CF880029C476 /* LoginViewModel.swift */; };
 		051D12292B05508600689CBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D12282B05508600689CBD /* User.swift */; };
 		0542497B2B03D0270069F214 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542497A2B03D0270069F214 /* Comment.swift */; };
+		0545EA352B1212F9006E1276 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA342B1212F9006E1276 /* Reservation.swift */; };
+		0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA362B121806006E1276 /* ResarvationCell.swift */; };
+		0545EA392B122626006E1276 /* ResarvationItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA382B122626006E1276 /* ResarvationItemCell.swift */; };
 		054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FCFE72AF4DA3600A8555B /* TabBar.swift */; };
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
@@ -69,6 +72,8 @@
 		05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E642CD2AF3E03F00733AC6 /* AppDelegate.swift */; };
 		05E642D72AF3E04000733AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E642D62AF3E04000733AC6 /* Assets.xcassets */; };
 		05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E642EC2AF3E43400733AC6 /* Constrait.swift */; };
+		05F906222B139899008A688C /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906212B139899008A688C /* Questions.swift */; };
+		05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906232B139A1B008A688C /* ModelQuestion.swift */; };
 		05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +82,9 @@
 		050A71D82AF8CF880029C476 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		051D12282B05508600689CBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0542497A2B03D0270069F214 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		0545EA342B1212F9006E1276 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		0545EA362B121806006E1276 /* ResarvationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResarvationCell.swift; sourceTree = "<group>"; };
+		0545EA382B122626006E1276 /* ResarvationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResarvationItemCell.swift; sourceTree = "<group>"; };
 		054FCFE72AF4DA3600A8555B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		0572FCE02B08C87500FE5CBC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
@@ -102,6 +110,8 @@
 		05E642D62AF3E04000733AC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05E642DB2AF3E04000733AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E642EC2AF3E43400733AC6 /* Constrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrait.swift; sourceTree = "<group>"; };
+		05F906212B139899008A688C /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		05F906232B139A1B008A688C /* ModelQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelQuestion.swift; sourceTree = "<group>"; };
 		05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemHorizontoly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +176,8 @@
 				05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */,
 				0542497A2B03D0270069F214 /* Comment.swift */,
 				0572FCE02B08C87500FE5CBC /* ProfileCell.swift */,
+				0545EA362B121806006E1276 /* ResarvationCell.swift */,
+				0545EA382B122626006E1276 /* ResarvationItemCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -237,6 +249,8 @@
 				05E024CE2AFE46BE006C20F0 /* ItemModel.swift */,
 				05DE58CD2B015DC8000B7A46 /* WorkList.swift */,
 				051D12282B05508600689CBD /* User.swift */,
+				05F906212B139899008A688C /* Questions.swift */,
+				05F906232B139A1B008A688C /* ModelQuestion.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,6 +277,7 @@
 				0580F1E52B020901005E3DEC /* DetailWork.swift */,
 				0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */,
 				0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */,
+				0545EA342B1212F9006E1276 /* Reservation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,6 +404,7 @@
 			files = (
 				05E024CF2AFE46BE006C20F0 /* ItemModel.swift in Sources */,
 				05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */,
+				0545EA352B1212F9006E1276 /* Reservation.swift in Sources */,
 				0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */,
 				05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */,
 				05E36A392B04F9A600EC5845 /* AppNavigation.swift in Sources */,
@@ -401,15 +417,19 @@
 				05DE58D02B01620D000B7A46 /* FirestoreManager.swift in Sources */,
 				051D12292B05508600689CBD /* User.swift in Sources */,
 				05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */,
+				05F906222B139899008A688C /* Questions.swift in Sources */,
 				0542497B2B03D0270069F214 /* Comment.swift in Sources */,
 				054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */,
 				05E2A2212AF79F1F00FA8057 /* Search.swift in Sources */,
 				050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */,
+				05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */,
 				0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */,
 				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
+				0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */,
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,
 				0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */,
+				0545EA392B122626006E1276 /* ResarvationItemCell.swift in Sources */,
 				0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */,
 				05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */,
 				05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */,
