@@ -219,7 +219,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
             endingLineNumber = "58"
-            landmarkName = "firebasePush(user:)"
+            landmarkName = "firebaseUpdate(user:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -253,6 +253,162 @@
             endingLineNumber = "14"
             landmarkName = "model"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "model"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - d872dca4d66e2ca5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.model.getter : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - 387780785a5788d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.model.setter : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - d2beb45cb4d49dd4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.model.modify : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - c43844b1f29a2e49"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.model.modify : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - fc024893629a1f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.init(frame: __C.CGRect) -&gt; Hizmet_Burada.ResarvationCell"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - 2ae2a069409f9109"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Hizmet_Burada.ResarvationCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Hizmet_Burada.ResarvationCell&gt;"
+                  moduleName = "Hizmet Burada"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8689D079-DA47-406E-9763-FF11A9AB5592"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "model"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99DBE18E-3217-42A7-AD9E-0C94A13D5307"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "desing()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FAAEB8F1-6B70-4405-81CE-1C63EB13A35B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

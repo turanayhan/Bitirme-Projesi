@@ -68,7 +68,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         text.font = UIFont(name: "Thonburi", size: 12)
         text.isScrollEnabled = false
         text.isEditable = false
-        text.text = "       1.300 Temizlikçi hazır"
+        text.text = "       1.300 Boya ustası hazır"
         text.textAlignment = .justified
         text.addSubview(imageView)
         return text

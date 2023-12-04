@@ -24,6 +24,8 @@
 		0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580F1E52B020901005E3DEC /* DetailWork.swift */; };
 		05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */; };
 		05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B5472AFD038900E714B0 /* TableItemVertical.swift */; };
+		05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86542B1892EC005F23B1 /* ReservationDetail.swift */; };
+		05DA86572B18A331005F23B1 /* Jobİnformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86562B18A331005F23B1 /* Jobİnformation.swift */; };
 		05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE58CD2B015DC8000B7A46 /* WorkList.swift */; };
 		05DE58D02B01620D000B7A46 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */; };
 		05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E024CC2AFE4557006C20F0 /* WorkModel.swift */; };
@@ -93,6 +95,8 @@
 		0580F1E52B020901005E3DEC /* DetailWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWork.swift; sourceTree = "<group>"; };
 		05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05A8B5472AFD038900E714B0 /* TableItemVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemVertical.swift; sourceTree = "<group>"; };
+		05DA86542B1892EC005F23B1 /* ReservationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetail.swift; sourceTree = "<group>"; };
+		05DA86562B18A331005F23B1 /* Jobİnformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Jobİnformation.swift"; sourceTree = "<group>"; };
 		05DE58CD2B015DC8000B7A46 /* WorkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkList.swift; sourceTree = "<group>"; };
 		05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		05E024CC2AFE4557006C20F0 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 			children = (
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
 				0572FCE62B08ED9C00FE5CBC /* UserManager.swift */,
+				05DA86562B18A331005F23B1 /* Jobİnformation.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -278,6 +283,7 @@
 				0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */,
 				0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */,
 				0545EA342B1212F9006E1276 /* Reservation.swift */,
+				05DA86542B1892EC005F23B1 /* ReservationDetail.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				05E2A21F2AF79F0B00FA8057 /* SplashScreen.swift in Sources */,
 				05E2A2252AF79F5200FA8057 /* Myworks.swift in Sources */,
 				05DE58D02B01620D000B7A46 /* FirestoreManager.swift in Sources */,
+				05DA86572B18A331005F23B1 /* Jobİnformation.swift in Sources */,
 				051D12292B05508600689CBD /* User.swift in Sources */,
 				05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */,
 				05F906222B139899008A688C /* Questions.swift in Sources */,
@@ -425,6 +432,7 @@
 				05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */,
 				0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */,
 				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
+				05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */,
 				0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */,
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,

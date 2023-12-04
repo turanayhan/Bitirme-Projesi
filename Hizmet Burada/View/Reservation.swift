@@ -54,7 +54,7 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
            var soru4 = ModelQuestion(question: "Boya badana yapılacak alan eşyalı mı olacak ?", answer: ["Boş olacak","Eşyalı olacak"])
            var soru5 = ModelQuestion(question: "Tavanlar boyanacak mı ?", answer: ["Evet","Hayır"])
            
-           sorular = Questions(questions: [soru1,soru2,soru3,soru4,soru5])
+           sorular = Questions(questions: [soru1,soru2,soru3,soru4])
           
          
        }
@@ -141,6 +141,7 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! ResarvationCell
            cell.model = sorular?.questions[indexPath.row]
+           
            return cell
        }
     
@@ -148,20 +149,23 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
            // Hücre boyutlarını belirleyin
          return CGSize(width: collectionView.frame.width, height: collectionView.frame.height-50)
        }
-    
-    
-    
-
- 
-    
    
-    
     @objc private func nextButtonTapped() {
            // Bir sonraki öğeye geçiş yap
-           currentIndex = (currentIndex + 1) % 4
+        currentIndex = (currentIndex + 1) % (sorular?.questions.count)!
            let indexPath = IndexPath(item: currentIndex, section: 0)
+        print(indexPath.row)
+        print(sorular?.questions.count ?? "100")
+        if indexPath.row == (sorular!.questions.count-1){
+
+            self.navigationController?.pushViewController(ReservationDetail(), animated: true)
+            
+        }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        
+        
        }
+    
     
     
    }

@@ -9,11 +9,20 @@ import UIKit
 class ResarvationItemCell: UITableViewCell {
     
     // Örneğin, her hücrede gösterilecek metin
-    var labelText: String? {
+    var question: String? {
         didSet {
-            label.text = labelText
+            questions = question ?? "bos"
         }
     }
+    var answer: String? {
+        didSet {
+            label.text = answer
+            answers = answer ?? "bos"
+        }
+    }
+    
+    var questions = ""
+    var answers = ""
     
     lazy var container : UIView = {
         let container = UIView()
@@ -44,6 +53,7 @@ class ResarvationItemCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        setupCell()
         
     }
 
@@ -85,9 +95,26 @@ class ResarvationItemCell: UITableViewCell {
         label.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
     }
      
-            
-    
     @objc func checkBoxTapped() {
         checkBox.isSelected.toggle()
        }
-}
+    
+    
+    func setupCell() {
+          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+          addGestureRecognizer(tapGesture)
+      }
+    
+    @objc func handleTap() {
+        checkBox.isSelected.toggle()
+        
+      
+
+        
+        let key = questions.replacingOccurrences(of: "?", with: "").replacingOccurrences(of: "+", with: "").replacingOccurrences(of: "/", with: "").replacingOccurrences(of: "-", with: "")
+        
+        Jobİnformation.shared.addInfo(key: key, value:answers)
+        
+           }
+       }
+

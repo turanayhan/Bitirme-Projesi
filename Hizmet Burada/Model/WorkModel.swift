@@ -17,5 +17,4 @@ struct WorkModel : Codable{
         case workName
         case id
     }
-    
 }
