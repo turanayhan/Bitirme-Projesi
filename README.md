@@ -1,4 +1,5 @@
 # Bitirme-Projesi
-![Splash Screen ekranı](https://i.imgur.com/your_image_id.png){:width="100"}
+![Splash Screen ekranı](https://github.com/turanayhan/Bitirme-Projesi/blob/main/proje%20g%C3%B6rselleri/1.png){:width="500" height="300"}
+
 
 
