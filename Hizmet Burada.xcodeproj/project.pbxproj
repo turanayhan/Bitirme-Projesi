@@ -10,6 +10,8 @@
 		050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A71D62AF8CF1C0029C476 /* RegisterViewModel.swift */; };
 		050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A71D82AF8CF880029C476 /* LoginViewModel.swift */; };
 		051D12292B05508600689CBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D12282B05508600689CBD /* User.swift */; };
+		051F27932B40A15B00826995 /* RgNameSurname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27922B40A15B00826995 /* RgNameSurname.swift */; };
+		051F27952B40AEED00826995 /* rgPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27942B40AEED00826995 /* rgPhone.swift */; };
 		0542497B2B03D0270069F214 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542497A2B03D0270069F214 /* Comment.swift */; };
 		0545EA352B1212F9006E1276 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA342B1212F9006E1276 /* Reservation.swift */; };
 		0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA362B121806006E1276 /* ResarvationCell.swift */; };
@@ -17,6 +19,12 @@
 		054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054FCFE72AF4DA3600A8555B /* TabBar.swift */; };
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
+		055CE21E2B4968D400483F7B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE21D2B4968D400483F7B /* Location.swift */; };
+		055CE2202B496F6000483F7B /* AnswerSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE21F2B496F6000483F7B /* AnswerSelection.swift */; };
+		055CE2222B497ADE00483F7B /* RgExtrainformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2212B497ADE00483F7B /* RgExtrainformation.swift */; };
+		055CE2242B49829C00483F7B /* RegistrationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2232B49829C00483F7B /* RegistrationInformation.swift */; };
+		055CE2262B4985D400483F7B /* rgMailPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2252B4985D400483F7B /* rgMailPassword.swift */; };
+		055CE2282B498A8100483F7B /* ExtraLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2272B498A8100483F7B /* ExtraLogin.swift */; };
 		0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE02B08C87500FE5CBC /* ProfileCell.swift */; };
 		0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */; };
 		0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */; };
@@ -74,6 +82,12 @@
 		05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E642CD2AF3E03F00733AC6 /* AppDelegate.swift */; };
 		05E642D72AF3E04000733AC6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E642D62AF3E04000733AC6 /* Assets.xcassets */; };
 		05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E642EC2AF3E43400733AC6 /* Constrait.swift */; };
+		05EF01B32B3962F200E69343 /* SecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01B22B3962F200E69343 /* SecondScreen.swift */; };
+		05EF01B52B397AF800E69343 /* Tabbar2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01B42B397AF800E69343 /* Tabbar2.swift */; };
+		05EF01B92B397C3D00E69343 /* Opportunity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01B82B397C3D00E69343 /* Opportunity.swift */; };
+		05EF01BB2B397C7100E69343 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BA2B397C7100E69343 /* Offer.swift */; };
+		05EF01BD2B397C9100E69343 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BC2B397C9100E69343 /* Meeting.swift */; };
+		05EF01BF2B397CAA00E69343 /* ExtraProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */; };
 		05F906222B139899008A688C /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906212B139899008A688C /* Questions.swift */; };
 		05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906232B139A1B008A688C /* ModelQuestion.swift */; };
 		05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */; };
@@ -83,11 +97,19 @@
 		050A71D62AF8CF1C0029C476 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		050A71D82AF8CF880029C476 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		051D12282B05508600689CBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		051F27922B40A15B00826995 /* RgNameSurname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgNameSurname.swift; sourceTree = "<group>"; };
+		051F27942B40AEED00826995 /* rgPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rgPhone.swift; sourceTree = "<group>"; };
 		0542497A2B03D0270069F214 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0545EA342B1212F9006E1276 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		0545EA362B121806006E1276 /* ResarvationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResarvationCell.swift; sourceTree = "<group>"; };
 		0545EA382B122626006E1276 /* ResarvationItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResarvationItemCell.swift; sourceTree = "<group>"; };
 		054FCFE72AF4DA3600A8555B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		055CE21D2B4968D400483F7B /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		055CE21F2B496F6000483F7B /* AnswerSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSelection.swift; sourceTree = "<group>"; };
+		055CE2212B497ADE00483F7B /* RgExtrainformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgExtrainformation.swift; sourceTree = "<group>"; };
+		055CE2232B49829C00483F7B /* RegistrationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInformation.swift; sourceTree = "<group>"; };
+		055CE2252B4985D400483F7B /* rgMailPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rgMailPassword.swift; sourceTree = "<group>"; };
+		055CE2272B498A8100483F7B /* ExtraLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraLogin.swift; sourceTree = "<group>"; };
 		0572FCE02B08C87500FE5CBC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordReset.swift; sourceTree = "<group>"; };
@@ -114,6 +136,12 @@
 		05E642D62AF3E04000733AC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05E642DB2AF3E04000733AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05E642EC2AF3E43400733AC6 /* Constrait.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constrait.swift; sourceTree = "<group>"; };
+		05EF01B22B3962F200E69343 /* SecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScreen.swift; sourceTree = "<group>"; };
+		05EF01B42B397AF800E69343 /* Tabbar2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabbar2.swift; sourceTree = "<group>"; };
+		05EF01B82B397C3D00E69343 /* Opportunity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Opportunity.swift; sourceTree = "<group>"; };
+		05EF01BA2B397C7100E69343 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		05EF01BC2B397C9100E69343 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
+		05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraProfile.swift; sourceTree = "<group>"; };
 		05F906212B139899008A688C /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		05F906232B139A1B008A688C /* ModelQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelQuestion.swift; sourceTree = "<group>"; };
 		05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemHorizontoly.swift; sourceTree = "<group>"; };
@@ -169,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				054FCFE72AF4DA3600A8555B /* TabBar.swift */,
+				05EF01B42B397AF800E69343 /* Tabbar2.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -192,6 +221,7 @@
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
 				0572FCE62B08ED9C00FE5CBC /* UserManager.swift */,
 				05DA86562B18A331005F23B1 /* Jobİnformation.swift */,
+				055CE2232B49829C00483F7B /* RegistrationInformation.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -272,18 +302,10 @@
 		05E642E82AF3E3D000733AC6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				05E2A21A2AF79EBD00FA8057 /* Register.swift */,
-				05E2A21C2AF79EF400FA8057 /* Profile.swift */,
+				05EF01B72B397BCC00E69343 /* ServiceProvider */,
+				05EF01B62B397B2B00E69343 /* ServiceRecipient */,
 				05E2A21E2AF79F0B00FA8057 /* SplashScreen.swift */,
-				05E2A2202AF79F1F00FA8057 /* Search.swift */,
-				05E2A2222AF79F3700FA8057 /* Notification.swift */,
-				05E2A2242AF79F5200FA8057 /* Myworks.swift */,
-				05E2A2262AF79F6300FA8057 /* Login.swift */,
-				0580F1E52B020901005E3DEC /* DetailWork.swift */,
-				0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */,
-				0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */,
-				0545EA342B1212F9006E1276 /* Reservation.swift */,
-				05DA86542B1892EC005F23B1 /* ReservationDetail.swift */,
+				05EF01B22B3962F200E69343 /* SecondScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +316,42 @@
 				05E642EC2AF3E43400733AC6 /* Constrait.swift */,
 			);
 			path = Utilty;
+			sourceTree = "<group>";
+		};
+		05EF01B62B397B2B00E69343 /* ServiceRecipient */ = {
+			isa = PBXGroup;
+			children = (
+				05E2A21A2AF79EBD00FA8057 /* Register.swift */,
+				05E2A21C2AF79EF400FA8057 /* Profile.swift */,
+				05E2A2202AF79F1F00FA8057 /* Search.swift */,
+				05E2A2222AF79F3700FA8057 /* Notification.swift */,
+				05E2A2242AF79F5200FA8057 /* Myworks.swift */,
+				05E2A2262AF79F6300FA8057 /* Login.swift */,
+				0580F1E52B020901005E3DEC /* DetailWork.swift */,
+				0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */,
+				0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */,
+				0545EA342B1212F9006E1276 /* Reservation.swift */,
+				05DA86542B1892EC005F23B1 /* ReservationDetail.swift */,
+			);
+			path = ServiceRecipient;
+			sourceTree = "<group>";
+		};
+		05EF01B72B397BCC00E69343 /* ServiceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				05EF01B82B397C3D00E69343 /* Opportunity.swift */,
+				05EF01BA2B397C7100E69343 /* Offer.swift */,
+				05EF01BC2B397C9100E69343 /* Meeting.swift */,
+				05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */,
+				051F27922B40A15B00826995 /* RgNameSurname.swift */,
+				051F27942B40AEED00826995 /* rgPhone.swift */,
+				055CE21D2B4968D400483F7B /* Location.swift */,
+				055CE21F2B496F6000483F7B /* AnswerSelection.swift */,
+				055CE2212B497ADE00483F7B /* RgExtrainformation.swift */,
+				055CE2252B4985D400483F7B /* rgMailPassword.swift */,
+				055CE2272B498A8100483F7B /* ExtraLogin.swift */,
+			);
+			path = ServiceProvider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,33 +472,47 @@
 				0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */,
 				05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */,
 				05E36A392B04F9A600EC5845 /* AppNavigation.swift in Sources */,
+				055CE2242B49829C00483F7B /* RegistrationInformation.swift in Sources */,
 				05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */,
 				05E2A21D2AF79EF400FA8057 /* Profile.swift in Sources */,
 				0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */,
 				05E2A2232AF79F3700FA8057 /* Notification.swift in Sources */,
+				05EF01BB2B397C7100E69343 /* Offer.swift in Sources */,
 				05E2A21F2AF79F0B00FA8057 /* SplashScreen.swift in Sources */,
 				05E2A2252AF79F5200FA8057 /* Myworks.swift in Sources */,
+				055CE2262B4985D400483F7B /* rgMailPassword.swift in Sources */,
 				05DE58D02B01620D000B7A46 /* FirestoreManager.swift in Sources */,
 				05DA86572B18A331005F23B1 /* Jobİnformation.swift in Sources */,
 				051D12292B05508600689CBD /* User.swift in Sources */,
+				05EF01BF2B397CAA00E69343 /* ExtraProfile.swift in Sources */,
 				05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */,
+				05EF01BD2B397C9100E69343 /* Meeting.swift in Sources */,
 				05F906222B139899008A688C /* Questions.swift in Sources */,
 				0542497B2B03D0270069F214 /* Comment.swift in Sources */,
+				055CE2282B498A8100483F7B /* ExtraLogin.swift in Sources */,
 				054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */,
+				055CE2222B497ADE00483F7B /* RgExtrainformation.swift in Sources */,
 				05E2A2212AF79F1F00FA8057 /* Search.swift in Sources */,
 				050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */,
+				05EF01B92B397C3D00E69343 /* Opportunity.swift in Sources */,
+				051F27932B40A15B00826995 /* RgNameSurname.swift in Sources */,
 				05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */,
 				0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */,
 				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
 				05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */,
+				051F27952B40AEED00826995 /* rgPhone.swift in Sources */,
 				0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */,
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
+				055CE2202B496F6000483F7B /* AnswerSelection.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,
+				055CE21E2B4968D400483F7B /* Location.swift in Sources */,
 				0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */,
+				05EF01B32B3962F200E69343 /* SecondScreen.swift in Sources */,
 				0545EA392B122626006E1276 /* ResarvationItemCell.swift in Sources */,
 				0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */,
 				05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */,
 				05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */,
+				05EF01B52B397AF800E69343 /* Tabbar2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

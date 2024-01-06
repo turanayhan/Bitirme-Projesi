@@ -125,13 +125,6 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
         // Eklenen kullanıcının ID'sini almak
         
         
-        
-        
-        
-        
-        
-        
-        
     }
     
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -162,12 +155,7 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
             
         }
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        
-        
        }
-    
-    
-    
    }
 
 

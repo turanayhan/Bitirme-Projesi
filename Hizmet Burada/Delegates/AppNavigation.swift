@@ -30,7 +30,7 @@ public class AppNavigation {
     }
     func startApp() {
         
-        let root = DefaultNavigation(rootViewController: SplashScreen())
+        let root = DefaultNavigation(rootViewController:SplashScreen())
         root.navigationBarBackgroundClear = true
         window!.rootViewController = root
         window!.makeKeyAndVisible()

@@ -71,8 +71,7 @@ class SplashScreen: UIViewController {
 
     @objc private func screenTransition() {
         print("ekrana geç...")
-        let tabBar = TabBar()
-        self.navigationController?.pushViewController(tabBar, animated: true)
+        self.navigationController?.pushViewController(SplashScreen2(), animated: true)
         self.timer?.invalidate()
     }
         

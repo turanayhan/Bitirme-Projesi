@@ -9,15 +9,9 @@
 import UIKit
 import Firebase
 
-struct UserProfile{
-    
-    let id : Int
-    let name : String
-    
-    
-}
 
-class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
+
+class ExtraProfile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     
     
     var userProfile = [UserProfile]()
@@ -144,7 +138,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         userProfile.append(UserProfile(id: 1, name: "Şifre Değiştir"))
         userProfile.append(UserProfile(id: 2, name: "Yardım merkezi"))
         userProfile.append(UserProfile(id: 3, name: "Arkadaşlarına tavsiye et"))
-        userProfile.append(UserProfile(id: 4, name: "Hizmet Ver"))
+        userProfile.append(UserProfile(id: 4, name: "Hizmet Al"))
         userProfile.append(UserProfile(id: 5, name: "Çıkış Yap"))
         }
 
@@ -230,14 +224,14 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         print("kayıt olundu")
         navigationItem.title = ""
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.pushViewController(Register(), animated: true)
+        navigationController?.pushViewController(RgNameSurname(), animated: true)
     }
     
     @objc func loginClick(click :UIButton!){
         print("giriş yapıldı")
         navigationItem.title = ""
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.pushViewController(Login(), animated: true)
+        navigationController?.pushViewController(ExtraLogin(), animated: true)
     }
    
     @objc func passwordtBtnClick(click : UIButton!){
@@ -253,9 +247,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileCell
-        
         cell.configure(with: userProfile[indexPath.row])
-        
         return cell
     }
 

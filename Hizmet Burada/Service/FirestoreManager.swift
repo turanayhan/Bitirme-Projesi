@@ -52,6 +52,44 @@ class FirestoreManager {
  
     }
     
+    func firebasePushService(){
+        
+        let ref = Database.database().reference()
+        let yeniKullaniciRef = ref.child("UserService").childByAutoId()
+        var id = yeniKullaniciRef.key ?? "0"
+
+        let registrationInfo = RegistrationInformation.rgİnformation
+        registrationInfo.userİd = id
+        let registrationDictionary: [String: Any?] = [
+            "name": registrationInfo.name,
+            "surname": registrationInfo.surname,
+            "gsm": registrationInfo.gsm,
+            "locationCity": registrationInfo.locationCity,
+            "district": registrationInfo.district,
+            "neighbourhood": registrationInfo.neighbourhood,
+            "answerSelection": registrationInfo.answerSelection,
+            "extraInformation": registrationInfo.extraİnformation,
+            "mail": registrationInfo.mail,
+            "userId": registrationInfo.userİd
+        ]
+
+        for (key, value) in registrationDictionary {
+            print("\(key): \(value ?? "N/A")")
+        }
+
+        yeniKullaniciRef.setValue(registrationDictionary)
+  
+        UserManager.shared.setId(id: id)
+        UserManager.shared.setUser(user : User(name:registrationInfo.name,
+                                              surname: registrationInfo.surname,
+                                              gsm: registrationInfo.gsm,
+                                              email: registrationInfo.mail,
+                                              id: registrationInfo.userİd))
+   
+ 
+    }
+    
+    
     func firebaseUpdate(user : User){
         
         let ref = Database.database().reference()
@@ -70,8 +108,6 @@ class FirestoreManager {
         yeniKullaniciRef.setValue(yeniKullanici)
         UserManager.shared.setUser(user:user)
        
-        
- 
     }
     
     

@@ -51,7 +51,6 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
         textBox.layer.shadowRadius = 4.0
         textBox.font = UIFont.systemFont(ofSize: 16.0)
         textBox.delegate = self
-        
         return textBox
     }()
     
