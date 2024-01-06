@@ -1,5 +1,5 @@
 # Bitirme-Projesi
-![Splash Screen ekranı](https://github.com/turanayhan/Bitirme-Projesi/blob/main/proje%20g%C3%B6rselleri/1.png){:width="500" height="300"}
+<img src="http://url/to/img.png" alt="alt text" width="320" height="180">
 
 
 
