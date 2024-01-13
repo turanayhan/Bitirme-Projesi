@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A71D62AF8CF1C0029C476 /* RegisterViewModel.swift */; };
 		050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050A71D82AF8CF880029C476 /* LoginViewModel.swift */; };
+		051C22672B4B02A1007BCC66 /* JobsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051C22662B4B02A1007BCC66 /* JobsDetail.swift */; };
 		051D12292B05508600689CBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D12282B05508600689CBD /* User.swift */; };
 		051F27932B40A15B00826995 /* RgNameSurname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27922B40A15B00826995 /* RgNameSurname.swift */; };
 		051F27952B40AEED00826995 /* rgPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27942B40AEED00826995 /* rgPhone.swift */; };
@@ -25,11 +26,14 @@
 		055CE2242B49829C00483F7B /* RegistrationInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2232B49829C00483F7B /* RegistrationInformation.swift */; };
 		055CE2262B4985D400483F7B /* rgMailPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2252B4985D400483F7B /* rgMailPassword.swift */; };
 		055CE2282B498A8100483F7B /* ExtraLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2272B498A8100483F7B /* ExtraLogin.swift */; };
+		055CE22A2B49D6DB00483F7B /* JobsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055CE2292B49D6DB00483F7B /* JobsCell.swift */; };
 		0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE02B08C87500FE5CBC /* ProfileCell.swift */; };
 		0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */; };
 		0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */; };
 		0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE62B08ED9C00FE5CBC /* UserManager.swift */; };
 		0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580F1E52B020901005E3DEC /* DetailWork.swift */; };
+		05934A7E2B4DC2B800C20CCF /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05934A7D2B4DC2B800C20CCF /* JobModel.swift */; };
+		05934A802B4DC69B00C20CCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05934A7F2B4DC69B00C20CCF /* Message.swift */; };
 		05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */; };
 		05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B5472AFD038900E714B0 /* TableItemVertical.swift */; };
 		05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86542B1892EC005F23B1 /* ReservationDetail.swift */; };
@@ -88,6 +92,8 @@
 		05EF01BB2B397C7100E69343 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BA2B397C7100E69343 /* Offer.swift */; };
 		05EF01BD2B397C9100E69343 /* Meeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BC2B397C9100E69343 /* Meeting.swift */; };
 		05EF01BF2B397CAA00E69343 /* ExtraProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */; };
+		05F1D6872B52C67200D7DA62 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D6862B52C67200D7DA62 /* Chat.swift */; };
+		05F1D6892B52CD5500D7DA62 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D6882B52CD5500D7DA62 /* ChatCell.swift */; };
 		05F906222B139899008A688C /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906212B139899008A688C /* Questions.swift */; };
 		05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906232B139A1B008A688C /* ModelQuestion.swift */; };
 		05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */; };
@@ -96,6 +102,7 @@
 /* Begin PBXFileReference section */
 		050A71D62AF8CF1C0029C476 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		050A71D82AF8CF880029C476 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		051C22662B4B02A1007BCC66 /* JobsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsDetail.swift; sourceTree = "<group>"; };
 		051D12282B05508600689CBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		051F27922B40A15B00826995 /* RgNameSurname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgNameSurname.swift; sourceTree = "<group>"; };
 		051F27942B40AEED00826995 /* rgPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rgPhone.swift; sourceTree = "<group>"; };
@@ -110,11 +117,14 @@
 		055CE2232B49829C00483F7B /* RegistrationInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInformation.swift; sourceTree = "<group>"; };
 		055CE2252B4985D400483F7B /* rgMailPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rgMailPassword.swift; sourceTree = "<group>"; };
 		055CE2272B498A8100483F7B /* ExtraLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraLogin.swift; sourceTree = "<group>"; };
+		055CE2292B49D6DB00483F7B /* JobsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCell.swift; sourceTree = "<group>"; };
 		0572FCE02B08C87500FE5CBC /* ProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		0572FCE42B08DC6200FE5CBC /* PasswordReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordReset.swift; sourceTree = "<group>"; };
 		0572FCE62B08ED9C00FE5CBC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		0580F1E52B020901005E3DEC /* DetailWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWork.swift; sourceTree = "<group>"; };
+		05934A7D2B4DC2B800C20CCF /* JobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
+		05934A7F2B4DC69B00C20CCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05A8B5472AFD038900E714B0 /* TableItemVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemVertical.swift; sourceTree = "<group>"; };
 		05DA86542B1892EC005F23B1 /* ReservationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetail.swift; sourceTree = "<group>"; };
@@ -142,6 +152,8 @@
 		05EF01BA2B397C7100E69343 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		05EF01BC2B397C9100E69343 /* Meeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meeting.swift; sourceTree = "<group>"; };
 		05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraProfile.swift; sourceTree = "<group>"; };
+		05F1D6862B52C67200D7DA62 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		05F1D6882B52CD5500D7DA62 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		05F906212B139899008A688C /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		05F906232B139A1B008A688C /* ModelQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelQuestion.swift; sourceTree = "<group>"; };
 		05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemHorizontoly.swift; sourceTree = "<group>"; };
@@ -211,6 +223,8 @@
 				0572FCE02B08C87500FE5CBC /* ProfileCell.swift */,
 				0545EA362B121806006E1276 /* ResarvationCell.swift */,
 				0545EA382B122626006E1276 /* ResarvationItemCell.swift */,
+				055CE2292B49D6DB00483F7B /* JobsCell.swift */,
+				05F1D6882B52CD5500D7DA62 /* ChatCell.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -218,9 +232,9 @@
 		05A8B54D2AFD091800E714B0 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				05DA86562B18A331005F23B1 /* Jobİnformation.swift */,
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
 				0572FCE62B08ED9C00FE5CBC /* UserManager.swift */,
-				05DA86562B18A331005F23B1 /* Jobİnformation.swift */,
 				055CE2232B49829C00483F7B /* RegistrationInformation.swift */,
 			);
 			path = Service;
@@ -286,6 +300,8 @@
 				051D12282B05508600689CBD /* User.swift */,
 				05F906212B139899008A688C /* Questions.swift */,
 				05F906232B139A1B008A688C /* ModelQuestion.swift */,
+				05934A7D2B4DC2B800C20CCF /* JobModel.swift */,
+				05934A7F2B4DC69B00C20CCF /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -350,6 +366,8 @@
 				055CE2212B497ADE00483F7B /* RgExtrainformation.swift */,
 				055CE2252B4985D400483F7B /* rgMailPassword.swift */,
 				055CE2272B498A8100483F7B /* ExtraLogin.swift */,
+				051C22662B4B02A1007BCC66 /* JobsDetail.swift */,
+				05F1D6862B52C67200D7DA62 /* Chat.swift */,
 			);
 			path = ServiceProvider;
 			sourceTree = "<group>";
@@ -469,6 +487,7 @@
 				05E024CF2AFE46BE006C20F0 /* ItemModel.swift in Sources */,
 				05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */,
 				0545EA352B1212F9006E1276 /* Reservation.swift in Sources */,
+				05934A802B4DC69B00C20CCF /* Message.swift in Sources */,
 				0572FCE52B08DC6200FE5CBC /* PasswordReset.swift in Sources */,
 				05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */,
 				05E36A392B04F9A600EC5845 /* AppNavigation.swift in Sources */,
@@ -478,6 +497,7 @@
 				0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */,
 				05E2A2232AF79F3700FA8057 /* Notification.swift in Sources */,
 				05EF01BB2B397C7100E69343 /* Offer.swift in Sources */,
+				05F1D6872B52C67200D7DA62 /* Chat.swift in Sources */,
 				05E2A21F2AF79F0B00FA8057 /* SplashScreen.swift in Sources */,
 				05E2A2252AF79F5200FA8057 /* Myworks.swift in Sources */,
 				055CE2262B4985D400483F7B /* rgMailPassword.swift in Sources */,
@@ -485,6 +505,7 @@
 				05DA86572B18A331005F23B1 /* Jobİnformation.swift in Sources */,
 				051D12292B05508600689CBD /* User.swift in Sources */,
 				05EF01BF2B397CAA00E69343 /* ExtraProfile.swift in Sources */,
+				051C22672B4B02A1007BCC66 /* JobsDetail.swift in Sources */,
 				05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */,
 				05EF01BD2B397C9100E69343 /* Meeting.swift in Sources */,
 				05F906222B139899008A688C /* Questions.swift in Sources */,
@@ -501,10 +522,13 @@
 				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
 				05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */,
 				051F27952B40AEED00826995 /* rgPhone.swift in Sources */,
+				05F1D6892B52CD5500D7DA62 /* ChatCell.swift in Sources */,
 				0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */,
 				050A71D72AF8CF1C0029C476 /* RegisterViewModel.swift in Sources */,
 				055CE2202B496F6000483F7B /* AnswerSelection.swift in Sources */,
 				05E2A2272AF79F6300FA8057 /* Login.swift in Sources */,
+				055CE22A2B49D6DB00483F7B /* JobsCell.swift in Sources */,
+				05934A7E2B4DC2B800C20CCF /* JobModel.swift in Sources */,
 				055CE21E2B4968D400483F7B /* Location.swift in Sources */,
 				0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */,
 				05EF01B32B3962F200E69343 /* SecondScreen.swift in Sources */,

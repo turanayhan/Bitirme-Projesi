@@ -19,6 +19,7 @@ class UserManager {
         UserDefaults.standard.set(user.email, forKey: "mail")
         
     }
+
     
     func setId(id: String){
         UserDefaults.standard.set(id, forKey: "id")
@@ -30,11 +31,11 @@ class UserManager {
     }
     
     func getUser()->User{
-        let name = UserDefaults.standard.string(forKey: "name")
-        let surname = UserDefaults.standard.string(forKey: "surname")
-        let gsm = UserDefaults.standard.string(forKey: "gsm")
-        let mail = UserDefaults.standard.string(forKey: "mail")
-        let id = UserDefaults.standard.string(forKey: "id")
+        var name = UserDefaults.standard.string(forKey: "name")
+        var surname = UserDefaults.standard.string(forKey: "surname")
+        var gsm = UserDefaults.standard.string(forKey: "gsm")
+        var mail = UserDefaults.standard.string(forKey: "mail")
+        var id = UserDefaults.standard.string(forKey: "id")
         return User(name: name,surname: surname,gsm: gsm,email: mail,id: id)
     }
     // Kullanıcı adını UserDefaults'tan silme

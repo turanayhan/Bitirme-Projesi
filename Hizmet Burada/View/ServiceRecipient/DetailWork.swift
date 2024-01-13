@@ -238,6 +238,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
     
     @objc func buttonClicked() {
             print("Button Clicked!")
+        Jobİnformation.shared.jobDetail = infoText.text
         navigationController?.pushViewController(Resarvation(), animated: true)
         }
 }

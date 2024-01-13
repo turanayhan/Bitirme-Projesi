@@ -112,6 +112,28 @@ class FirestoreManager {
     
     
     
+    
+    func fetchJobModel(completion: @escaping ([String: Any]) -> Void) {
+        let databaseRef = Database.database().reference()
+        var gelenddeger: [String: Any] = [:]
+
+        databaseRef.child("İs Bilgileri").observeSingleEvent(of: .value) { (snapshot) in
+            if let value = snapshot.value as? [String: Any] {
+                gelenddeger = value
+                completion(gelenddeger)
+            } else {
+                completion([:])
+            }
+        }
+    }
+
+
+
+    
+    
+    
+    
+    
     func downloadImage(from path: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = Storage.storage().reference(withPath: path)
 
@@ -128,5 +150,12 @@ class FirestoreManager {
             }
         }
     }
+    
+    
+    
+  
+    
+
+    
    
 }

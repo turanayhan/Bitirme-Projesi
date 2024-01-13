@@ -53,10 +53,12 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
         textBox.delegate = self
         return textBox
     }()
+    var key : String = ""
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let key = infoText.text.replacingOccurrences(of: "?", with: "")
+        key = infoText.text.replacingOccurrences(of: "?", with: "")
         Jobİnformation.shared.addInfo(key: key, value: textBox.text)
         desing()
         
@@ -94,22 +96,31 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textBox.text == "Uzun bilgi girin..." {
+        if textBox.text == "Ekstra bilgileri girin..." {
             textBox.text = ""
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textBox.text.isEmpty {
-            textBox.text = "Uzun bilgi girin..."
+            textBox.text = "Ekstra bilgileri girin..."
         }
     }
     
     @objc private func nextButtonTapped() {
-        let ref = Database.database().reference().child("İs Bilgileri").child(UserManager.shared.getUser().id ?? "0")
+        
+        Jobİnformation.shared.addInfo(key: key, value: textBox.text)
+        
+        let uniqueID = UUID().uuidString
+        let ref = Database.database().reference().child("İs Bilgileri").child(uniqueID)
         instance = Jobİnformation.shared.information
         
-        ref.setValue(instance) { (error, _) in
+        let yeni = JobModel(nameSurname: UserManager.shared.getUserName()!,detail:Jobİnformation.shared.jobDetail ?? "bos" , id: UserManager.shared.getUser().id ?? "0", information: instance)
+        let dictionary = yeni.toDictionary()
+        
+        
+        
+        ref.setValue(dictionary) { (error, _) in
             if let error = error {
                 print("İşlem başarısız oldu: \(error.localizedDescription)")
             } else {
@@ -123,5 +134,7 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
       
     }
+    
+    
     
 }
