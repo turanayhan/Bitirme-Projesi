@@ -52,3 +52,14 @@
 ---
 
 <img src="https://github.com/turanayhan/Bitirme-Projesi/blob/main/proje%20g%C3%B6rselleri/14.png" alt="alt text" width="180" height="360">
+
+---
+
+<img src="https://github.com/turanayhan/Bitirme-Projesi/blob/main/proje%20g%C3%B6rselleri/WhatsApp Image 2024-01-28 at 16.07.17.jpeg" alt="alt text" width="180" height="360">
+
+
+
+
+
+
+
