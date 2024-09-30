@@ -30,7 +30,7 @@ public class AppNavigation {
     }
     func startApp() {
         
-        let root = DefaultNavigation(rootViewController:Chat())
+        let root = DefaultNavigation(rootViewController:Register())
         root.navigationBarBackgroundClear = true
         window!.rootViewController = root
         window!.makeKeyAndVisible()

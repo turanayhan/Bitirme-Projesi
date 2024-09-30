@@ -77,3 +77,23 @@ extension UIView{
 
 
 
+extension UITextField {
+
+    func setPadding(left: CGFloat, right: CGFloat, top: CGFloat, bottom: CGFloat) {
+        let leftPadding = UIView(frame: CGRect(x: 0, y: 0, width: left, height: self.frame.height))
+        let rightPadding = UIView(frame: CGRect(x: 0, y: 0, width: right, height: self.frame.height))
+        
+        self.leftView = leftPadding
+        self.leftViewMode = .always
+        
+        self.rightView = rightPadding
+        self.rightViewMode = .always
+        
+        let topPadding = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: top))
+        let bottomPadding = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: bottom))
+        
+        self.addSubview(topPadding)
+        self.addSubview(bottomPadding)
+    }
+}
+
