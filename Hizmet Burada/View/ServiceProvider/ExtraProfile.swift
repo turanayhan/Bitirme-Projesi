@@ -123,7 +123,7 @@ class ExtraProfile: UIViewController ,UITableViewDelegate, UITableViewDataSource
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.isNavigationBarHidden = true
             }
-        if UserManager.shared.isUserLoggedIn(){
+        if UserManager.shared.checkUserLoginStatus(){
             container.isHidden = true
             containerProfile.isHidden = false
         }
@@ -284,9 +284,9 @@ class ExtraProfile: UIViewController ,UITableViewDelegate, UITableViewDataSource
         
         do {
             try Auth.auth().signOut()
+            UserManager.shared.isLogouth()
             
-            UserManager.shared.removeUserName()
-            print("Geçersiz günwwcw")
+      
             navigationController?.pushViewController(Profile(), animated: true)
                    
                } catch let signOutError as NSError {

@@ -247,6 +247,7 @@ class Register: UIViewController, UITextFieldDelegate {
                     switch result {
                     case .success(let message):
                         print(message)
+                        UserManager.shared.setUser(user: user)
                         
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             print(Date())

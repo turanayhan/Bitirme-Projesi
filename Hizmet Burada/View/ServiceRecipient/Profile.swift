@@ -54,7 +54,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         infoText.text = "Giriş yapınca profilini buradan\ndüzenleyebilirsin."
         infoText.textColor = .black
         infoText.textAlignment = .center
-        infoText.font = UIFont(name: "Thonburi", size: 14)
+        infoText.font = UIFont(name: "Avenir", size: 13)
         infoText.isEditable = false
         return infoText
     }()
@@ -99,6 +99,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         nameSurname.font = UIFont.boldSystemFont(ofSize: 24)
         nameSurname.isEditable = false
         nameSurname.textAlignment = .center
+        nameSurname.font = UIFont(name: "Avenir-Medium", size: 16)
        
         return nameSurname
     }()
@@ -129,7 +130,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.isNavigationBarHidden = true
             }
-        if UserManager.shared.isUserLoggedIn(){
+        if UserManager.shared.checkUserLoginStatus(){
             container.isHidden = true
             containerProfile.isHidden = false
         }
@@ -205,7 +206,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
                          leading: container.leadingAnchor,
                          trailing: container.trailingAnchor,
                          padding: .init(top: 0, left: 32, bottom: 0, right: 32),
-                         size: .init(width: 0, height: 90))
+                         size: .init(width: 0, height: 80))
         stackView.centerAnchor()
         
         
@@ -245,29 +246,38 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userProfile.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ProfileCell
         cell.configure(with: userProfile[indexPath.row])
-        
         return cell
     }
 
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        
+        // Seçilen hücreye animasyon ekle (arka plan rengi değişikliği)
+        UIView.animate(withDuration: 0.3, animations: {
+            cell?.backgroundColor = UIColor.lightGray // contentView yerine backgroundColor kullandık
+        }) { _ in
+            UIView.animate(withDuration: 0.3) {
+                cell?.backgroundColor = UIColor.white
+            }
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
         
+        // Hücre seçimine göre işlemler
         switch userProfile[indexPath.row].id {
         case 0:
             navigationController?.pushViewController(AccountInformation(), animated: true)
         case 1:
             print("Şifre değiştir")
+            navigationController?.pushViewController(PasswordReset(), animated: true)
+
         case 2:
             print("Arkadaşlarına tavsiye et")
         case 3:
@@ -278,23 +288,29 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
             loguth()
         default:
             break
-          
         }
-        
-       }
-    
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           return 70// Yükseklik değerini istediğiniz değerle değiştirin
-       }
+        return 50 // Hücre yüksekliği
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // Hücrelerin yüklenme animasyonu
+        cell.alpha = 0
+        UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row), animations: {
+            cell.alpha = 1
+        })
+    }
+
+
 
     func loguth(){
         
         do {
             try Auth.auth().signOut()
-            
-            UserManager.shared.removeUserName()
-            print("Geçersiz günwwcw")
-            navigationController?.pushViewController(Profile(), animated: true)
+            UserManager.shared.isLogouth()
+            navigationController?.pushViewController(SplashScreen(), animated: true)
                    
                } catch let signOutError as NSError {
                    print("Çıkış yaparken hata oluştu: \(signOutError.localizedDescription)")

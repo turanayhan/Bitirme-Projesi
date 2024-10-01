@@ -119,7 +119,7 @@ class Login: UIViewController, UITextFieldDelegate {
         view.addSubview(passwordBtn)
         mail.delegate = self
 
-      
+        
 
         desing()
         
@@ -220,6 +220,7 @@ class Login: UIViewController, UITextFieldDelegate {
                case .success(let authResult):
                    print("Giriş başarılı")
                    self.progresBar.dismiss(afterDelay: 2.0)
+                   UserManager.shared.isLogin()
                    self.navigationController?.pushViewController(Profile(), animated: true)
                    self.navigationController?.isNavigationBarHidden = true
                case .failure(let error):

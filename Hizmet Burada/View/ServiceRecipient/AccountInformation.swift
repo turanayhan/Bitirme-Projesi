@@ -48,6 +48,7 @@ class AccountInformation: UIViewController {
         mail.keyboardType = .emailAddress
         label.text = "E-mail"
         mail.addSubview(label)
+        mail.isUserInteractionEnabled = false
         return mail
     }()
     

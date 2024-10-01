@@ -9,7 +9,7 @@ import Foundation
 
 class UserManager {
     
-   static let shared = UserManager()
+    static let shared = UserManager()
     
     // Kullanıcı adını UserDefaults'a kaydetme
     func setUser(user : User) {
@@ -18,7 +18,7 @@ class UserManager {
         UserDefaults.standard.set(user.email, forKey: "mail")
         
     }
-
+    
     
     func setId(id: String){
         UserDefaults.standard.set(id, forKey: "id")
@@ -41,11 +41,27 @@ class UserManager {
         UserDefaults.standard.removeObject(forKey: "nameSurname")
     }
     
-    func isUserLoggedIn() -> Bool {
-           return getUserName() != nil
-       }
+  
+    
+    func isLogin(){
+        UserDefaults.standard.set(true, forKey: "isLoggedIn")
+    }
+    
+    func isLogouth() {
+        UserDefaults.standard.set(false, forKey: "isLoggedIn")
+        
+    }
+    
+    
+    func checkUserLoginStatus()->Bool {
+        // UserDefaults'tan giriş durumunu kontrol et
+        let isLoggedIn = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        
+        return isLoggedIn
+        
+    }
+
+    
+    
     
 }
-
-
-

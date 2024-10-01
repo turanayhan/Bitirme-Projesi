@@ -13,7 +13,7 @@ class ProfileCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "verdana", size: 16)
+        label.font = UIFont(name: "Avenir", size: 15)
         
     
         return label
@@ -22,8 +22,9 @@ class ProfileCell: UITableViewCell {
     lazy var logo:UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(systemName: "chevron.forward")
+        logo.tintColor = .systemYellow
         logo.contentMode = .scaleAspectFill
-        logo.tintColor = .black
+     
         return logo
         
     }()
@@ -53,4 +54,7 @@ class ProfileCell: UITableViewCell {
     func configure(with user: UserProfile) {
         titleLabel.text = user.name
     }
+    
+    
+    
 }
