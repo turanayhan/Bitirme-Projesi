@@ -139,7 +139,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
             
         }
         
-        nameSurname.text = (UserManager.shared.getUser().name ?? "hata") + "  "+(UserManager.shared.getUser().surname ?? "hata")
+        nameSurname.text = UserManager.shared.getUser().nameSurname
         userProfile.append(UserProfile(id: 0, name: "Hesap Bilgileri"))
         userProfile.append(UserProfile(id: 1, name: "Şifre Değiştir"))
         userProfile.append(UserProfile(id: 2, name: "Yardım merkezi"))

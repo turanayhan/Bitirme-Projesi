@@ -27,27 +27,18 @@ class AccountInformation: UIViewController {
         return info
     }()
     
-    lazy var name:UITextField = {
-        let name = UITextField()
+    lazy var nameSurname:UITextField = {
+        let nameSurname = UITextField()
         let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
-        name.text = userModel.name
-        name.borderStyle = .roundedRect
-        name.keyboardType = .emailAddress
+        nameSurname.text = userModel.nameSurname
+        nameSurname.borderStyle = .roundedRect
+        nameSurname.keyboardType = .emailAddress
         label.text = "Ad"
-        name.addSubview(label)
-        return name
+        nameSurname.addSubview(label)
+        return nameSurname
     }()
     
-    lazy var surname:UITextField = {
-        let surname = UITextField()
-        let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
-        surname.text =  userModel.surname
-        surname.borderStyle = .roundedRect
-        surname.keyboardType = .emailAddress
-        label.text = "Soyad"
-        surname.addSubview(label)
-        return surname
-    }()
+
     
     lazy var mail:UITextField = {
         let mail = UITextField()
@@ -116,8 +107,8 @@ class AccountInformation: UIViewController {
         view.backgroundColor = .white
         view.addSubview(container)
         container.addSubview(info)
-        container.addSubview(name)
-        container.addSubview(surname)
+        container.addSubview(nameSurname)
+   
         container.addSubview(mail)
         container.addSubview(gsm)
         container.addSubview(location1)
@@ -140,21 +131,15 @@ class AccountInformation: UIViewController {
                     trailing: container.trailingAnchor,
                     size: .init(width: 0, height: 40))
         
-        name.anchor(top: info.bottomAnchor,
+        nameSurname.anchor(top: info.bottomAnchor,
                     bottom: nil,
                     leading: container.leadingAnchor,
                     trailing: container.trailingAnchor,
                     padding: .init(top: 50, left: 0, bottom: 0, right: 0),
                     size: .init(width: 0, height: 40))
+  
         
-        surname.anchor(top: name.bottomAnchor,
-                    bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 50, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
-        
-        mail.anchor(top: surname.bottomAnchor,
+        mail.anchor(top: nameSurname.bottomAnchor,
                     bottom: nil,
                     leading: container.leadingAnchor,
                     trailing: container.trailingAnchor,
@@ -203,7 +188,7 @@ class AccountInformation: UIViewController {
         
         
         
-        FirestoreManager().firebaseUpdate(user: User(name: self.name.text,surname: self.surname.text,gsm: self.gsm.text,email: self.mail.text))
+        FirestoreManager().firebaseUpdate(user: User(nameSurname: self.nameSurname.text,gsm: self.gsm.text,email: self.mail.text))
        // navigationController?.pushViewController(Profile(), animated: true)
         _ = navigationController?.popToRootViewController(animated: true)
         }

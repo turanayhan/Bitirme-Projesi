@@ -30,7 +30,7 @@ public class AppNavigation {
     }
     func startApp() {
         
-        let root = DefaultNavigation(rootViewController:Register())
+        let root = DefaultNavigation(rootViewController:Profile())
         root.navigationBarBackgroundClear = true
         window!.rootViewController = root
         window!.makeKeyAndVisible()

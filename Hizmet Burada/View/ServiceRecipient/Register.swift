@@ -3,7 +3,7 @@ import FirebaseAuth
 import Firebase
 import JGProgressHUD
 
-class Register: UIViewController {
+class Register: UIViewController, UITextFieldDelegate {
     
     lazy var progresBar: JGProgressHUD = {
         let progresBar = JGProgressHUD(style: .light)
@@ -26,9 +26,9 @@ class Register: UIViewController {
         return stackView
     }()
     
-    lazy var name: UITextField = {
+    lazy var nameSurname: UITextField = {
         let nameSurname = UITextField()
-        nameSurname.placeholder = "Ad"
+        nameSurname.placeholder = "Ad Soyad"
         nameSurname.setPadding(left: 8, right: 0, top: 0, bottom: 0)
         nameSurname.tintColor = .systemYellow
         nameSurname.font = UIFont(name: "Avenir", size: 15)
@@ -40,49 +40,57 @@ class Register: UIViewController {
         nameSurname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return nameSurname
     }()
-    lazy var surname: UITextField = {
-        let surname = UITextField()
-        surname.placeholder = "Soyad"
-        surname.borderStyle = .roundedRect
-        surname.keyboardType = .default
-        surname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        surname.setPadding(left: 8, right: 0, top: 0, bottom: 0)
-        surname.tintColor = .systemYellow
-        surname.font = UIFont(name: "Avenir", size: 15)
-        surname.borderStyle = .none // Varsayılan sınır stilini kaldır
-        surname.layer.borderWidth = 0.6 // Sınır kalınlığı
-        surname.layer.borderColor = UIColor.systemYellow.cgColor // İstediğiniz renk
-        surname.layer.cornerRadius = 5//
-        
-        return surname
-    }()
-    
-    lazy var mail: UITextField = {
-        let mail = UITextField()
-        mail.placeholder = "E-mail"
-        mail.borderStyle = .roundedRect
-        mail.keyboardType = .emailAddress
-        
-        mail.setPadding(left: 8, right: 0, top: 0, bottom: 0)
-        mail.tintColor = .systemYellow
-        mail.font = UIFont(name: "Avenir", size: 15)
-        mail.borderStyle = .none // Varsayılan sınır stilini kaldır
-        mail.layer.borderWidth = 0.6 // Sınır kalınlığı
-        mail.layer.borderColor = UIColor.systemYellow.cgColor // İstediğiniz renk
-        mail.layer.cornerRadius = 5//
-        
-       
-        mail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        return mail
-    }()
-    
+    // Define the maximum character limit for GSM
+      let maxGsmCharacters = 10
+
+      lazy var gsm: UITextField = {
+          let gsm = UITextField()
+          gsm.placeholder = "Telefon Numarası"
+          gsm.borderStyle = .roundedRect
+          gsm.keyboardType = .numberPad // Allow only numbers
+          gsm.returnKeyType = .done // Change the return key type to "Done"
+          
+          gsm.setPadding(left: 8, right: 0, top: 0, bottom: 0)
+          gsm.tintColor = .systemYellow
+          gsm.font = UIFont(name: "Avenir", size: 15)
+          gsm.borderStyle = .none // Remove default border style
+          gsm.layer.borderWidth = 0.6 // Border thickness
+          gsm.layer.borderColor = UIColor.systemYellow.cgColor // Desired color
+          gsm.layer.cornerRadius = 5
+          
+          gsm.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+          
+          return gsm
+      }()
+
+      lazy var mail: UITextField = {
+          let mail = UITextField()
+          mail.placeholder = "E-mail"
+          mail.borderStyle = .roundedRect
+          mail.keyboardType = .emailAddress // Use email keyboard
+          
+          mail.setPadding(left: 8, right: 0, top: 0, bottom: 0)
+          mail.tintColor = .systemYellow
+          mail.font = UIFont(name: "Avenir", size: 15)
+          mail.borderStyle = .none // Remove default border style
+          mail.layer.borderWidth = 0.6 // Border thickness
+          mail.layer.borderColor = UIColor.systemYellow.cgColor // Desired color
+          mail.layer.cornerRadius = 5
+          
+          mail.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+          
+          return mail
+      }()
+      
+
     lazy var password: UITextField = {
         let password = UITextField()
-        password.placeholder = "şifreni gir"
+        password.placeholder = "Şifreni gir"
         password.borderStyle = .roundedRect
+
+        
         password.isSecureTextEntry = true
-        password.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        password.addTarget(self, action: #selector(textFieldDidChanges), for: .editingChanged)
         password.setPadding(left: 8, right: 0, top: 0, bottom: 0)
         password.tintColor = .systemYellow
         password.font = UIFont(name: "Avenir", size: 15)
@@ -120,19 +128,64 @@ class Register: UIViewController {
         navigationItem.title = "Kayıt Ol"
         navigationController?.isNavigationBarHidden = false
         view.backgroundColor = .white
-        stackView.addArrangedSubview(name)
-        stackView.addArrangedSubview(surname)
+        stackView.addArrangedSubview(nameSurname)
+        stackView.addArrangedSubview(gsm)
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)
         view.addSubview(stackView)
         view.addSubview(registerBtn)
         view.addSubview(logo)
         design()
-        
+        gsm.delegate = self
+        mail.delegate = self
+
         // Add keyboard observers
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    // Unified function to handle text changes
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if textField == mail {
+            // Validate email format
+            if let email = textField.text, !isValidEmail(email) {
+                print("Invalid email format")
+            }
+        } else if textField == gsm {
+            print("GSM Number: \(textField.text ?? "")")
+        }
+    }
+    
+    // Function to validate email format
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
+    }
+
+    // UITextFieldDelegate method to limit characters
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
+
+        // Check character limit for GSM
+        if textField == gsm {
+            // Ensure only numbers are entered and restrict to 10 characters
+            return updatedText.count <= maxGsmCharacters && updatedText.allSatisfy({ $0.isNumber })
+        } else if textField == mail {
+            // Allow unlimited characters for the email
+            return true
+        }
+        return true
+    }
+
+    // To handle "Done" action
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder() // Dismiss keyboard
+        return true
+    }
+    
 
     func design() {
         let screenWidth = UIScreen.main.bounds.width
@@ -167,8 +220,8 @@ class Register: UIViewController {
                            padding: .init(top: 12, left: 0, bottom: 0, right: 0))
     }
     
-    @objc func textFieldDidChange(textField: UITextField) {
-        if name.text!.isEmpty || mail.text!.isEmpty || password.text!.isEmpty {
+    @objc func textFieldDidChanges(textField: UITextField) {
+        if nameSurname.text!.isEmpty || mail.text!.isEmpty || password.text!.isEmpty {
             registerBtn.isEnabled = false
             registerBtn.alpha = 0.5
         } else {
@@ -183,25 +236,41 @@ class Register: UIViewController {
         Auth.auth().createUser(withEmail: self.mail.text!, password: self.password.text!) { response, error in
             if let error = error {
                 print("Hata: \(error.localizedDescription)")
-                self.progresBar.dismiss(afterDelay: 3.0)
+                self.showAlert(title: "Hata", message: error.localizedDescription)
+                self.progresBar.dismiss(afterDelay: 2.0)
                 return
             }
             
-            FirestoreManager().firebasePush(user: User(name: self.name.text,
-                                                       surname: self.surname.text,
-                                                       gsm: "+90",
-                                                       email: self.mail.text))
+            let user = User(nameSurname: self.nameSurname.text, gsm: self.gsm.text, email: self.mail.text, id: UUID().uuidString, status: "Recipient")
+
+            FirestoreManager().UserRecipientPush(user: user) { result in
+                    switch result {
+                    case .success(let message):
+                        print(message)
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            print(Date())
+                            self.progresBar.dismiss(afterDelay: 2.0)
+                            print("Kullanıcı başarıyla kaydedildi")
+                            self.navigationItem.title = ""
+                            self.navigationController?.isNavigationBarHidden = true
+                            self.navigationController?.pushViewController(Login(), animated: true)
+                        }
+
+                    case .failure(let error):
+                       
+                        self.progresBar.dismiss(afterDelay: 1.0)
+                   
+                        
+                    }
+                }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                print(Date())
-                self.progresBar.dismiss(afterDelay: 2.0)
-                print("Kullanıcı başarıyla kaydedildi")
-                self.navigationItem.title = ""
-                self.navigationController?.isNavigationBarHidden = true
-                self.navigationController?.pushViewController(Login(), animated: true)
-            }
+        
         }
     }
+    
+        
+    
     
     @objc func togglePasswordVisibility() {
         password.isSecureTextEntry.toggle() // Toggle visibility
@@ -225,6 +294,12 @@ class Register: UIViewController {
                 }
             }
         }
+    }
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Tamam", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {

@@ -31,26 +31,38 @@ class FirestoreManager {
         }
     }
     
-    func firebasePush(user : User){
-        
-        let ref = Database.database().reference()
-        let yeniKullaniciRef = ref.child("User").childByAutoId()
-
-        let yeniKullanici = [
-            "name": user.name,
-            "surname": user.surname,
-            "mail": user.email,
-            "gsm": user.gsm,
-        ]
-        yeniKullaniciRef.setValue(yeniKullanici)
-        // Eklenen kullanıcının ID'sini almak
-        var kullaniciID = yeniKullaniciRef.key ?? "0"
-        UserManager.shared.setId(id: kullaniciID)
-        UserManager.shared.setUser(user: user)
-        
-        
- 
+    func signIn(withEmail email: String, password: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(authResult))
+            }
+        }
     }
+
+    
+    
+    func UserRecipientPush(user: User, completion: @escaping (Result<String, Error>) -> Void) {
+         let ref = Database.database().reference()
+         let userData: [String: Any] = [
+             "nameSurname": user.nameSurname ?? "",
+             "gsm": user.gsm ?? "",
+             "email": user.email ?? "",
+             "id" : user.id ?? "",
+             "status" : user.status ?? ""
+         ]
+         
+         // Realtime Database'de 'UserRecipient' koleksiyonuna customID ile veri ekleme
+         ref.child("UserRecipient").child(user.id!).setValue(userData) { error, _ in
+             if let error = error {
+                 completion(.failure(error))
+                 
+             } else {
+                 completion(.success("Başarılı"))
+             }
+         }
+     }
     
     func firebasePushService(){
         
@@ -80,8 +92,7 @@ class FirestoreManager {
         yeniKullaniciRef.setValue(registrationDictionary)
   
         UserManager.shared.setId(id: id)
-        UserManager.shared.setUser(user : User(name:registrationInfo.name,
-                                              surname: registrationInfo.surname,
+        UserManager.shared.setUser(user : User(nameSurname:registrationInfo.name,
                                               gsm: registrationInfo.gsm,
                                               email: registrationInfo.mail,
                                               id: registrationInfo.userİd))
@@ -97,8 +108,7 @@ class FirestoreManager {
         print(UserManager.shared.getUser().id ?? "00")
 
         let yeniKullanici = [
-            "name": user.name,
-            "surname": user.surname,
+            "nameSurname": user.nameSurname,
             "mail": user.email,
             "gsm": user.gsm,
             "userId": user.id

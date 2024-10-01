@@ -13,8 +13,7 @@ class UserManager {
     
     // Kullanıcı adını UserDefaults'a kaydetme
     func setUser(user : User) {
-        UserDefaults.standard.set(user.name, forKey: "name")
-        UserDefaults.standard.set(user.surname, forKey: "surname")
+        UserDefaults.standard.set(user.nameSurname, forKey: "nameSurname")
         UserDefaults.standard.set(user.gsm, forKey: "gsm")
         UserDefaults.standard.set(user.email, forKey: "mail")
         
@@ -31,16 +30,15 @@ class UserManager {
     }
     
     func getUser()->User{
-        var name = UserDefaults.standard.string(forKey: "name")
-        var surname = UserDefaults.standard.string(forKey: "surname")
+        var nameSurname = UserDefaults.standard.string(forKey: "nameSurname")
         var gsm = UserDefaults.standard.string(forKey: "gsm")
         var mail = UserDefaults.standard.string(forKey: "mail")
         var id = UserDefaults.standard.string(forKey: "id")
-        return User(name: name,surname: surname,gsm: gsm,email: mail,id: id)
+        return User(nameSurname:nameSurname,gsm: gsm,email: mail,id: id)
     }
     // Kullanıcı adını UserDefaults'tan silme
     func removeUserName() {
-        UserDefaults.standard.removeObject(forKey: "name")
+        UserDefaults.standard.removeObject(forKey: "nameSurname")
     }
     
     func isUserLoggedIn() -> Bool {

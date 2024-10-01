@@ -252,7 +252,7 @@ class Chat:UIViewController, UITableViewDataSource, UITableViewDelegate {
         let timestamp = currentDate.timeIntervalSince1970
         let timestampString = String(format: "%.0f", timestamp)
         
-        let uniqueID = UUID().uuidString
+        _ = UUID().uuidString
         
         let ref = Database.database().reference().child("mesajlar").child(timestampString)
      
