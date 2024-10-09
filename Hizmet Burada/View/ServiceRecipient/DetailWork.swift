@@ -13,9 +13,9 @@ import JGProgressHUD
 class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
    
     let firestoreManager = FirestoreManager()
-    var modelDetail : WorkModel? {
+    var modelDetail : Task? {
             didSet {
-                infoText.text = modelDetail?.workName
+                infoText.text = modelDetail?.task
                 let imagePath = "hizmetImage/\(modelDetail?.imageUrl ?? "repair").jpg"
                 firestoreManager.downloadImage(from: imagePath) { image in
                     if let image = image {
@@ -54,7 +54,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         let infoText = UITextView()
         infoText.textColor = .white
         infoText.backgroundColor = UIColor.clear
-        infoText.font = UIFont.boldSystemFont(ofSize: 24)
+        infoText.font = UIFont(name: "Avenir", size: 20)
         infoText.isEditable = false
         return infoText
     }()
@@ -65,10 +65,10 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         imageView.image = UIImage(systemName:  "person.fill")
         imageView.tintColor = .systemYellow
         text.textColor = .black
-        text.font = UIFont(name: "Thonburi", size: 12)
+        text.font = UIFont(name: "Avenir", size: 12)
         text.isScrollEnabled = false
         text.isEditable = false
-        text.text = "       1.300 Boya ustası hazır"
+        text.text = "        \(String(modelDetail!.personnelCount)) Profesyonel"
         text.textAlignment = .justified
         text.addSubview(imageView)
         return text
@@ -81,12 +81,22 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         icon2.tintColor = .systemYellow
         text2.textColor = .black
         text2.isScrollEnabled = false
-        text2.font = UIFont(name: "Thonburi", size: 12)
+        text2.font = UIFont(name: "Avenir", size: 12)
         text2.isEditable = false
-        text2.text = "       4.5 ortalama puan (300 Onaylı yorum)"
+        let text = "        \(star()) ortalama puan (\(Int(modelDetail?.comments.count ?? 0)) onaylı yorum)"
+        text2.text = text
         text2.textAlignment = .justified
         text2.addSubview(icon2)
+      
         return text2
+    }()
+    lazy var separatorLine:UIView = {
+        
+        // Çizgi oluşturma
+        let separatorLine = UIView()
+        separatorLine.backgroundColor = .lightGray // Çizginin rengini ayarlayın
+        separatorLine.translatesAutoresizingMaskIntoConstraints = false
+        return separatorLine
     }()
     
     lazy var text3 : UITextView = {
@@ -96,7 +106,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         icon3.tintColor = .systemYellow
         text3.textColor = .black
         text3.isScrollEnabled = false
-        text3.font = UIFont(name: "Thonburi", size: 12)
+        text3.font =  UIFont(name: "Avenir", size: 12)
         text3.isEditable = false
         text3.text = "       Yılda 3.100 kişi Hizmet Burada 'ya güveniyor"
         text3.textAlignment = .justified
@@ -110,7 +120,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         icon4.image = UIImage(systemName:  "checkerboard.shield")
         icon4.tintColor = .systemYellow
         text4.textColor = .black
-        text4.font = UIFont(name: "Thonburi", size: 12)
+        text4.font =  UIFont(name: "Avenir", size: 12)
         text4.isEditable = false
         text4.text = "       Hizmet Burada Garantisi kapsamındadır"
         text4.textAlignment = .justified
@@ -121,7 +131,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
     lazy var commentText : UITextView = {
         let commentText = UITextView()
         commentText.textColor = .black
-        commentText.font = UIFont(name: "Thonburi", size: 15)
+        commentText.font =  UIFont(name: "Avenir", size: 15)
         commentText.isEditable = false
         commentText.text = "Müşteri Yorumları"
         commentText.textAlignment = .justified
@@ -138,16 +148,38 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
             return cv
         }()
     
+    
+    lazy var princeText:UILabel = {
+        
+        // Çizgi oluşturma
+        let princeText = UILabel()
+        princeText.text = "Rezervasyon"
+        princeText.textColor = .black
+        princeText.textAlignment = .center
+
+        return princeText
+    }()
+    
+
+    
     lazy var createButton:UIButton = {
         let button = UIButton(type: .system)
+        button.setTitleShadowColor(.white, for: .focused)
         button.setTitle("Rezervasyon Yap", for: .normal)
         button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        button.setTitleColor(.red, for: .highlighted)
         button.backgroundColor = .systemYellow
-        button.layer.cornerRadius = 10
+        button.layer.cornerRadius = 4
         button.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         return button
     }()
-
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
@@ -165,9 +197,49 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
         view.addSubview(collectionView)
         view.addSubview(createButton)
         desing()
+        
+        
+        
+        self.navigationItem.titleView = princeText
+        self.navigationController?.navigationBar.addSubview(separatorLine)
+        NSLayoutConstraint.activate([
+            separatorLine.leadingAnchor.constraint(equalTo: self.navigationController!.navigationBar.leadingAnchor),
+            separatorLine.trailingAnchor.constraint(equalTo: self.navigationController!.navigationBar.trailingAnchor),
+            separatorLine.bottomAnchor.constraint(equalTo: self.navigationController!.navigationBar.bottomAnchor),
+            separatorLine.heightAnchor.constraint(equalToConstant: 1) // Çizgi yüksekliği
+        ])
+        
+        
+        
     }
+    func star() -> Double {
+        // Eğer yorumlar mevcutsa
+        if let comments = modelDetail?.comments {
+            var starRatings: [Int] = []
+            
+            // Yorumları döngüye al
+            for comment in comments {
+                starRatings.append(comment.star)
+            }
+
+            // Yıldız puanlarını topla
+            let totalStars = starRatings.reduce(0, +)
+            
+            // Ortalama hesapla
+            let averageStars = starRatings.isEmpty ? 0 : Double(totalStars) / Double(starRatings.count)
+            
+            return averageStars
+        } else {
+            // Yorumlar mevcut değilse
+            print("Yorumlar mevcut değil.")
+            return 0 // Yorum yoksa 0 döndür
+        }
+    }
+
     
     func desing (){
+        
+      
         navigationController?.navigationBar.tintColor = .black
         
         workImage.anchor(top: view.safeAreaLayoutGuide.topAnchor, 
@@ -210,7 +282,7 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
                             leading: view.leadingAnchor,
                             trailing: view.trailingAnchor,
                             padding: .init(top: 2, left: 25, bottom: 8, right: 25),
-                            size: .init(width: 0, height: 50))
+                            size: .init(width: 0, height: 40))
         
         
     }
@@ -227,18 +299,20 @@ class DetailWork: UIViewController , UICollectionViewDelegateFlowLayout,UICollec
        }
     
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return 10
+            return  8
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! Comment
-            cell.modelic = nil
+            cell.modelic = modelDetail?.comments.first
             return cell
         }
     
     @objc func buttonClicked() {
             print("Button Clicked!")
         Jobİnformation.shared.jobDetail = infoText.text
-        navigationController?.pushViewController(Resarvation(), animated: true)
-        }
+        var vc = Resarvation()
+        vc.modelDetail = modelDetail
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

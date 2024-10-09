@@ -1,9 +1,3 @@
-//
-//  ResarvationItemvt.swift
-//  Hizmet Burada
-//
-//  Created by turan on 25.11.2023.
-//
 import UIKit
 
 class ResarvationItemCell: UITableViewCell {
@@ -12,6 +6,7 @@ class ResarvationItemCell: UITableViewCell {
     var question: String? {
         didSet {
             questions = question ?? "bos"
+            checkBox.isSelected = false
         }
     }
     var answer: String? {
@@ -24,37 +19,36 @@ class ResarvationItemCell: UITableViewCell {
     var questions = ""
     var answers = ""
     
-    lazy var container : UIView = {
+    lazy var container: UIView = {
         let container = UIView()
-        container.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.95, alpha: 1.0)
-        container.layer.cornerRadius = 2
-       
+        container.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.85, alpha: 1.0) // Sarıya yakın pastel ton
+        container.layer.cornerRadius = 12
         return container
-        
     }()
 
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.font = UIFont(name: "Avenir", size: 12)
         return label
     }()
+    
     let checkBox: UIButton = {
         let button = UIButton()
-         button.backgroundColor = .clear
-         button.tintColor = .systemYellow
-         button.translatesAutoresizingMaskIntoConstraints = false
-         button.setImage(UIImage(systemName: "circle"), for: .normal)
-         button.setImage(UIImage(systemName: "checkmark.circle.fill" ), for: .selected)
-         button.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
-         return button
-     }()
+        button.backgroundColor = .clear
+        button.tintColor = .systemYellow
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "circle"), for: .normal)
+        button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .selected)
+        button.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
+        return button
+    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
-        setupCell()
-        
+        setupTapGesture()
     }
 
     required init?(coder: NSCoder) {
@@ -67,12 +61,11 @@ class ResarvationItemCell: UITableViewCell {
         container.addSubview(checkBox)
         container.addSubview(label)
         
-        
-        container.anchor(top: nil,
-                         bottom: nil,
+        container.anchor(top: contentView.topAnchor,
+                         bottom: contentView.bottomAnchor,
                          leading: contentView.leadingAnchor,
                          trailing: nil,
-                         size: .init(width: 0, height:40))
+                         padding: .init(top: 6, left: 0, bottom: 0, right: 0))
         
         container.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         container.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
@@ -86,7 +79,7 @@ class ResarvationItemCell: UITableViewCell {
         
         checkBox.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
         
-        label.anchor(top: nil, 
+        label.anchor(top: nil,
                      bottom: nil,
                      leading: checkBox.trailingAnchor,
                      trailing: container.trailingAnchor,
@@ -95,26 +88,29 @@ class ResarvationItemCell: UITableViewCell {
         label.centerYAnchor.constraint(equalTo: container.centerYAnchor).isActive = true
     }
      
+    // Checkbox'a tıklama işlemi
     @objc func checkBoxTapped() {
-        checkBox.isSelected.toggle()
-       }
+        toggleCheckBox()
+    }
     
-    
-    func setupCell() {
-          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-          addGestureRecognizer(tapGesture)
-      }
+    // Hücreye tıklama işlemi
+    private func setupTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        container.addGestureRecognizer(tapGesture)
+    }
     
     @objc func handleTap() {
+        toggleCheckBox()
+    }
+    
+    // Checkbox durumunu değiştiren fonksiyon
+    private func toggleCheckBox() {
         checkBox.isSelected.toggle()
         
-      
-
-        
-        let key = questions.replacingOccurrences(of: "?", with: "").replacingOccurrences(of: "+", with: "").replacingOccurrences(of: "/", with: "").replacingOccurrences(of: "-", with: "")
-        
-        Jobİnformation.shared.addInfo(key: key, value:answers)
-        
-           }
-       }
-
+        let key = questions.replacingOccurrences(of: "?", with: "")
+                           .replacingOccurrences(of: "+", with: "")
+                           .replacingOccurrences(of: "/", with: "")
+                           .replacingOccurrences(of: "-", with: "")
+        Jobİnformation.shared.addInfo(key: key, value: answers)
+    }
+}

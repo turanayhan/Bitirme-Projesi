@@ -83,6 +83,7 @@ class Login: UIViewController, UITextFieldDelegate {
         loginBtn.isEnabled = true
         loginBtn.layer.cornerRadius = 4
         loginBtn.isEnabled = false
+        loginBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         loginBtn.alpha = 0.5
         return loginBtn
     }()
@@ -102,10 +103,17 @@ class Login: UIViewController, UITextFieldDelegate {
         registerBtn.addTarget(self, action: #selector(passwordtBtnClick), for: .touchUpInside)
         registerBtn.setTitleColor(.systemYellow, for: .normal)
         registerBtn.setTitleColor(.white, for: .highlighted)
+        registerBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         registerBtn.isEnabled = true
         return registerBtn
     }()
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Giriş Yap"
@@ -234,6 +242,8 @@ class Login: UIViewController, UITextFieldDelegate {
     
 
     @objc func passwordtBtnClick(click : UIButton!){
+        navigationController?.pushViewController(PasswordReset(), animated: true)
+
         print("şifremi unuttum")
     }
     
@@ -273,7 +283,17 @@ class Login: UIViewController, UITextFieldDelegate {
     }
 
     
-    
+    func sendPasswordReset(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                // Hata durumunu işleme
+                print("Şifre sıfırlama e-posta gönderilemedi: \(error.localizedDescription)")
+            } else {
+                // Şifre sıfırlama e-postası başarıyla gönderildi
+                print("Şifre sıfırlama e-postası gönderildi!")
+            }
+        }
+    }
     
     
 }

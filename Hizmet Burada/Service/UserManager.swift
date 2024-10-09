@@ -16,6 +16,8 @@ class UserManager {
         UserDefaults.standard.set(user.nameSurname, forKey: "nameSurname")
         UserDefaults.standard.set(user.gsm, forKey: "gsm")
         UserDefaults.standard.set(user.email, forKey: "mail")
+        UserDefaults.standard.set(user.id, forKey: "id")
+        UserDefaults.standard.set(user.adress, forKey: "adress")
         
     }
     
@@ -34,7 +36,8 @@ class UserManager {
         var gsm = UserDefaults.standard.string(forKey: "gsm")
         var mail = UserDefaults.standard.string(forKey: "mail")
         var id = UserDefaults.standard.string(forKey: "id")
-        return User(nameSurname:nameSurname,gsm: gsm,email: mail,id: id)
+        var adress = UserDefaults.standard.string(forKey: "adress")
+        return User(nameSurname:nameSurname,gsm: gsm,email: mail,id: id,adress: adress)
     }
     // Kullanıcı adını UserDefaults'tan silme
     func removeUserName() {

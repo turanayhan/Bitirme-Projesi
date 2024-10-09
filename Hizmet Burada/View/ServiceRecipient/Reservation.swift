@@ -12,8 +12,16 @@ import Firebase
 class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
 
     private var currentIndex = 0
-    
-    var sorular : Questions?  = nil
+    var modelDetail: Task? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+
+
+
+
+  
     
     
     lazy var collectionView: UICollectionView = {
@@ -28,6 +36,25 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
            collectionView.register(ResarvationCell.self, forCellWithReuseIdentifier: "CustomCell")
            return collectionView
        }()
+    lazy var separatorLine:UIView = {
+        
+        // Çizgi oluşturma
+        let separatorLine = UIView()
+        separatorLine.backgroundColor = .lightGray // Çizginin rengini ayarlayın
+        separatorLine.translatesAutoresizingMaskIntoConstraints = false
+        return separatorLine
+    }()
+    
+    lazy var princeText:UILabel = {
+        
+        // Çizgi oluşturma
+        let princeText = UILabel()
+        princeText.text = "Rezervasyon"
+        princeText.textColor = .black
+        princeText.textAlignment = .center
+
+        return princeText
+    }()
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
@@ -42,23 +69,27 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
            return button
        }()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
  
        override func viewDidLoad() {
            super.viewDidLoad()
            desing()
-           
-           var soru1 = ModelQuestion(question: "Kaç metrekare oda/ev boyanacak ?", answer: ["20","50","80","100","120","150","180","200","300","500+"])
-           var soru2 = ModelQuestion(question: "Bu alan kaç Oda ?", answer: ["1 oda(4 duvar)","2 oda","3 oda","4 oda","5 oda","Daha büyük"])
-           var soru3 = ModelQuestion(question: "Fiyat malzeme dahil olsun mu ?", answer: ["Malzeme dahil","Hariç - sadece işcilik"])
-           var soru4 = ModelQuestion(question: "Boya badana yapılacak alan eşyalı mı olacak ?", answer: ["Boş olacak","Eşyalı olacak"])
-           var soru5 = ModelQuestion(question: "Tavanlar boyanacak mı ?", answer: ["Evet","Hayır"])
-           
-           sorular = Questions(questions: [soru1,soru2,soru3,soru4])
+
           
-         
-       }
     
+                self.navigationItem.titleView = princeText
+                self.navigationController?.navigationBar.addSubview(separatorLine)
+                NSLayoutConstraint.activate([
+                    separatorLine.leadingAnchor.constraint(equalTo: self.navigationController!.navigationBar.leadingAnchor),
+                    separatorLine.trailingAnchor.constraint(equalTo: self.navigationController!.navigationBar.trailingAnchor),
+                    separatorLine.bottomAnchor.constraint(equalTo: self.navigationController!.navigationBar.bottomAnchor),
+                    separatorLine.heightAnchor.constraint(equalToConstant: 1) // Çizgi yüksekliği
+                ])
+          
+            }
     
     func desing(){
        
@@ -66,6 +97,8 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
         view.addSubview(collectionView)
         view.addSubview(nextButton)
         
+        
+       
      
         
         collectionView.anchor(top: view.topAnchor,
@@ -79,7 +112,7 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
                           padding: .init(top: 10, left: 10, bottom: 30, right: 10),
-                          size: .init(width: 0, height: 40))
+                          size: .init(width: 0, height: 35))
         
         
     }
@@ -128,12 +161,12 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
     }
     
        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           return sorular?.questions.count ?? 3 // 4 sayfa
+           return modelDetail?.questions.count ?? 0 // 4 sayfa
        }
 
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCell", for: indexPath) as! ResarvationCell
-           cell.model = sorular?.questions[indexPath.row]
+           cell.model = modelDetail?.questions[indexPath.row]
            
            return cell
        }
@@ -144,18 +177,45 @@ class Resarvation: UIViewController, UICollectionViewDelegate,UICollectionViewDa
        }
    
     @objc private func nextButtonTapped() {
-           // Bir sonraki öğeye geçiş yap
-        currentIndex = (currentIndex + 1) % (sorular?.questions.count)!
-           let indexPath = IndexPath(item: currentIndex, section: 0)
-        print(indexPath.row)
-        print(sorular?.questions.count ?? "100")
-        if indexPath.row == (sorular!.questions.count-1){
-
-            self.navigationController?.pushViewController(ReservationDetail(), animated: true)
-            
+        guard let questionCount = modelDetail?.questions.count, questionCount > 0 else {
+            print("No questions available")
+            return
         }
+
+        // Şu anki hücreyi alın
+        let currentCellIndexPath = IndexPath(item: currentIndex, section: 0)
+        if let currentCell = collectionView.cellForItem(at: currentCellIndexPath) as? ResarvationCell {
+            // Seçili checkbox'ların sayısını kontrol et
+            if !currentCell.item.visibleCells.contains(where: { ($0 as? ResarvationItemCell)?.checkBox.isSelected == true }) {
+                // Hiçbir checkbox seçilmediyse, kullanıcıya uyarı göster
+                showAlert(message: "Lütfen en az bir seçeneği işaretleyin.")
+                return
+            }
+        }
+        currentIndex += 1
+
+        // Eğer currentIndex son sorudan büyükse, geçiş yap
+        if currentIndex >= questionCount {
+            self.navigationController?.pushViewController(ReservationDetail(), animated: true)
+            return // Geçiş yapıldıktan sonra fonksiyonu sonlandır
+        }
+
+        let indexPath = IndexPath(item: currentIndex, section: 0)
+
+        print("Current Index: \(indexPath.row)")
+        print("Total Questions: \(questionCount)")
+
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-       }
+    }
+
+    private func showAlert(message: String) {
+        let alertController = UIAlertController(title: "Uyarı", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Tamam", style: .default, handler: nil))
+
+        // Uyarıyı ekrana göster
+        present(alertController, animated: true, completion: nil)
+    }
+
    }
 
 

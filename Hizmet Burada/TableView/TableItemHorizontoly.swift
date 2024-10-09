@@ -11,10 +11,10 @@ class TableItemHorizontoly: UICollectionViewCell {
     
     let firestoreManager = FirestoreManager()
     
-    var modelic : WorkModel? {
+    var modelic : Task? {
            didSet {
                
-               workText.text = modelic?.workName
+               workText.text = modelic?.task
                let imagePath = "hizmetImage/\(modelic?.imageUrl ?? "repair").jpg"
                firestoreManager.downloadImage(from: imagePath) { image in
                    if let image = image {
@@ -51,6 +51,7 @@ class TableItemHorizontoly: UICollectionViewCell {
         workText.text = "Baca temizliği"
         workText.textColor = .black
         workText.isEditable = false
+        workText.font = UIFont(name: "Avenir", size: 10)
         
         return workText
     }()

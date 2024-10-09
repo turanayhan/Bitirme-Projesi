@@ -9,15 +9,24 @@ import Foundation
 import UIKit
 class Comment: UICollectionViewCell {
     
-    var modelic : WorkModel? {
+    var modelic : Comment2? {
            didSet {
+      
+               
+               if let model = modelic{
+                   titleLabel.text = modelic?.nameSurname
+                   date.text = modelic?.date
+                   commentText.text = modelic?.comment
+                   
+                   
+               }
         
            }
        }
     
-    let titleLabel: UILabel = {
+    lazy var titleLabel: UILabel = {
            let label = UILabel()
-           label.font = UIFont.boldSystemFont(ofSize: 14)
+           label.font = UIFont(name: "Avenir", size: 14)
            label.numberOfLines = 0
            label.textAlignment = .center
            label.text = "Turan Ayhan"
@@ -25,32 +34,32 @@ class Comment: UICollectionViewCell {
            return label
        }()
 
-       let date: UITextView = {
+    lazy var date: UITextView = {
            let date = UITextView()
            date.isEditable = false
            date.isScrollEnabled = false
            date.backgroundColor = UIColor.clear
            date.textAlignment = .center
            date.text = "14 Kasım 2023"
-           date.font = UIFont.systemFont(ofSize: 8)
+           date.font = UIFont(name: "Avenir", size: 8)
            return date
        }()
     
-    let commentStar: UIImageView = {
+    lazy var commentStar: UIImageView = {
         let commentStar = UIImageView()
         commentStar.image = UIImage(systemName: "star.fill")
         return commentStar
     }()
     
     
-    let commentText: UITextView = {
+    lazy var commentText: UITextView = {
         let commentText = UITextView()
         commentText.isEditable = false
         commentText.isScrollEnabled = false
         commentText.textAlignment = .center
         commentText.backgroundColor = UIColor.clear
         commentText.text = "Çok Memnun kaldım teşekkür ediyorum."
-        commentText.font = UIFont.systemFont(ofSize: 12)
+        commentText.font = UIFont(name: "Avenir", size: 10)
         return commentText
     }()
    

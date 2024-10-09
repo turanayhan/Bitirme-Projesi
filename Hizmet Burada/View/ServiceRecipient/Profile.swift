@@ -68,6 +68,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         registerBtn.setTitleColor(.white, for: .normal)
         registerBtn.setTitleColor(.red, for: .highlighted)
         registerBtn.isEnabled = true
+        registerBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         registerBtn.layer.cornerRadius = 4
         return registerBtn
     }()
@@ -82,6 +83,7 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         loginBtn.layer.borderColor = UIColor.systemYellow.cgColor
         loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         loginBtn.layer.borderWidth = 0.8
+        loginBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         return loginBtn
     }()
     
@@ -148,6 +150,11 @@ class Profile: UIViewController ,UITableViewDelegate, UITableViewDataSource {
         userProfile.append(UserProfile(id: 4, name: "Hizmet Ver"))
         userProfile.append(UserProfile(id: 5, name: "Çıkış Yap"))
         }
+    
+    
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

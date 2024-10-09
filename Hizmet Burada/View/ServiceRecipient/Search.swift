@@ -13,7 +13,10 @@ import JGProgressHUD
 
 class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
-    var listTableView:[ItemModel] = []
+    
+    var firebaseService = ServiceManager()
+    var categories: [Category] = []
+   
     let firestoreManager = FirestoreManager()
     
     lazy var worksTableView: UITableView = {
@@ -29,15 +32,28 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
         
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(worksTableView)
-        firebase()
+   
         worksTableView.translatesAutoresizingMaskIntoConstraints = false
         worksTableView.dataSource = self
         worksTableView.delegate = self
         worksTableView.register(TableItemVertical.self, forCellReuseIdentifier: "re")
         desing()
+        firebase()
+
+
+        
+   
+        
+        
     }
     
     func desing (){
@@ -50,15 +66,15 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listTableView.count
+        return categories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "re", for: indexPath) as! TableItemVertical
         
-        cell.model = listTableView[indexPath.row]
-        
+      
+        cell.modelic = categories[(indexPath.row)]
         return cell
     }
     
@@ -75,19 +91,48 @@ class Search: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     
     func firebase(){
+        
+        
+        
+        
         progresBar.show(in: self.view)
-        firestoreManager.fetchUsers { (worklist, error) in
-            if let error = error {
-                print("Veri çekme hatası: \(error.localizedDescription)")
-            } else if let worklist = worklist {
-                
-                for worklist in worklist {
-                    self.listTableView = worklist.veri
-                    self.worksTableView.reloadData()
-                    self.progresBar.dismiss()
-                   
-                }
-            }
-        }
+        
+        // Firebase'den veriyi çekiyoruz
+             firebaseService.fetchCategoryData { [weak self] categories in
+                 guard let self = self else { return }
+                 if let categories = categories {
+                     self.categories = categories
+                     // Veriyi işleyip ekranda göster
+                     self.categories = categories
+                     self.worksTableView.reloadData()
+                     self.progresBar.dismiss()
+                 } else {
+                     print("Veri alınamadı.")
+                 }
+             }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
     }
+
+
+
+
+
+
+
+
+
+
+
+    
+    
 }

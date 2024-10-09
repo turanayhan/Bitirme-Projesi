@@ -48,68 +48,6 @@
             endingLineNumber = "73"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2468A457-61F2-43A2-8C8C-6E1F991BA982 - 207de6f788fcc54e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Search.firebase() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/I%CC%87OS/Hizmet%20Burada/Hizmet%20Burada/view/Search.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "2468A457-61F2-43A2-8C8C-6E1F991BA982 - 207de6f788fcc521"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Search.firebase() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/I%CC%87OS/Hizmet%20Burada/Hizmet%20Burada/view/Search.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "2468A457-61F2-43A2-8C8C-6E1F991BA982 - 207de6f788fcc521"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Search.firebase() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/I%CC%87OS/Hizmet%20Burada/Hizmet%20Burada/view/Search.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "2468A457-61F2-43A2-8C8C-6E1F991BA982 - 207de6f788fcc56f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Search.firebase() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/I%CC%87OS/Hizmet%20Burada/Hizmet%20Burada/view/Search.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "136">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -142,53 +80,6 @@
             endingLineNumber = "60"
             landmarkName = "desing()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f09b13"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "71"
-                  endingLineNumber = "71"
-                  offsetFromSymbolStart = "596">
-               </Location>
-               <Location
-                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f098b6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "572">
-               </Location>
-               <Location
-                  uuid = "B52D310D-9F4C-4700-A968-D8AC2F80FAE4 - fde1571c84f09b32"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.SplashScreen.desing() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/view/SplashScreen.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "72"
-                  endingLineNumber = "72"
-                  offsetFromSymbolStart = "600">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -217,197 +108,9 @@
             filePath = "Hizmet Burada/Service/FirestoreManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "firebaseUpdate(user:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1021A761-93D2-40CB-9084-EF05D6306BF2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "model"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5B3404ED-9569-4D1B-8838-9E1DD5D42C31"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "model"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "model"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - d872dca4d66e2ca5"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.model.getter : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - 387780785a5788d1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.model.setter : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "40">
-               </Location>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - d2beb45cb4d49dd4"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.model.modify : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "0">
-               </Location>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - c43844b1f29a2e49"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.model.modify : Swift.Optional&lt;Hizmet_Burada.ModelQuestion&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/%3Ccompiler-generated%3E"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - fc024893629a1f1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.init(frame: __C.CGRect) -&gt; Hizmet_Burada.ResarvationCell"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  uuid = "A6ED2775-7A80-471C-8691-E26ED5857E10 - 2ae2a069409f9109"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.ResarvationCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Hizmet_Burada.ResarvationCell&gt;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/TableView/ResarvationCell.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "12"
-                  endingLineNumber = "12"
-                  offsetFromSymbolStart = "108">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8689D079-DA47-406E-9763-FF11A9AB5592"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "model"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99DBE18E-3217-42A7-AD9E-0C94A13D5307"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "desing()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FAAEB8F1-6B70-4405-81CE-1C63EB13A35B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/TableView/ResarvationCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -425,84 +128,6 @@
             endingLineNumber = "14"
             landmarkName = "RgExtrainformation"
             landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "FB221242-80B2-41BD-BDC1-BB9B5B665E40 - 944e52fc9904f6ce"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; __C.UIButton in variable initialization expression of Hizmet_Burada.RgExtrainformation.nextButton : __C.UIButton"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/RgExtrainformation.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "16"
-                  endingLineNumber = "16"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "FB221242-80B2-41BD-BDC1-BB9B5B665E40 - f80b157411c0df54"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.RgExtrainformation.nextButton.getter : __C.UIButton"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/RgExtrainformation.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "16">
-               </Location>
-               <Location
-                  uuid = "FB221242-80B2-41BD-BDC1-BB9B5B665E40 - 98857f8d792b2d8d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.RgExtrainformation.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Hizmet_Burada.RgExtrainformation"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/RgExtrainformation.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "188">
-               </Location>
-               <Location
-                  uuid = "FB221242-80B2-41BD-BDC1-BB9B5B665E40 - 93962d52ded3c6ee"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.RgExtrainformation.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Hizmet_Burada.RgExtrainformation&gt;"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/RgExtrainformation.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "15"
-                  endingLineNumber = "15"
-                  offsetFromSymbolStart = "164">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "0D1F145E-6E90-458F-90BB-E5BF79CE07A8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/View/ServiceRecipient/ReservationDetail.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "nextButtonTapped()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -519,38 +144,6 @@
             endingLineNumber = "28"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B617DB70-A34A-4510-A7ED-A838E685B6DD - ec43ae95202fdaaa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Opportunity.viewDidLoad() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/Opportunity.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "34"
-                  endingLineNumber = "34"
-                  offsetFromSymbolStart = "168">
-               </Location>
-               <Location
-                  uuid = "B617DB70-A34A-4510-A7ED-A838E685B6DD - ec43ae95202fda64"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Opportunity.viewDidLoad() -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/Opportunity.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "32"
-                  endingLineNumber = "32"
-                  offsetFromSymbolStart = "128">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -647,38 +240,6 @@
             endingLineNumber = "379"
             landmarkName = "loginClick(click:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "DE15C9F4-A345-4B83-A6A8-0F9D5E0E4974 - 4a78427504ce871d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.JobsDetail.loginClick(click: Swift.Optional&lt;__C.UIButton&gt;) -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/JobsDetail.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "381"
-                  endingLineNumber = "381"
-                  offsetFromSymbolStart = "1560">
-               </Location>
-               <Location
-                  uuid = "DE15C9F4-A345-4B83-A6A8-0F9D5E0E4974 - 4a78427504ce875f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.JobsDetail.loginClick(click: Swift.Optional&lt;__C.UIButton&gt;) -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repository/Bitirme-Projesi/Hizmet%20Burada/View/ServiceProvider/JobsDetail.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "379"
-                  endingLineNumber = "379"
-                  offsetFromSymbolStart = "360">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -691,8 +252,8 @@
             filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "registerClick(click:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -707,8 +268,8 @@
             filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "registerClick(click:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -717,6 +278,54 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BE26B1ED-18E3-4EAE-9DFE-4B7CFB8D5E0A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "registerClick(click:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2BE7C14E-E65E-4190-8E73-FC1D6DE394E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "registerClick(click:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C1E6F0CC-9717-47C4-B803-8496AB3EABB6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
+            landmarkName = "registerClick(click:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D5F50DF-650F-4D1C-897C-F2359804F68B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -732,54 +341,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2BE7C14E-E65E-4190-8E73-FC1D6DE394E2"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "registerClick(click:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C1E6F0CC-9717-47C4-B803-8496AB3EABB6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "registerClick(click:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D5F50DF-650F-4D1C-897C-F2359804F68B"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "registerClick(click:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "C75D31C1-B793-4DE1-AA11-B70C20ECEB3E"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -787,57 +348,106 @@
             filePath = "Hizmet Burada/View/ServiceRecipient/Register.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
             landmarkName = "registerClick(click:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C75D31C1-B793-4DE1-AA11-B70C20ECEB3E - e948923fcadd259b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Hizmet_Burada.Register.registerClick(click: Swift.Optional&lt;__C.UIButton&gt;) -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/Hizmet%20Burada/Hizmet%20Burada/View/ServiceRecipient/Register.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "236"
-                  endingLineNumber = "236"
-                  offsetFromSymbolStart = "332">
-               </Location>
-               <Location
-                  uuid = "C75D31C1-B793-4DE1-AA11-B70C20ECEB3E - a25be6a1d19dc3ab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Hizmet_Burada.Register.registerClick(click: Swift.Optional&lt;__C.UIButton&gt;) -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/Hizmet%20Burada/Hizmet%20Burada/View/ServiceRecipient/Register.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "237"
-                  endingLineNumber = "237"
-                  offsetFromSymbolStart = "184">
-               </Location>
-               <Location
-                  uuid = "C75D31C1-B793-4DE1-AA11-B70C20ECEB3E - a25be6a1d19dc3ab"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__C.FIRAuthDataResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Hizmet_Burada.Register.registerClick(click: Swift.Optional&lt;__C.UIButton&gt;) -&gt; ()"
-                  moduleName = "Hizmet Burada"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/turan/Desktop/Repo/Hizmet%20Burada/Hizmet%20Burada/View/ServiceRecipient/Register.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "237"
-                  endingLineNumber = "237"
-                  offsetFromSymbolStart = "208">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BB72C78-2511-42F8-9D81-D377E6685624"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/AccountInformation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "adress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "68B0F715-4D75-49BE-8C1B-DE254FBEAADC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/AccountInformation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "userModel"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB30ED90-AB27-4B30-83E3-91DE752D503E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/AccountInformation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "adress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3299F8CC-1D43-46BA-96CB-B8696E30D9D0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/View/ServiceRecipient/AccountInformation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "adress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98A21F0F-B11A-4855-A8CC-F0C9EF9483D1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/Model/ItemModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "CodingKeys"
+            landmarkType = "13">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1ECBBB19-FE16-4D27-892B-91597087C34F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hizmet Burada/Service/JobI&#x307;nformation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "JobI&#x307;nformation"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

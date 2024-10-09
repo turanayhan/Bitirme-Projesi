@@ -6,19 +6,21 @@ import UIKit
 
 class TableItemVertical:UITableViewCell, UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     
-    
-    var model : ItemModel? {
+
+    var modelic : Category? {
             didSet {
-                header.text = model?.header
+                header.text = modelic?.category
             }
         }
+
+ 
 
     lazy var header:UITextView = {
         
         let header = UITextView()
         header.textColor = .black
         header.isEditable = false
-        header.font = UIFont(name: "Thonburi", size: 14)
+        header.font = UIFont(name: "Avenir-Medium", size: 12)
     
         
         return header
@@ -61,12 +63,12 @@ class TableItemVertical:UITableViewCell, UICollectionViewDelegateFlowLayout,UICo
        }
     
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return model?.workList.count ?? 0
+            return modelic?.tasks.count ?? 0
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! TableItemHorizontoly
-            cell.modelic = model?.workList[indexPath.row]
+            cell.modelic = modelic?.tasks[indexPath.row]
             return cell
         }
         

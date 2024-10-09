@@ -13,6 +13,7 @@
 		051D12292B05508600689CBD /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051D12282B05508600689CBD /* User.swift */; };
 		051F27932B40A15B00826995 /* RgNameSurname.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27922B40A15B00826995 /* RgNameSurname.swift */; };
 		051F27952B40AEED00826995 /* rgPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F27942B40AEED00826995 /* rgPhone.swift */; };
+		051F8DB72CA40DEE008A528F /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051F8DB62CA40DED008A528F /* Comments.swift */; };
 		0542497B2B03D0270069F214 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0542497A2B03D0270069F214 /* Comment.swift */; };
 		0545EA352B1212F9006E1276 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA342B1212F9006E1276 /* Reservation.swift */; };
 		0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0545EA362B121806006E1276 /* ResarvationCell.swift */; };
@@ -31,17 +32,16 @@
 		0572FCE32B08DAEB00FE5CBC /* AccountInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */; };
 		0572FCE72B08ED9C00FE5CBC /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0572FCE62B08ED9C00FE5CBC /* UserManager.swift */; };
 		0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0580F1E52B020901005E3DEC /* DetailWork.swift */; };
+		05843AFE2CB4361B002F3D37 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05843AFD2CB4361B002F3D37 /* ServiceModel.swift */; };
+		05843B002CB47006002F3D37 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05843AFF2CB47006002F3D37 /* ServiceManager.swift */; };
 		05934A7E2B4DC2B800C20CCF /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05934A7D2B4DC2B800C20CCF /* JobModel.swift */; };
 		05934A802B4DC69B00C20CCF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05934A7F2B4DC69B00C20CCF /* Message.swift */; };
-		05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */; };
 		05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A8B5472AFD038900E714B0 /* TableItemVertical.swift */; };
 		05DA1F552CAC407100A88207 /* PasswordReset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA1F542CAC407100A88207 /* PasswordReset.swift */; };
+		05DA1F572CAC467700A88207 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05DA1F562CAC467700A88207 /* GoogleService-Info.plist */; };
 		05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86542B1892EC005F23B1 /* ReservationDetail.swift */; };
 		05DA86572B18A331005F23B1 /* Jobİnformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DA86562B18A331005F23B1 /* Jobİnformation.swift */; };
-		05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE58CD2B015DC8000B7A46 /* WorkList.swift */; };
 		05DE58D02B01620D000B7A46 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */; };
-		05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E024CC2AFE4557006C20F0 /* WorkModel.swift */; };
-		05E024CF2AFE46BE006C20F0 /* ItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E024CE2AFE46BE006C20F0 /* ItemModel.swift */; };
 		05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E2A21A2AF79EBD00FA8057 /* Register.swift */; };
 		05E2A21D2AF79EF400FA8057 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E2A21C2AF79EF400FA8057 /* Profile.swift */; };
 		05E2A21F2AF79F0B00FA8057 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E2A21E2AF79F0B00FA8057 /* SplashScreen.swift */; };
@@ -94,8 +94,7 @@
 		05EF01BF2B397CAA00E69343 /* ExtraProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */; };
 		05F1D6872B52C67200D7DA62 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D6862B52C67200D7DA62 /* Chat.swift */; };
 		05F1D6892B52CD5500D7DA62 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F1D6882B52CD5500D7DA62 /* ChatCell.swift */; };
-		05F906222B139899008A688C /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906212B139899008A688C /* Questions.swift */; };
-		05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F906232B139A1B008A688C /* ModelQuestion.swift */; };
+		05FDF1992CAD516500B23900 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FDF1982CAD516500B23900 /* City.swift */; };
 		05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +105,7 @@
 		051D12282B05508600689CBD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		051F27922B40A15B00826995 /* RgNameSurname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RgNameSurname.swift; sourceTree = "<group>"; };
 		051F27942B40AEED00826995 /* rgPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rgPhone.swift; sourceTree = "<group>"; };
+		051F8DB62CA40DED008A528F /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		0542497A2B03D0270069F214 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		0545EA342B1212F9006E1276 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
 		0545EA362B121806006E1276 /* ResarvationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResarvationCell.swift; sourceTree = "<group>"; };
@@ -122,17 +122,16 @@
 		0572FCE22B08DAEB00FE5CBC /* AccountInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformation.swift; sourceTree = "<group>"; };
 		0572FCE62B08ED9C00FE5CBC /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		0580F1E52B020901005E3DEC /* DetailWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWork.swift; sourceTree = "<group>"; };
+		05843AFD2CB4361B002F3D37 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
+		05843AFF2CB47006002F3D37 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		05934A7D2B4DC2B800C20CCF /* JobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
 		05934A7F2B4DC69B00C20CCF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05A8B5472AFD038900E714B0 /* TableItemVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemVertical.swift; sourceTree = "<group>"; };
 		05DA1F542CAC407100A88207 /* PasswordReset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordReset.swift; sourceTree = "<group>"; };
+		05DA1F562CAC467700A88207 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05DA86542B1892EC005F23B1 /* ReservationDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetail.swift; sourceTree = "<group>"; };
 		05DA86562B18A331005F23B1 /* Jobİnformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Jobİnformation.swift"; sourceTree = "<group>"; };
-		05DE58CD2B015DC8000B7A46 /* WorkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkList.swift; sourceTree = "<group>"; };
 		05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
-		05E024CC2AFE4557006C20F0 /* WorkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkModel.swift; sourceTree = "<group>"; };
-		05E024CE2AFE46BE006C20F0 /* ItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemModel.swift; sourceTree = "<group>"; };
 		05E2A21A2AF79EBD00FA8057 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		05E2A21C2AF79EF400FA8057 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		05E2A21E2AF79F0B00FA8057 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
@@ -154,8 +153,7 @@
 		05EF01BE2B397CAA00E69343 /* ExtraProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraProfile.swift; sourceTree = "<group>"; };
 		05F1D6862B52C67200D7DA62 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		05F1D6882B52CD5500D7DA62 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
-		05F906212B139899008A688C /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
-		05F906232B139A1B008A688C /* ModelQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelQuestion.swift; sourceTree = "<group>"; };
+		05FDF1982CAD516500B23900 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		05FE29412AFD536000C8856B /* TableItemHorizontoly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableItemHorizontoly.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,6 +234,7 @@
 				05DE58CF2B01620D000B7A46 /* FirestoreManager.swift */,
 				0572FCE62B08ED9C00FE5CBC /* UserManager.swift */,
 				055CE2232B49829C00483F7B /* RegistrationInformation.swift */,
+				05843AFF2CB47006002F3D37 /* ServiceManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -276,32 +275,22 @@
 				05E642E82AF3E3D000733AC6 /* View */,
 				05E642E72AF3E3BF00733AC6 /* ViewModel */,
 				05E642E62AF3E3B900733AC6 /* Model */,
-				05E642E42AF3E3A400733AC6 /* Fonts */,
 				05E642D62AF3E04000733AC6 /* Assets.xcassets */,
 				05E642DB2AF3E04000733AC6 /* Info.plist */,
-				05A8B5432AFCF67C00E714B0 /* GoogleService-Info.plist */,
+				05DA1F562CAC467700A88207 /* GoogleService-Info.plist */,
 			);
 			path = "Hizmet Burada";
-			sourceTree = "<group>";
-		};
-		05E642E42AF3E3A400733AC6 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		05E642E62AF3E3B900733AC6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				05E024CC2AFE4557006C20F0 /* WorkModel.swift */,
-				05E024CE2AFE46BE006C20F0 /* ItemModel.swift */,
-				05DE58CD2B015DC8000B7A46 /* WorkList.swift */,
 				051D12282B05508600689CBD /* User.swift */,
-				05F906212B139899008A688C /* Questions.swift */,
-				05F906232B139A1B008A688C /* ModelQuestion.swift */,
 				05934A7D2B4DC2B800C20CCF /* JobModel.swift */,
 				05934A7F2B4DC69B00C20CCF /* Message.swift */,
+				05FDF1982CAD516500B23900 /* City.swift */,
+				051F8DB62CA40DED008A528F /* Comments.swift */,
+				05843AFD2CB4361B002F3D37 /* ServiceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -473,7 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E642D72AF3E04000733AC6 /* Assets.xcassets in Resources */,
-				05A8B5442AFCF67C00E714B0 /* GoogleService-Info.plist in Resources */,
+				05DA1F572CAC467700A88207 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,11 +473,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05E024CF2AFE46BE006C20F0 /* ItemModel.swift in Sources */,
 				05E642ED2AF3E43400733AC6 /* Constrait.swift in Sources */,
+				05FDF1992CAD516500B23900 /* City.swift in Sources */,
 				0545EA352B1212F9006E1276 /* Reservation.swift in Sources */,
 				05934A802B4DC69B00C20CCF /* Message.swift in Sources */,
 				05FE29422AFD536000C8856B /* TableItemHorizontoly.swift in Sources */,
+				051F8DB72CA40DEE008A528F /* Comments.swift in Sources */,
 				05E36A392B04F9A600EC5845 /* AppNavigation.swift in Sources */,
 				055CE2242B49829C00483F7B /* RegistrationInformation.swift in Sources */,
 				05A8B5482AFD038900E714B0 /* TableItemVertical.swift in Sources */,
@@ -508,7 +498,6 @@
 				051C22672B4B02A1007BCC66 /* JobsDetail.swift in Sources */,
 				05E642CE2AF3E03F00733AC6 /* AppDelegate.swift in Sources */,
 				05EF01BD2B397C9100E69343 /* Meeting.swift in Sources */,
-				05F906222B139899008A688C /* Questions.swift in Sources */,
 				0542497B2B03D0270069F214 /* Comment.swift in Sources */,
 				055CE2282B498A8100483F7B /* ExtraLogin.swift in Sources */,
 				054FCFE82AF4DA3600A8555B /* TabBar.swift in Sources */,
@@ -517,10 +506,9 @@
 				050A71D92AF8CF880029C476 /* LoginViewModel.swift in Sources */,
 				05EF01B92B397C3D00E69343 /* Opportunity.swift in Sources */,
 				051F27932B40A15B00826995 /* RgNameSurname.swift in Sources */,
-				05F906242B139A1B008A688C /* ModelQuestion.swift in Sources */,
 				0580F1E62B020901005E3DEC /* DetailWork.swift in Sources */,
-				05DE58CE2B015DC8000B7A46 /* WorkList.swift in Sources */,
 				05DA86552B1892EC005F23B1 /* ReservationDetail.swift in Sources */,
+				05843AFE2CB4361B002F3D37 /* ServiceModel.swift in Sources */,
 				051F27952B40AEED00826995 /* rgPhone.swift in Sources */,
 				05F1D6892B52CD5500D7DA62 /* ChatCell.swift in Sources */,
 				0545EA372B121806006E1276 /* ResarvationCell.swift in Sources */,
@@ -534,9 +522,9 @@
 				05EF01B32B3962F200E69343 /* SecondScreen.swift in Sources */,
 				0545EA392B122626006E1276 /* ResarvationItemCell.swift in Sources */,
 				0572FCE12B08C87500FE5CBC /* ProfileCell.swift in Sources */,
-				05E024CD2AFE4557006C20F0 /* WorkModel.swift in Sources */,
 				05E2A21B2AF79EBD00FA8057 /* Register.swift in Sources */,
 				05EF01B52B397AF800E69343 /* Tabbar2.swift in Sources */,
+				05843B002CB47006002F3D37 /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -95,5 +95,24 @@ extension UITextField {
         self.addSubview(topPadding)
         self.addSubview(bottomPadding)
     }
+    
+    
+    
+    
+    
+  
+
+  
+
+    
+    
+    
 }
 
+extension UINavigationController {
+    func customizeBackButton(title: String = "", tintColor: UIColor = .black) {
+        let backButton = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
+        self.navigationBar.topItem?.backBarButtonItem = backButton
+        self.navigationBar.tintColor = tintColor
+    }
+}

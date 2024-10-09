@@ -28,8 +28,8 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
     
     lazy var infoText:UITextView = {
         let infoText = UITextView()
-        
-        infoText.font = UIFont.boldSystemFont(ofSize: 20)
+        infoText.textColor = .systemYellow
+        infoText.font = UIFont(name: "Avenir", size: 18)
         infoText.isEditable = false
         infoText.textAlignment = .center
         infoText.delegate = self
@@ -38,21 +38,27 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
     }()
     
     
-    lazy var textBox:UITextView = {
-        let textBox = UITextView(frame: CGRect(x: 50, y: 100, width: 400, height: 300))
+    lazy var textBox: UITextView = {
+        let textBox = UITextView()
+        textBox.translatesAutoresizingMaskIntoConstraints = false // Auto Layout kullanabilmek için
         textBox.text = "Ekstra bilgileri girin..."
-        textBox.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1) // Arkaplan rengini ve opaklığını ayarlamak için
+        textBox.textColor = UIColor.lightGray // Placeholder rengi
+        textBox.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.85, alpha: 1) // Arka plan rengi
         textBox.layer.borderWidth = 1.0
         textBox.layer.borderColor = UIColor.lightGray.cgColor
-        textBox.layer.cornerRadius = 4.0
+        textBox.layer.cornerRadius = 8.0 // Kenar yuvarlama
         textBox.layer.shadowColor = UIColor.black.cgColor
-        textBox.layer.shadowOpacity = 0.1
-        textBox.layer.shadowOffset = CGSize(width: 1, height: 1)
+        textBox.layer.shadowOpacity = 0.2 // Gölgede daha belirgin bir etki
+        textBox.layer.shadowOffset = CGSize(width: 0, height: 2) // Dikey gölge
         textBox.layer.shadowRadius = 4.0
-        textBox.font = UIFont.systemFont(ofSize: 16.0)
+        textBox.font = UIFont(name: "Avenir", size: 16)
+        textBox.textAlignment = .left // Yazı hizalaması
+        textBox.returnKeyType = .done // Klavyede "Tamam" tuşu
         textBox.delegate = self
+        textBox.layer.masksToBounds = false // Kenar yuvarlamasının gölgesini göstermek için
         return textBox
     }()
+
     var key : String = ""
   
     
@@ -132,6 +138,7 @@ class ReservationDetail: UIViewController ,UITextViewDelegate {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
       
     }
     

@@ -11,25 +11,8 @@ import FirebaseStorage
 import Firebase
 class FirestoreManager {
     let db = Firestore.firestore()
-    func fetchUsers(completion: @escaping ([WorkList]?, Error?) -> Void) {
-        db.collection("HizmetBurada").getDocuments { (querySnapshot, error) in
-            guard let documents = querySnapshot?.documents else {
-                completion(nil, error)
-                return
-            }
-            let list = documents.compactMap { document -> WorkList? in
-                do {
-                    let user = try document.data(as: WorkList.self)
-                    
-                    return user
-                } catch {
-                    completion(nil, error)
-                    return nil
-                }
-            }
-            completion(list, nil)
-        }
-    }
+
+
     
     func signIn(withEmail email: String, password: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
@@ -50,7 +33,8 @@ class FirestoreManager {
              "gsm": user.gsm ?? "",
              "email": user.email ?? "",
              "id" : user.id ?? "",
-             "status" : user.status ?? ""
+             "status" : user.status ?? "",
+             "adress" : user.adress ?? ""
          ]
          
          // Realtime Database'de 'UserRecipient' koleksiyonuna customID ile veri ekleme

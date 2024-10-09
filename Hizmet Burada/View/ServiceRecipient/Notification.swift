@@ -11,6 +11,11 @@ import FirebaseFirestoreSwift
 import Firebase
 
 class Notification: UIViewController  {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
    
 
     override func viewDidLoad() {

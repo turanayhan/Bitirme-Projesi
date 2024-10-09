@@ -5,18 +5,23 @@
 //  Created by turan on 25.11.2023.
 //
 import UIKit
+
+
+
+
 class ResarvationCell: UICollectionViewCell,  UITableViewDelegate, UITableViewDataSource {
   
     
 
-    var model: ModelQuestion? {
+    var model: Question? {
         didSet {
             itemTitle.text = model?.question
-            model2 = model
+            item.reloadData()
+         
         }
     }
     
-    var model2 : ModelQuestion? = nil
+
     
     lazy var container : UIView = {
         let container = UIView()
@@ -24,11 +29,12 @@ class ResarvationCell: UICollectionViewCell,  UITableViewDelegate, UITableViewDa
     }()
 
     lazy var itemTitle:UILabel = {
-        let nameSurname = UILabel()
-        nameSurname.font = UIFont.boldSystemFont(ofSize: 24)
-        nameSurname.textColor = .systemYellow
-        nameSurname.textAlignment = .center
-        return nameSurname
+        let itemTitle = UILabel()
+        itemTitle.font = UIFont.boldSystemFont(ofSize: 24)
+        itemTitle.textColor = .systemYellow
+        itemTitle.textAlignment = .center
+        itemTitle.font = UIFont(name: "Avenir", size: 18)
+        return itemTitle
     }()
     
     lazy var item: UITableView = {
@@ -74,19 +80,19 @@ class ResarvationCell: UICollectionViewCell,  UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (model2?.answer.count)!
+        return model?.answers.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "re", for: indexPath) as! ResarvationItemCell
-        cell.question = model2?.question
-        cell.answer = model2?.answer[indexPath.row]
+        cell.question = model?.question
+        cell.answer = model?.answers[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
+        return 45
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

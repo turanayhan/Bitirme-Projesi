@@ -13,6 +13,7 @@ struct User: Codable {
     var email: String?
     var id: String?
     var status : String?
+    var adress : String?
     
     enum CodingKeys: String, CodingKey {
         case nameSurname
@@ -20,5 +21,6 @@ struct User: Codable {
         case email
         case id
         case status
+        case adress
     }
 }

@@ -119,6 +119,7 @@ class Register: UIViewController, UITextFieldDelegate {
         registerBtn.setTitleColor(.red, for: .highlighted)
         registerBtn.layer.cornerRadius = 4
         registerBtn.isEnabled = false
+        registerBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         registerBtn.alpha = 0.5
         return registerBtn
     }()
@@ -241,7 +242,9 @@ class Register: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            let user = User(nameSurname: self.nameSurname.text, gsm: self.gsm.text, email: self.mail.text, id: UUID().uuidString, status: "Recipient")
+            let id = UUID().uuidString
+            
+            let user = User(nameSurname: self.nameSurname.text, gsm: self.gsm.text, email: self.mail.text, id: id, status: "Recipient")
 
             FirestoreManager().UserRecipientPush(user: user) { result in
                     switch result {

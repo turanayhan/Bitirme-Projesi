@@ -23,6 +23,12 @@ class Myworks: UIViewController ,UITableViewDataSource, UITableViewDelegate {
           table.translatesAutoresizingMaskIntoConstraints = false
           return table
       }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.customizeBackButton()
+      
+    }
+    
       
       override func viewDidLoad() {
           super.viewDidLoad()
