@@ -18,6 +18,7 @@ class UserManager {
         UserDefaults.standard.set(user.email, forKey: "mail")
         UserDefaults.standard.set(user.id, forKey: "id")
         UserDefaults.standard.set(user.adress, forKey: "adress")
+        UserDefaults.standard.set(user.status, forKey: "status")
         
     }
     
@@ -37,7 +38,8 @@ class UserManager {
         var mail = UserDefaults.standard.string(forKey: "mail")
         var id = UserDefaults.standard.string(forKey: "id")
         var adress = UserDefaults.standard.string(forKey: "adress")
-        return User(nameSurname:nameSurname,gsm: gsm,email: mail,id: id,adress: adress)
+        var status = UserDefaults.standard.string(forKey: "status")
+        return User(nameSurname:nameSurname,gsm: gsm,email: mail,id: id,status: status,adress: adress)
     }
     // Kullanıcı adını UserDefaults'tan silme
     func removeUserName() {
@@ -48,6 +50,11 @@ class UserManager {
     
     func isLogin(){
         UserDefaults.standard.set(true, forKey: "isLoggedIn")
+    }
+    func isLoginControl()->Bool{
+    
+        var login = UserDefaults.standard.bool(forKey: "isLoggedIn")
+        return login
     }
     
     func isLogouth() {

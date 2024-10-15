@@ -71,8 +71,27 @@ class SplashScreen: UIViewController {
 
     @objc private func screenTransition() {
         print("ekrana geç...")
-        self.navigationController?.pushViewController(SplashScreen2(), animated: true)
-        self.timer?.invalidate()
+        
+        if UserManager.shared.isLoginControl(){
+            print("dsc",UserManager.shared.getUser().status ?? "yok")
+            if UserManager.shared.getUser().status == "Recipient" {
+                self.navigationController?.pushViewController(ServiceRecipient(), animated: true)
+                self.timer?.invalidate()
+            }
+            else{
+                self.navigationController?.pushViewController(ServiceProvider(), animated: true)
+                self.timer?.invalidate()
+                
+            }
+            
+        }
+        else{
+            self.navigationController?.pushViewController(SecondScreen(), animated: true)
+            self.timer?.invalidate()
+        }
+        
+       
+      
     }
         
     }

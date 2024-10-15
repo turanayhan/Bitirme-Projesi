@@ -54,19 +54,18 @@ class FirestoreManager {
         let yeniKullaniciRef = ref.child("UserService").childByAutoId()
         var id = yeniKullaniciRef.key ?? "0"
 
-        let registrationInfo = RegistrationInformation.rgİnformation
+        let registrationInfo = ServiceProviderRegistration.rgİnformation
         registrationInfo.userİd = id
         let registrationDictionary: [String: Any?] = [
-            "name": registrationInfo.name,
-            "surname": registrationInfo.surname,
+            "name": registrationInfo.nameSurname,
+            
             "gsm": registrationInfo.gsm,
-            "locationCity": registrationInfo.locationCity,
-            "district": registrationInfo.district,
-            "neighbourhood": registrationInfo.neighbourhood,
+            "adrees": registrationInfo.adrees,
             "answerSelection": registrationInfo.answerSelection,
             "extraInformation": registrationInfo.extraİnformation,
             "mail": registrationInfo.mail,
-            "userId": registrationInfo.userİd
+            "userId": registrationInfo.userİd,
+            "status": "service"
         ]
 
         for (key, value) in registrationDictionary {
@@ -76,10 +75,11 @@ class FirestoreManager {
         yeniKullaniciRef.setValue(registrationDictionary)
   
         UserManager.shared.setId(id: id)
-        UserManager.shared.setUser(user : User(nameSurname:registrationInfo.name,
+        UserManager.shared.setUser(user : User(nameSurname:registrationInfo.nameSurname,
                                               gsm: registrationInfo.gsm,
                                               email: registrationInfo.mail,
-                                              id: registrationInfo.userİd))
+                                              id: registrationInfo.userİd,
+                                               status: registrationInfo.status))
    
  
     }

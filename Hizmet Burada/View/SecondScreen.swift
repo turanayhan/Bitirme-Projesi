@@ -1,6 +1,6 @@
 import UIKit
 
-class SplashScreen2: UIViewController {
+class SecondScreen: UIViewController {
 
     lazy var infoText1: UITextView = {
         let infoText1 = UITextView()
@@ -114,12 +114,12 @@ class SplashScreen2: UIViewController {
     }
 
     @objc func getservice(click: UIButton!) {
-        let tabBar = TabBar()
+        let tabBar = ServiceRecipient()
         self.navigationController?.pushViewController(tabBar, animated: true)
     }
 
     @objc func serve(click: UIButton!) {
-        let tabBar = TabBar2()
+        let tabBar = ServiceProvider()
         self.navigationController?.pushViewController(tabBar, animated: true)
     }
 

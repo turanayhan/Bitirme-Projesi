@@ -14,6 +14,10 @@ struct JobModel : Codable{
     var id : String
     var information:[String:String] = [:]
     var message : [Message]?
+    var adress : String
+    var announcementDate : String?
+    var reservationDate : String?
+
    
     enum CodingKeys: String, CodingKey {
         case nameSurname
@@ -21,6 +25,9 @@ struct JobModel : Codable{
         case id
         case information
         case message
+        case adress
+        case announcementDate
+        case reservationDate
     }
     
     
@@ -31,12 +38,26 @@ struct JobModel : Codable{
             "detail": detail,
             "id": id,
             "information": information,
-            "message": message?.map { $0.toDictionarym() }
+            "adress":adress,
+            "message": message?.map { $0.toDictionarym()},
+            "announcementDate":date(),
+            "reservationDate" : reservationDate
         ]
     }
     
     func toMessage(veri : [String: Any]){
         
+        
+    }
+    
+    func date ()->String{
+        
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy" // Gün Ay(Yazıyla) Yıl formatı
+        dateFormatter.locale = Locale(identifier: "tr_TR") // Türkçe ay isimleri için dil ayarı
+        let todayDate = dateFormatter.string(from: date)
+        return todayDate
         
     }
     
