@@ -12,13 +12,7 @@ import Firebase
 import FirebaseStorage
 import JGProgressHUD
 
-struct UserProfile{
-    
-    let id : Int
-    let name : String
-    
-    
-}
+
 
 class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -29,7 +23,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
         return progresBar
     }()
     
-    var userProfile = [UserProfile]()
+    var userProfile = [ProfilItem]()
     
    
     var selectedImage: UIImage?
@@ -65,6 +59,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
         // Kenarlık ekleme
         profileImage.layer.borderColor = UIColor.gray.cgColor // Kenarlık rengi
         profileImage.layer.borderWidth = 2.0 // Kenarlık kalınlığı
+        profileImage.tintColor = UIColor(hex: "40A6F8")
         
         // Görsele tıklanabilirlik ekleniyor
         profileImage.isUserInteractionEnabled = true
@@ -147,6 +142,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
     lazy var tableView: UITableView = {
            let tableView = UITableView()
         tableView.delegate = self
+        tableView.backgroundColor = UIColor(hex: "#F1FAFE")
         tableView.dataSource = self
         tableView.register(Profile.self, forCellReuseIdentifier: "cell")
            return tableView
@@ -154,6 +150,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
     
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+            view.backgroundColor = UIColor(hex: "#F1FAFE")
             if navigationController != nil {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
                 self.navigationController?.isNavigationBarHidden = true
@@ -169,12 +166,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
         }
         
         nameSurname.text = UserManager.shared.getUser().nameSurname
-        userProfile.append(UserProfile(id: 0, name: "Hesap Bilgileri"))
-        userProfile.append(UserProfile(id: 1, name: "Şifre Değiştir"))
-        userProfile.append(UserProfile(id: 2, name: "Yardım merkezi"))
-        userProfile.append(UserProfile(id: 3, name: "Arkadaşlarına tavsiye et"))
-        userProfile.append(UserProfile(id: 4, name: "Hizmet Ver"))
-        userProfile.append(UserProfile(id: 5, name: "Çıkış Yap"))
+      
         }
     
     
@@ -185,7 +177,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchProfileImage()
-        
+        tableView.backgroundColor = UIColor(hex: "#F1FAFE")
         desing()
     }
     
@@ -273,7 +265,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
         print("kayıt olundu")
         navigationItem.title = ""
         navigationController?.navigationBar.tintColor = .black
-        navigationController?.pushViewController(RegisterPage(), animated: true)
+        navigationController?.pushViewController(RecipientName(), animated: true)
     }
     
     @objc func loginClick(click :UIButton!){
@@ -340,6 +332,7 @@ class ProfilePage: UIViewController ,UITableViewDelegate, UITableViewDataSource,
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Hücrelerin yüklenme animasyonu
         cell.alpha = 0
+      
         UIView.animate(withDuration: 0.5, delay: 0.05 * Double(indexPath.row), animations: {
             cell.alpha = 1
         })

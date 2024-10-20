@@ -19,7 +19,9 @@ class jobVr:UITableViewCell, UICollectionViewDelegateFlowLayout,UICollectionView
         
         let header = UITextView()
         header.textColor = .black
+        header.backgroundColor = UIColor(hex: "#F1FAFE")
         header.isEditable = false
+        header.backgroundColor = .clear
         header.font = UIFont(name: "Avenir-Medium", size: 12)
     
         
@@ -29,11 +31,13 @@ class jobVr:UITableViewCell, UICollectionViewDelegateFlowLayout,UICollectionView
     lazy var collectionView:UICollectionView = {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
+          
         
             let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
             cv.translatesAutoresizingMaskIntoConstraints = false
             cv.showsHorizontalScrollIndicator = false
             cv.register(JobHz.self, forCellWithReuseIdentifier: "cell")
+            cv.backgroundColor = .clear
             return cv
         }()
 
@@ -70,6 +74,7 @@ class jobVr:UITableViewCell, UICollectionViewDelegateFlowLayout,UICollectionView
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! JobHz
+            cell.backgroundColor = .clear
             cell.modelic = modelic?.tasks[indexPath.row]
             return cell
         }

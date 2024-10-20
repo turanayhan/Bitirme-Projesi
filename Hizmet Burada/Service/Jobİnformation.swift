@@ -19,6 +19,8 @@ class Jobİnformation {
         information[key] = value
     
     }
+    
+    
   
     
     

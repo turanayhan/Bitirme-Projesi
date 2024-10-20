@@ -50,6 +50,7 @@ class JobHz: UICollectionViewCell {
         let workText = UITextView()
         workText.text = "Baca temizliği"
         workText.textColor = .black
+        workText.backgroundColor = .clear
         workText.isEditable = false
         workText.font = UIFont(name: "Avenir", size: 10)
         
@@ -57,11 +58,12 @@ class JobHz: UICollectionViewCell {
     }()
     
     override init(frame: CGRect) {
-        
+     
         super.init(frame: .zero)
         progresBar.show(in: self.contentView)
         contentView.addSubview(workImage)
         contentView.addSubview(workText)
+        contentView.backgroundColor = .clear
         desing()
         setupCell()
   
@@ -97,10 +99,15 @@ class JobHz: UICollectionViewCell {
       }
     
     @objc func handleTap() {
+        
+
+        
+        
            // Tıklandığında başka bir sayfaya geçiş yap
            if let viewController = findViewController() {
               let sayfa = DetailWorkPage()
                sayfa.modelDetail = modelic
+               viewController.navigationController?.setNavigationBarHidden(true, animated: false)
                viewController.navigationController?.pushViewController(sayfa, animated: true)
            }
        }

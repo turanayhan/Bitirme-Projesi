@@ -19,7 +19,6 @@ class ServiceProviderRegistration {
     var extraİnformation  :String?
     var mail : String?
     var userİd : String?
-    var status : String?
     var profileImage : String?
     
     
@@ -27,4 +26,22 @@ class ServiceProviderRegistration {
         answerSelection.append(value)
     
     }
+    
+    func createUser(status:String)->User{
+        
+        let user = User(nameSurname: nameSurname,
+                        gsm: gsm,
+                        email: mail,
+                        id: userİd,
+                        status: status,
+                        adress: adrees,
+                        profileImage: profileImage,
+                        answerSelection:answerSelection,
+                        extraİnformation: extraİnformation
+        )
+        
+        return user
+    }
+    
+ 
 }

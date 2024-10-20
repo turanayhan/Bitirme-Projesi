@@ -1,8 +1,8 @@
 //
-//  Register.swift
+//  ProviderName.swift
 //  Hizmet Burada
 //
-//  Created by turan on 5.11.2023.
+//  Created by turan on 17.10.2024.
 //
 
 import UIKit
@@ -10,7 +10,9 @@ import FirebaseAuth
 import Firebase
 import JGProgressHUD
 
-class NamePage: UIViewController {
+class ProviderName: UIViewController {
+    
+    
     
     lazy var progresBar:JGProgressHUD = {
         let progresBar = JGProgressHUD(style: .light)
@@ -35,6 +37,7 @@ class NamePage: UIViewController {
         infoText.text = "Adın ve soyadın nedir?"
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
         infoText.isEditable = false
         return infoText
@@ -42,9 +45,10 @@ class NamePage: UIViewController {
     
     lazy var nameSurnameText2:UITextView = {
         let infoText = UITextView()
-        infoText.text = "Müşterilerin profilinde ve teklif mesajında adını görecek,isim ve\nSoyisim baş harflerin büyük olması daha profesyonel bir görünüm\nsağlayacaktır."
+        infoText.text = "Müşteriler, profilinizde ve teklif mesajlarınızda adınızı görecekler. İsminizin ve soyisminizin baş harflerini büyük yazmanız, daha profesyonel \nbir izlenim bırakacaktır."
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Avenir", size: 11)
         infoText.isEditable = false
         return infoText
@@ -63,7 +67,9 @@ class NamePage: UIViewController {
         nameSurname.placeholder = "Ad"
         nameSurname.borderStyle = .roundedRect
         nameSurname.font = UIFont(name: "Avenir", size: 14)
-        nameSurname.keyboardType = .emailAddress
+        nameSurname.layer.borderWidth = 0.6 // Sınır kalınlığı
+        nameSurname.layer.borderColor = UIColor(hex: "40A6F8").cgColor // İstediğiniz renk
+        nameSurname.layer.cornerRadius = 5//
         nameSurname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return nameSurname
     }()
@@ -73,7 +79,9 @@ class NamePage: UIViewController {
         surname.placeholder = "Soyad"
         surname.font = UIFont(name: "Avenir", size: 14)
         surname.borderStyle = .roundedRect
-        surname.keyboardType = .emailAddress
+        surname.layer.borderWidth = 0.6 // Sınır kalınlığı
+        surname.layer.borderColor = UIColor(hex: "40A6F8").cgColor // İstediğiniz renk
+        surname.layer.cornerRadius = 5//
         surname.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         return surname
     }()
@@ -85,8 +93,8 @@ class NamePage: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
         button.alpha = 0.5
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -101,7 +109,8 @@ class NamePage: UIViewController {
         super.viewDidLoad()
         navigationItem.title = ""
         navigationController?.isNavigationBarHidden = false
-        view.backgroundColor = .white
+        setupCustomBackButton()
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         view.addSubview(profileImage)
         stackView.addArrangedSubview(name)
         stackView.addArrangedSubview(surname)
@@ -144,10 +153,13 @@ class NamePage: UIViewController {
     @objc func textFieldDidChange(textField: UITextField) {
         if name.text!.isEmpty  {
             registerBtn.isEnabled = false
+        
+            
             registerBtn.alpha = 0.5
             
         } else {
             registerBtn.isEnabled = true
+          
             registerBtn.alpha = 1
         }
     }
@@ -163,8 +175,18 @@ class NamePage: UIViewController {
         
         // Eğer text alanları boş değilse, kaydı tamamla ve bir sonraki sayfaya git
         ServiceProviderRegistration.rgİnformation.nameSurname = "\(ad) \(soyad)"
-        navigationController?.pushViewController(PhonePage(), animated: true)
+        navigationController?.pushViewController(ProviderGsm(), animated: true)
     }
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
 
     
 }

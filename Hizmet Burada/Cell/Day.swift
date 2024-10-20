@@ -36,13 +36,14 @@ class Day: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.frame = contentView.bounds
-        
+  
+        contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.addSubview(dayNumberLabel)
         contentView.addSubview(dayNameLabel)
         contentView.addSubview(monthLabel)
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 0.5
-        contentView.layer.borderColor = UIColor.systemYellow.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
         
         
 
@@ -60,7 +61,7 @@ class Day: UICollectionViewCell {
     
     
     func configure(isSelected: Bool) {
-        contentView.backgroundColor = isSelected ? .systemYellow : .white
+        contentView.backgroundColor = isSelected ? UIColor(hex: "40A6F8") : .white
     }
     
     // Ay adını ayarla

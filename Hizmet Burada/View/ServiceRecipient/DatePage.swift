@@ -35,23 +35,26 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 1, height: 1)
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
+        button.layer.cornerRadius = 6
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
     }()
     
+  
+
+  
+    
     lazy var infoText: UITextView = {
         let infoText = UITextView()
        
-        infoText.font = UIFont(name: "Avenir", size: 18)
+        infoText.font = UIFont(name: "Avenir", size: 14)
         infoText.isEditable = false
         infoText.textAlignment = .center
+        infoText.backgroundColor = .clear
         infoText.text = "Ne zaman?"
         return infoText
     }()
@@ -59,9 +62,10 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
     lazy var infoText2: UITextView = {
         let infoText2 = UITextView()
         
-        infoText2.font = UIFont(name: "Avenir", size: 14)
+        infoText2.font = UIFont(name: "Avenir", size: 12)
         infoText2.isEditable = false
         infoText2.textAlignment = .center
+        infoText2.backgroundColor = .clear
         infoText2.text = "Rezervasyonundan 24 saat öncesisine kadar değiştirebilirsiniz"
         return infoText2
     }()
@@ -70,7 +74,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.left") // Sol ok simgesi
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemYellow
+        imageView.tintColor = UIColor(hex: "40A6F8")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -79,7 +83,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "chevron.right")  // Sağ ok simgesi
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemYellow
+        imageView.tintColor = UIColor(hex: "40A6F8") 
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -92,31 +96,44 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         return separatorLine
     }()
     
-    lazy var princeText:UILabel = {
-        
-        // Çizgi oluşturma
-        let princeText = UILabel()
-        princeText.text = "Rezervasyon"
-        princeText.textColor = .black
-        princeText.textAlignment = .center
-
-        return princeText
+  
+    
+    lazy var navigationTitle:UITextView = {
+        let titleLabel = UITextView()
+        titleLabel.text = "Rezervasyon"
+        titleLabel.textColor = .black // Başlık rengi
+        titleLabel.font = UIFont(name: "Avenier", size: 14)
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = UIColor(hex: "#F1FAFE")
+        return titleLabel
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.titleView = princeText
-        self.navigationController?.navigationBar.addSubview(separatorLine)
+        navigationController?.isNavigationBarHidden = false
+        setupCustomBackButton()
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
+      
         collectionView.delegate = self
         collectionView.dataSource = self
         hourCollectionView.delegate = self
         hourCollectionView.dataSource = self
-        generateDays() // Günleri otomatik olarak oluşturur
-        generateHours() // Saatleri otomatik olarak oluşturur
+        generateDays()
+        generateHours()
         design()
         
     }
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+          navigationItem.titleView = navigationTitle
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     
     func generateDays() {
         let calendar = Calendar.current
@@ -159,7 +176,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
     
 
     func design() {
-        view.backgroundColor = .white
+
         view.addSubview(infoText)
         view.addSubview(infoText2)
         view.addSubview(collectionView)
@@ -202,8 +219,8 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
                           bottom: view.safeAreaLayoutGuide.bottomAnchor,
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
-                          padding: .init(top: 20, left: 20, bottom: 0, right: 20),
-                          size: .init(width: 0, height: 40))
+                          padding: .init(top: 0, left: 20, bottom: 30, right: 20),
+                          size: .init(width: 0, height: 30))
         
         NSLayoutConstraint.activate([
             leftArrowImageView.centerYAnchor.constraint(equalTo: collectionView.centerYAnchor),
@@ -216,12 +233,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
             rightArrowImageView.widthAnchor.constraint(equalToConstant: 25), // Genişlik
             rightArrowImageView.heightAnchor.constraint(equalToConstant: 25) // Yükseklik
         ])
-        NSLayoutConstraint.activate([
-            separatorLine.leadingAnchor.constraint(equalTo: self.navigationController!.navigationBar.leadingAnchor),
-            separatorLine.trailingAnchor.constraint(equalTo: self.navigationController!.navigationBar.trailingAnchor),
-            separatorLine.bottomAnchor.constraint(equalTo: self.navigationController!.navigationBar.bottomAnchor),
-            separatorLine.heightAnchor.constraint(equalToConstant: 1) // Çizgi yüksekliği
-        ])
+   
         
     }
     
@@ -236,6 +248,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.collectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayCell", for: indexPath) as! Day
+            cell.backgroundColor = .clear
             
             // Gün numarasını ve adını al
             let calendar = Calendar.current
@@ -278,7 +291,6 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            // Seçilen günü kaydet
             selectedDay = days[indexPath.item]
             
             // Seçim yapıldığında tüm hücrelerin arka plan rengini güncelle
@@ -287,7 +299,6 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
                 cell?.configure(isSelected: i == indexPath.item) // Seçilen gün için özel tasarım
             }
             
-            // Tüm hücreleri yeniden yükle
             collectionView.reloadData()
         } else {
             // Saat seçimi yapılırken tarih seçimini kontrol et

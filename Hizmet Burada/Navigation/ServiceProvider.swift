@@ -12,33 +12,36 @@
 //
 
 import UIKit
+import SideMenu
 
 class ServiceProvider: UITabBarController {
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let vc1 = OpportunityPage()
         let vc2 = OfferPage()
-       
+        let vc3 = MeetingPage()
         let vc4 = ProfileService()
+        
         let smallSize = CGSize(width: 20, height: 20) // Küçültmek istediğiniz boyut
         
         
-        vc1.tabBarItem.image = resizeImage(UIImage(systemName: "doc.text")!, targetSize: smallSize)
-        vc2.tabBarItem.image = resizeImage(UIImage(systemName: "briefcase")!, targetSize: smallSize)
-       
-        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "person.crop.circle")!, targetSize: smallSize)
-        vc1.title = "Fırsat"
-        vc2.title = "Teklif"
-    
-        vc4.title = "Profilim"
+        vc1.tabBarItem.image = resizeImage(UIImage(systemName: "flame.fill")!, targetSize: smallSize)
+        vc2.tabBarItem.image = resizeImage(UIImage(systemName: "bag.fill")!, targetSize: smallSize)
+        vc3.tabBarItem.image = resizeImage(UIImage(systemName: "calendar")!, targetSize: smallSize)
+        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "bell.fill")!, targetSize: smallSize)
+        
+        vc1.title = "Fırsatlar"
+        vc2.title = "Teklifler"
+        vc3.title = "Randevu"
+        vc4.title = "Bildirimler"
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
-
+        let nav3 = UINavigationController(rootViewController: vc3)
         let nav4 = UINavigationController(rootViewController: vc4)
-        tabBar.tintColor = .label
-        tabBar.backgroundColor = .white
-        setViewControllers([nav1,nav2,nav4], animated: true)
+    
+        setViewControllers([nav1,nav2,nav3,nav4], animated: true)
         
         
         
@@ -52,12 +55,55 @@ class ServiceProvider: UITabBarController {
         UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         UITabBarItem.appearance().setTitleTextAttributes(attributes, for: .selected)
         
+        
+        
+        
+        
+        
+        
+        let menuButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
+            style: .plain,
+            target: self,
+            action: #selector(openMenu)
+        )
+        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
+
+        navigationItem.leftBarButtonItem = menuButton
+        
+        // Menü ayarları
+        let menu = SideMenuNavigationController(rootViewController: Menu())
+        menu.leftSide = true // Sol taraftan açılacak
+        SideMenuManager.default.leftMenuNavigationController = menu
+        
+        // Kaydırarak menü açmayı etkinleştir
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+        
+        
+        
+        
+        
+        
+    }
+    
+    
+    @objc func openMenu() {
+        if let menu = SideMenuManager.default.leftMenuNavigationController {
+    
+            present(menu, animated: true, completion: nil)
+            
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
+        
+        tabBar.backgroundColor = UIColor(hex: "#E3F2FD")
+        tabBar.tintColor = .red
+        tabBar.isTranslucent = false
+        tabBar.barTintColor = UIColor(hex: "#E3F2FD")
             if navigationController != nil {
                 self.navigationController?.setNavigationBarHidden(true, animated: true)
-                self.navigationController?.isNavigationBarHidden = true
+                self.navigationController?.isNavigationBarHidden = false
             }
         }
     

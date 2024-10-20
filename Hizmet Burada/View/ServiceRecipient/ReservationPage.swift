@@ -31,6 +31,7 @@ class ResarvationPage: UIViewController, UICollectionViewDelegate,UICollectionVi
            collectionView.translatesAutoresizingMaskIntoConstraints = false
            collectionView.delegate = self
            collectionView.dataSource = self
+           collectionView.backgroundColor = UIColor(hex: "#F1FAFE")
            collectionView.isPagingEnabled = false
            collectionView.isScrollEnabled = false
         collectionView.register(ResarvationHz.self, forCellWithReuseIdentifier: "CustomCell")
@@ -59,38 +60,50 @@ class ResarvationPage: UIViewController, UICollectionViewDelegate,UICollectionVi
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 1, height: 1)
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
+
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
            return button
        }()
+    lazy var navigationTitle:UITextView = {
+        let titleLabel = UITextView()
+        titleLabel.text = "Rezervasyon"
+        titleLabel.textColor = .black // Başlık rengi
+        titleLabel.font = UIFont(name: "Avenier", size: 12)
+        titleLabel.textAlignment = .center
+        titleLabel.backgroundColor = UIColor(hex: "#F1FAFE")
+        return titleLabel
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
+        setupCustomBackButton()
       
     }
  
        override func viewDidLoad() {
            super.viewDidLoad()
+           view.backgroundColor = UIColor(hex: "#F1FAFE")
+       
            desing()
 
           
     
-                self.navigationItem.titleView = princeText
-                self.navigationController?.navigationBar.addSubview(separatorLine)
-                NSLayoutConstraint.activate([
-                    separatorLine.leadingAnchor.constraint(equalTo: self.navigationController!.navigationBar.leadingAnchor),
-                    separatorLine.trailingAnchor.constraint(equalTo: self.navigationController!.navigationBar.trailingAnchor),
-                    separatorLine.bottomAnchor.constraint(equalTo: self.navigationController!.navigationBar.bottomAnchor),
-                    separatorLine.heightAnchor.constraint(equalToConstant: 1) // Çizgi yüksekliği
-                ])
-          
+                       
             }
     
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+          navigationItem.titleView = navigationTitle
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     func desing(){
        
         view.backgroundColor = .white
@@ -105,14 +118,14 @@ class ResarvationPage: UIViewController, UICollectionViewDelegate,UICollectionVi
                               bottom: nextButton.topAnchor,
                               leading: view.leadingAnchor,
                               trailing: view.trailingAnchor,
-                              padding: .init(top: 30, left: 0, bottom: 0, right: 0))
+                              padding: .init(top: 0, left: 0, bottom: 0, right: 0))
        
         nextButton.anchor(top: nil,
                           bottom: view.safeAreaLayoutGuide.bottomAnchor,
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
-                          padding: .init(top: 10, left: 10, bottom: 30, right: 10),
-                          size: .init(width: 0, height: 35))
+                          padding: .init(top: 0, left: 10, bottom: 30, right: 10),
+                          size: .init(width: 0, height: 30))
         
         
     }

@@ -9,6 +9,7 @@ import UIKit
 import Firebase
 import FirebaseFirestoreSwift
 import JGProgressHUD
+import SideMenu
 
 
 class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
@@ -21,6 +22,7 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     lazy var worksTableView: UITableView = {
         let worksTableView = UITableView()
+        worksTableView.backgroundColor = .clear
         
         worksTableView.separatorStyle = .none
         
@@ -33,18 +35,25 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
         
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
-        view.backgroundColor = UIColor(hex: "#F1FAFE")
-      
-    }
+    lazy var separatorLine:UIView = {
+        
+        // Çizgi oluşturma
+        let separatorLine = UIView()
+        separatorLine.backgroundColor = .lightGray // Çizginin rengini ayarlayın
+        separatorLine.translatesAutoresizingMaskIntoConstraints = false
+        return separatorLine
+    }()
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        menu()
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(worksTableView)
-        
-   
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         worksTableView.translatesAutoresizingMaskIntoConstraints = false
         worksTableView.dataSource = self
         worksTableView.delegate = self
@@ -52,10 +61,13 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
         desing()
         firebase()
 
-
-        
-   
-        
+        self.navigationController?.navigationBar.addSubview(separatorLine)
+        NSLayoutConstraint.activate([
+            separatorLine.leadingAnchor.constraint(equalTo: self.navigationController!.navigationBar.leadingAnchor),
+            separatorLine.trailingAnchor.constraint(equalTo: self.navigationController!.navigationBar.trailingAnchor),
+            separatorLine.bottomAnchor.constraint(equalTo: self.navigationController!.navigationBar.bottomAnchor),
+            separatorLine.heightAnchor.constraint(equalToConstant: 0.3) // Çizgi yüksekliği
+        ])
         
     }
     
@@ -75,8 +87,7 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "re", for: indexPath) as! jobVr
-        
-      
+        cell.backgroundColor = .clear
         cell.modelic = categories[(indexPath.row)]
         return cell
     }
@@ -94,10 +105,6 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     
     func firebase(){
-        
-        
-        
-        
         progresBar.show(in: self.view)
         
         // Firebase'den veriyi çekiyoruz
@@ -115,12 +122,49 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
              }
         
         
+       
+        
+       
+        
+            
+            
+        }
+    
+    
+    
+    
+    
+    
+    func menu(){
+        let menuButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
+            style: .plain,
+            target: self,
+            action: #selector(openMenu)
+        )
+        let titleLabel = UILabel()
+        titleLabel.text = "Hizmet Burada"
+        titleLabel.textColor = .black // Başlık rengi
+        titleLabel.font = UIFont(name: "Chalkduster", size: 15)
+        titleLabel.textAlignment = .center
+        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
+        navigationItem.leftBarButtonItem = menuButton
+        navigationItem.titleView = titleLabel
+        let menu = SideMenuNavigationController(rootViewController: Menu())
+        menu.leftSide = true // Sol taraftan açılacak
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+    }
+    
+    
         
         
-        
-        
-        
-        
+    @objc func openMenu() {
+        if let menu = SideMenuManager.default.leftMenuNavigationController {
+    
+            present(menu, animated: true, completion: nil)
+            
+        }
         
         
 

@@ -68,11 +68,14 @@ class Comment: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         contentView.backgroundColor = UIColor(red: 255/255, green: 250/255, blue: 250/255, alpha: 1.0)
+        contentView.layer.borderWidth = 0.3
+        contentView.layer.borderColor =  UIColor.lightGray.cgColor
+        contentView.layer.cornerRadius = 6
         contentView.addSubview(titleLabel)
         contentView.addSubview(date)
         contentView.addSubview(commentStar)
         contentView.addSubview(commentText)
-        contentView.layer.cornerRadius = 6
+   
         
         desing()
         

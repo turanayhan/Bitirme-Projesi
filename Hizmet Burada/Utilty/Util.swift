@@ -8,9 +8,8 @@ import Foundation
 import UIKit
 
 
-extension UIView{
-    func centerAnchor(size : CGSize = .zero) {
-        
+extension UIView {
+    func centerAnchor(size: CGSize = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
         
         if let centerX = superview?.centerXAnchor {
@@ -26,54 +25,66 @@ extension UIView{
         if size.width != 0 {
             widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
-        
     }
     
-    func anchor(top : NSLayoutYAxisAnchor?,
-                bottom:NSLayoutYAxisAnchor?,
-                leading:NSLayoutXAxisAnchor?,
-                trailing:NSLayoutXAxisAnchor?,
-                padding:UIEdgeInsets = .zero,
-                size:CGSize = .zero
-                
-    ){
-        translatesAutoresizingMaskIntoConstraints=false
+    func anchor(top: NSLayoutYAxisAnchor?,
+                bottom: NSLayoutYAxisAnchor?,
+                leading: NSLayoutXAxisAnchor?,
+                trailing: NSLayoutXAxisAnchor?,
+                padding: UIEdgeInsets = .zero,
+                size: CGSize = .zero,
+                minHeight: CGFloat? = nil,    // Min yükseklik
+                maxHeight: CGFloat? = nil,    // Max yükseklik
+                minWidth: CGFloat? = nil,     // Min genişlik
+                maxWidth: CGFloat? = nil      // Max genişlik
+    ) {
+        translatesAutoresizingMaskIntoConstraints = false
         
-        if let top = top{
-            
-            self.topAnchor.constraint(equalTo: top, constant:padding.top).isActive = true
-            
+        if let top = top {
+            self.topAnchor.constraint(equalTo: top, constant: padding.top).isActive = true
         }
         
-        if let bottom = bottom{
-            
-            self.bottomAnchor.constraint(equalTo: bottom, constant:-padding.bottom).isActive = true
-            
+        if let bottom = bottom {
+            self.bottomAnchor.constraint(equalTo: bottom, constant: -padding.bottom).isActive = true
         }
         
-        if let leading = leading{
-            
-            self.leadingAnchor.constraint(equalTo: leading, constant:padding.left).isActive = true
-            
+        if let leading = leading {
+            self.leadingAnchor.constraint(equalTo: leading, constant: padding.left).isActive = true
         }
         
-        if let trailing = trailing{
-            
-            self.trailingAnchor.constraint(equalTo: trailing, constant:-padding.right).isActive = true
-            
+        if let trailing = trailing {
+            self.trailingAnchor.constraint(equalTo: trailing, constant: -padding.right).isActive = true
         }
         
-        if size.width != 0{
-            
-            widthAnchor.constraint(equalToConstant: size.width).isActive=true
-            
+        // Sabit genişlik ve yükseklik
+        if size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
         }
-        if size.height != 0{
-            
-            heightAnchor.constraint(equalToConstant: size.height).isActive=true
+        
+        if size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+        
+        // Min ve max yükseklik constraint'leri
+        if let minHeight = minHeight {
+            heightAnchor.constraint(greaterThanOrEqualToConstant: minHeight).isActive = true
+        }
+        
+        if let maxHeight = maxHeight {
+            heightAnchor.constraint(lessThanOrEqualToConstant: maxHeight).isActive = true
+        }
+        
+        // Min ve max genişlik constraint'leri
+        if let minWidth = minWidth {
+            widthAnchor.constraint(greaterThanOrEqualToConstant: minWidth).isActive = true
+        }
+        
+        if let maxWidth = maxWidth {
+            widthAnchor.constraint(lessThanOrEqualToConstant: maxWidth).isActive = true
         }
     }
 }
+
 
 
 

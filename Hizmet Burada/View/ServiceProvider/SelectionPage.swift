@@ -4,10 +4,12 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
 
     let answers = ["Ev Temizliği", "Boyacı (Boya Badana ustası)", "Halı Yıkama Temizleme", "Ev Tadilat", "Fayans Döşeme", "Parke Laminat Döşeme", "Kombi Tamiri ", "Nakliye"]
     var selectedAnswers: [Bool] = Array(repeating: false, count: 10)
+    var status : String?
     
     lazy var nameSurnameText:UITextView = {
         let infoText = UITextView()
         infoText.text = "Hangi Hizmeti Veriyorsun?"
+        infoText.backgroundColor = .clear
         infoText.textColor = .black
         infoText.textAlignment = .center
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
@@ -17,8 +19,9 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
     
     lazy var nameSurnameText2:UITextView = {
         let infoText = UITextView()
-        infoText.text = "Sana uygun fırsatları görmek için uygun olan hizmetleri\nseçebilirsin."
+        infoText.text = "Müşterilere uygun fırsatları görmek için sunduğun hizmetleri\nseçebilirsin."
         infoText.textColor = .black
+        infoText.backgroundColor = .clear
         infoText.textAlignment = .center
         infoText.font = UIFont(name: "Avenir", size: 12)
         infoText.isEditable = false
@@ -29,6 +32,7 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: "AnswerCell")
@@ -39,11 +43,10 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
     lazy var registerBtn:UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         button.alpha = 0.5
         button.isEnabled = false
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -51,18 +54,32 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
         button.layer.shadowRadius = 2
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
+        
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         navigationItem.title = ""
+        setupCustomBackButton()
         view.addSubview(tableView)
         view.addSubview(nameSurnameText)
         view.addSubview(nameSurnameText2)
         view.addSubview(registerBtn)
         setupConstraints()
     }
+    
+    
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
 
     func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -73,7 +90,7 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
                            bottom: view.safeAreaLayoutGuide.bottomAnchor,
                            leading: view.leadingAnchor,
                            trailing: view.trailingAnchor,
-                           padding: .init(top: 2, left: 40, bottom:22, right: 40))
+                           padding: .init(top: 2, left: 20, bottom:30, right: 20))
         
         
         nameSurnameText2.anchor(top: nameSurnameText.bottomAnchor,
@@ -86,7 +103,7 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
             tableView.topAnchor.constraint(equalTo: nameSurnameText2.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: registerBtn.topAnchor)
+            tableView.bottomAnchor.constraint(equalTo: registerBtn.topAnchor,constant: 40)
         ])
     }
 
@@ -100,6 +117,7 @@ class SelectionPage: UIViewController, UITableViewDataSource, UITableViewDelegat
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell", for: indexPath) as! AnswerTableViewCell
         cell.answerLabel.text = answers[indexPath.row]
         cell.answerSwitch.isOn = selectedAnswers[indexPath.row]
+        cell.backgroundColor = .clear
         cell.delegate = self
         return cell
     }
@@ -128,6 +146,7 @@ class AnswerTableViewCell: UITableViewCell {
 
     lazy var answerSwitch: UISwitch = {
         let answerSwitch = UISwitch()
+        answerSwitch.onTintColor = UIColor(hex: "40A6F8")
         answerSwitch.addTarget(self, action: #selector(switchValueChanged), for: .valueChanged)
         return answerSwitch
     }()
@@ -136,6 +155,9 @@ class AnswerTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(answerLabel)
         contentView.addSubview(answerSwitch)
+        
+        
+        
         setupConstraints()
     }
 
@@ -196,7 +218,10 @@ extension SelectionPage: AnswerTableViewCellDelegate {
             print("Dizi boş")
         } else {
             print("Dizide veriler var")
-            navigationController?.pushViewController(ServiceDetailPage(), animated: true)
+            
+            var view = ProviderName()
+            
+            navigationController?.pushViewController(view, animated: true)
         }
     }
 }

@@ -11,12 +11,14 @@ import FirebaseDatabaseInternal
 class ServiceDetailPage: UIViewController,UITextViewDelegate {
 
     var instance:[String:String] = [:]
+    var status : String?
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.isEnabled = true
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -26,9 +28,11 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
         return button
     }()
     
+    
     lazy var nameSurnameText:UITextView = {
         let infoText = UITextView()
         infoText.text = "Kendinden Bahset"
+        infoText.backgroundColor = .clear
         infoText.textColor = .black
         infoText.textAlignment = .center
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
@@ -38,6 +42,7 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
     
     lazy var nameSurnameText2:UITextView = {
         let infoText = UITextView()
+        infoText.backgroundColor = .clear
         infoText.text = "Eklemem istediğin ekstra bilgileri, iş deneyimlerini yazabilirsin"
         infoText.textColor = .black
         infoText.textAlignment = .center
@@ -53,10 +58,10 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
         textBox.translatesAutoresizingMaskIntoConstraints = false // Auto Layout kullanabilmek için
         textBox.text = "Ekstra bilgileri girin..."
         textBox.textColor = UIColor.lightGray // Placeholder rengi
-        textBox.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.85, alpha: 1) // Arka plan rengi
-        textBox.layer.borderWidth = 1.0
-        textBox.layer.borderColor = UIColor.lightGray.cgColor
-        textBox.layer.cornerRadius = 8.0 // Kenar yuvarlama
+        textBox.backgroundColor = UIColor(hex: "#E3F2FD") // Arka plan rengi
+        textBox.layer.borderWidth = 0.6
+        textBox.layer.borderColor = UIColor(hex:"40A6F8").cgColor
+        textBox.layer.cornerRadius = 5.0 // Kenar yuvarlama
         textBox.layer.shadowColor = UIColor.black.cgColor
         textBox.layer.shadowOpacity = 0.2 // Gölgede daha belirgin bir etki
         textBox.layer.shadowOffset = CGSize(width: 0, height: 2) // Dikey gölge
@@ -74,15 +79,26 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCustomBackButton()
  
         desing()
         
         
     }
     
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
+    
     func desing(){
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         navigationItem.title = ""
         view.addSubview(nextButton)
         view.addSubview(nameSurnameText)
@@ -93,7 +109,7 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
                           padding: .init(top: 10, left: 10, bottom: 30, right: 10),
-                          size: .init(width: 0, height: 40))
+                          size: .init(width: 0, height: 36))
         
         nameSurnameText.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 10, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 40))
         
@@ -131,8 +147,9 @@ class ServiceDetailPage: UIViewController,UITextViewDelegate {
     
     @objc private func nextButtonTapped() {
         ServiceProviderRegistration.rgİnformation.extraİnformation = textBox.text
-        navigationController?.pushViewController(MailPasswordPage(), animated: true)
-
+        
+        var view = RecipientMail()
+        navigationController?.pushViewController(ProviderMail(), animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {

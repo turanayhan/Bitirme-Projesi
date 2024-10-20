@@ -11,6 +11,8 @@ import JGProgressHUD
 
 class LoginPage: UIViewController, UITextFieldDelegate {
     
+    var status : String?
+    
     
     
     lazy var progresBar: JGProgressHUD = {
@@ -21,8 +23,9 @@ class LoginPage: UIViewController, UITextFieldDelegate {
     
     lazy var logo: UIImageView = {
         let logo = UIImageView()
-        logo.image = UIImage(named: "12144997_Wavy_Cst-01_Single-09")
+        logo.image = UIImage(named: "rb_1835")
         logo.contentMode = .scaleAspectFit
+        logo.backgroundColor = UIColor(hex: "#F1FAFE")
         return logo
     }()
     
@@ -41,12 +44,12 @@ class LoginPage: UIViewController, UITextFieldDelegate {
         mail.keyboardType = .emailAddress // Use email keyboard
         
         mail.setPadding(left: 8, right: 0, top: 0, bottom: 0)
-        mail.tintColor = .systemYellow
+        mail.tintColor = UIColor(hex: "40A6F8")
         mail.font = UIFont(name: "Avenir", size: 15)
         mail.borderStyle = .none // Remove default border style
-        mail.layer.borderWidth = 0.6 // Border thickness
-        mail.layer.borderColor = UIColor.systemYellow.cgColor // Desired color
-        mail.layer.cornerRadius = 5
+        mail.layer.borderWidth = 0.6 // Sınır kalınlığı
+        mail.layer.borderColor = UIColor(hex: "40A6F8").cgColor // İstediğiniz renk
+        mail.layer.cornerRadius = 5//
         
         mail.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -58,39 +61,43 @@ class LoginPage: UIViewController, UITextFieldDelegate {
         let password = UITextField()
         password.placeholder = "Şifreni gir"
         password.borderStyle = .roundedRect
-
         
         password.isSecureTextEntry = true
         password.addTarget(self, action: #selector(textFieldDidChanges), for: .editingChanged)
         password.setPadding(left: 8, right: 0, top: 0, bottom: 0)
-        password.tintColor = .systemYellow
+        password.tintColor = UIColor(hex: "40A6F8")
         password.font = UIFont(name: "Avenir", size: 15)
         password.borderStyle = .none // Varsayılan sınır stilini kaldır
         password.layer.borderWidth = 0.6 // Sınır kalınlığı
-        password.layer.borderColor = UIColor.systemYellow.cgColor // İstediğiniz renk
+        password.layer.borderColor = UIColor(hex: "40A6F8").cgColor // İstediğiniz renk
         password.layer.cornerRadius = 5//
         return password
     }()
     
     lazy var loginBtn:UIButton = {
+        
+
+  
+       
+    
+      
         let loginBtn = UIButton()
         loginBtn.setTitle("Giriş Yap", for: .normal)
-        loginBtn.backgroundColor = .systemYellow
+        loginBtn.backgroundColor = UIColor(hex: "#40A6F8")
         loginBtn.setTitleShadowColor(.white, for: .focused)
         loginBtn.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
-        loginBtn.setTitleColor(.white, for: .normal)
-        loginBtn.setTitleColor(.red, for: .highlighted)
+        loginBtn.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        loginBtn.setTitleColor(.white, for: .highlighted)
         loginBtn.isEnabled = true
         loginBtn.layer.cornerRadius = 4
         loginBtn.isEnabled = false
         loginBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
-        loginBtn.alpha = 0.5
         return loginBtn
     }()
     lazy var passwordToggleBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye.slash"), for: .normal) // Default to 'hide'
-        button.tintColor = .systemYellow
+        button.tintColor = UIColor(hex: "40A6F8")
         button.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
         return button
     }()
@@ -98,10 +105,10 @@ class LoginPage: UIViewController, UITextFieldDelegate {
     lazy var passwordBtn:UIButton = {
         let registerBtn = UIButton()
         registerBtn.setTitle("Şifremi unuttum", for: .normal)
-        registerBtn.backgroundColor = .white
+        registerBtn.backgroundColor = UIColor(hex: "#F1FAFE")
         registerBtn.setTitleShadowColor(.white, for: .focused)
         registerBtn.addTarget(self, action: #selector(passwordtBtnClick), for: .touchUpInside)
-        registerBtn.setTitleColor(.systemYellow, for: .normal)
+        registerBtn.setTitleColor(UIColor(hex: "40A6F8"), for: .normal)
         registerBtn.setTitleColor(.white, for: .highlighted)
         registerBtn.titleLabel?.font = UIFont(name: "Avenir", size: 14)
         registerBtn.isEnabled = true
@@ -110,15 +117,24 @@ class LoginPage: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.customizeBackButton()
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
       
     }
     
-    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     override func viewDidLoad() {
+        setupCustomBackButton()
         super.viewDidLoad()
         navigationItem.title = "Giriş Yap"
         navigationController?.isNavigationBarHidden = false
-        view.backgroundColor = .white
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)
         view.addSubview(stackView)
@@ -167,7 +183,7 @@ class LoginPage: UIViewController, UITextFieldDelegate {
                     bottom: stackView.topAnchor,
                     leading: nil,
                     trailing: nil,
-                    padding: .init(top: 12, left: 12, bottom: 16, right: 12), size: .init(width: screenWidth*0.50, height: screenWidth*0.50))
+                    padding: .init(top: 12, left: 12, bottom: 16, right: 12), size: .init(width: screenWidth*0.60, height: screenWidth*0.60))
         
         
         logo.centerXAnchor.constraint(equalTo: stackView.centerXAnchor).isActive = true
@@ -177,7 +193,7 @@ class LoginPage: UIViewController, UITextFieldDelegate {
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
                          padding: .init(top: 0, left: 36, bottom: 0, right: 36),
-                         size: .init(width: 0, height: 90))
+                         size: .init(width: 0, height: 80))
         
         stackView.centerAnchor()
         
@@ -219,8 +235,6 @@ class LoginPage: UIViewController, UITextFieldDelegate {
         print("firebase işlemleri")
         
         
-        
-        
         FirestoreManager().signIn(withEmail: self.mail.text ?? "", password: self.password.text ?? "") { [weak self] result in
                guard let self = self else { return }
 
@@ -229,7 +243,19 @@ class LoginPage: UIViewController, UITextFieldDelegate {
                    print("Giriş başarılı")
                    self.progresBar.dismiss(afterDelay: 2.0)
                    UserManager.shared.isLogin()
-                   self.navigationController?.pushViewController(ProfilePage(), animated: true)
+                   
+                   
+                   if status == "Recipient" {
+                       self.navigationController?.pushViewController(ServiceRecipient(), animated: true)
+                       
+                   }
+                   
+                   else if status == "Provider" {
+                       self.navigationController?.pushViewController(ServiceProvider(), animated: true)
+                       
+                   }
+                   
+           
                    self.navigationController?.isNavigationBarHidden = true
                case .failure(let error):
                    self.progresBar.dismiss(afterDelay: 2.0)

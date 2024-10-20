@@ -270,11 +270,11 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     lazy var textBox:UITextView = {
         let textBox = UITextView(frame: CGRect(x: 50, y: 100, width: 400, height: 300))
         textBox.text = "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver."
-        textBox.backgroundColor = .white
+        textBox.backgroundColor = UIColor(hex: "#E3F2FD")
         
-        textBox.layer.borderWidth = 0.5
-        textBox.layer.borderColor = UIColor.lightGray.cgColor
-        textBox.layer.cornerRadius = 4.0
+        textBox.layer.borderWidth = 0.6
+        textBox.layer.borderColor = UIColor(hex: "40A6F8").cgColor
+        textBox.layer.cornerRadius = 5.0
         textBox.layer.shadowColor = UIColor.black.cgColor
         textBox.layer.shadowOpacity = 0.1
         textBox.layer.shadowOffset = CGSize(width: 1, height: 1)

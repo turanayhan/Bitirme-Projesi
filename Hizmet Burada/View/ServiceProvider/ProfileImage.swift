@@ -28,6 +28,7 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
         infoText.text = "Profil fotoğrafınızı ekleyin:"
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
         infoText.isEditable = false
         return infoText
@@ -38,6 +39,7 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
         infoText.text = "Müşterilerinizin sizi tanıyabilmesi için güncel bir profil fotoğrafı yükleyin.\n Fotoğrafınızın net ve profesyonel görünmesine dikkat edin."
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Avenir", size: 11)
         infoText.isEditable = false
         return infoText
@@ -45,13 +47,13 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
     lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
         profileImage.image = UIImage(systemName:"plus")
-        profileImage.tintColor = .black
+        profileImage.tintColor = UIColor(hex: "40A6F8")
         profileImage.contentMode = .scaleAspectFill
         profileImage.layer.cornerRadius = 50 // Dairenin yarıçapı (yuvarlak kenarlar)
         profileImage.clipsToBounds = true
         
         // Kenarlık ekleme
-        profileImage.layer.borderColor = UIColor.gray.cgColor // Kenarlık rengi
+        profileImage.layer.borderColor = UIColor(hex: "E3F2FD").cgColor// Kenarlık rengi
         profileImage.layer.borderWidth = 2.0 // Kenarlık kalınlığı
         
         // Görsele tıklanabilirlik ekleniyor
@@ -65,10 +67,11 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
     lazy var registerBtn:UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
+     
         button.alpha = 0.5
         button.isEnabled = false
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -79,20 +82,29 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
         
     }()
 
-
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
+        setupCustomBackButton()
         view.addSubview(profileImageText)
         view.addSubview(profileImageText2)
         view.addSubview(profileImage)
         view.addSubview(registerBtn)
         desing()
     }
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     
     
     func desing() {
@@ -170,7 +182,7 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
     }
     
     @objc func nextButtonTapped(click : UIButton!) {
-        self.navigationController?.pushViewController(ExtraLoginPage(), animated: true)
+        self.navigationController?.pushViewController(ProviderLocation(), animated: true)
      
     }
 

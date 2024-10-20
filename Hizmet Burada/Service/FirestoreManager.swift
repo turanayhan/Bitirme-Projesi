@@ -11,9 +11,6 @@ import FirebaseStorage
 import Firebase
 class FirestoreManager {
     let db = Firestore.firestore()
-
-
-    
     func signIn(withEmail email: String, password: String, completion: @escaping (Result<AuthDataResult?, Error>) -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             if let error = error {
@@ -23,86 +20,66 @@ class FirestoreManager {
             }
         }
     }
-
-    
     
     func UserRecipientPush(user: User, completion: @escaping (Result<String, Error>) -> Void) {
-         let ref = Database.database().reference()
-         let userData: [String: Any] = [
-             "nameSurname": user.nameSurname ?? "",
-             "gsm": user.gsm ?? "",
-             "email": user.email ?? "",
-             "id" : user.id ?? "",
-             "status" : user.status ?? "",
-             "adress" : user.adress ?? ""
-         ]
-         
-         // Realtime Database'de 'UserRecipient' koleksiyonuna customID ile veri ekleme
-         ref.child("UserRecipient").child(user.id!).setValue(userData) { error, _ in
-             if let error = error {
-                 completion(.failure(error))
-                 
-             } else {
-                 completion(.success("Başarılı"))
-             }
-         }
-     }
-    
-    func firebasePushService(){
-        
         let ref = Database.database().reference()
-        let yeniKullaniciRef = ref.child("UserService").childByAutoId()
-        var id = yeniKullaniciRef.key ?? "0"
+        var userData: [String: Any] = [:]  // Dışarıda bir kez tanımlandı.
 
-        let registrationInfo = ServiceProviderRegistration.rgİnformation
-        registrationInfo.userİd = id
-        let registrationDictionary: [String: Any?] = [
-            "name": registrationInfo.nameSurname,
-            
-            "gsm": registrationInfo.gsm,
-            "adrees": registrationInfo.adrees,
-            "answerSelection": registrationInfo.answerSelection,
-            "extraInformation": registrationInfo.extraİnformation,
-            "mail": registrationInfo.mail,
-            "userId": registrationInfo.userİd,
-            "status": "service"
-        ]
-
-        for (key, value) in registrationDictionary {
-            print("\(key): \(value ?? "N/A")")
+        if user.status == "Recipient" {
+            userData = [
+                "nameSurname": user.nameSurname ?? "",
+                "gsm": user.gsm ?? "",
+                "email": user.email ?? "",
+                "id" : user.id ?? "",
+                "status" : user.status ?? "",
+                "adress" : user.adress ?? ""
+            ]
+        } else if user.status == "Provider" {
+            userData = [
+                "nameSurname": user.nameSurname ?? "",
+                "gsm": user.gsm ?? "",
+                "email": user.email ?? "",
+                "id" : user.id ?? "",
+                "status" : user.status ?? "",
+                "adress" : user.adress ?? "",
+                "imageUrl":user.profileImage,
+                "answerSelection": user.answerSelection ?? "",  // Nil check gerekli
+                "extraInformation": user.extraİnformation ?? "" // Nil check gerekli
+            ]
         }
-
-        yeniKullaniciRef.setValue(registrationDictionary)
-  
-        UserManager.shared.setId(id: id)
-        UserManager.shared.setUser(user : User(nameSurname:registrationInfo.nameSurname,
-                                              gsm: registrationInfo.gsm,
-                                              email: registrationInfo.mail,
-                                              id: registrationInfo.userİd,
-                                               status: registrationInfo.status))
-   
- 
+        // Realtime Database'de 'User' koleksiyonuna customID ile veri ekleme
+        ref.child("User").child(user.id ?? "").setValue(userData) { error, _ in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Başarılı"))
+            }
+        }
     }
-    
-    
-    func firebaseUpdate(user : User){
-        
+
+    func UserUpdatetPush(user: User, completion: @escaping (Result<String, Error>) -> Void) {
         let ref = Database.database().reference()
-        let yeniKullaniciRef = ref.child("User").child(UserManager.shared.getUser().id ?? "00")
-        print(UserManager.shared.getUser().id ?? "00")
+        var userData: [String: Any] = [:]  // Dışarıda bir kez tanımlandı.
 
-        let yeniKullanici = [
-            "nameSurname": user.nameSurname,
-            "mail": user.email,
-            "gsm": user.gsm,
-            "userId": user.id
-        ]
+            userData = [
+                "nameSurname": user.nameSurname ?? "",
+                "gsm": user.gsm ?? "",
+                "email": user.email ?? "",
+                "id" : user.id ?? "",
+                "status" : user.status ?? "",
+                "adress" : user.adress ?? ""
+            ]
         
-        // Kullanıcıyı Firebase Realtime Database'e eklemek
-        yeniKullaniciRef.setValue(yeniKullanici)
-        UserManager.shared.setUser(user:user)
-       
+     
+        ref.child("User").child(user.id ?? "").updateChildValues(userData) { error, _ in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success("Başarılı"))
+            }
+        }
     }
+
     
     
     
@@ -126,8 +103,7 @@ class FirestoreManager {
     
     
     
-    
-    
+
     func downloadImage(from path: String, completion: @escaping (UIImage?) -> Void) {
         let storageRef = Storage.storage().reference(withPath: path)
 

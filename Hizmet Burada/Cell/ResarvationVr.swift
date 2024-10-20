@@ -22,7 +22,7 @@ class ResarvationVr: UITableViewCell {
     
     lazy var container: UIView = {
         let container = UIView()
-        container.backgroundColor = UIColor(red: 1.0, green: 0.97, blue: 0.85, alpha: 1.0) // Sarıya yakın pastel ton
+        container.backgroundColor = .white // Sarıya yakın pastel ton
         container.layer.cornerRadius = 12
         return container
     }()
@@ -37,8 +37,8 @@ class ResarvationVr: UITableViewCell {
     
     let checkBox: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .clear
-        button.tintColor = .systemYellow
+        button.backgroundColor = .white
+        button.tintColor = UIColor(hex: "#40A6F8")
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "circle"), for: .normal)
         button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .selected)

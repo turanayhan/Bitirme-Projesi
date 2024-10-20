@@ -1,23 +1,37 @@
 //
-//  ReservationDetail.swift
+//  Untitled.swift
 //  Hizmet Burada
 //
-//  Created by turan on 30.11.2023.
+//  Created by turan on 17.10.2024.
+//
+
+//
+//  Location.swift
+//  Hizmet Burada
+//
+//  Created by turan on 6.01.2024.
 //
 
 import UIKit
-import Firebase
+import JGProgressHUD
+import FirebaseDatabase
 import MaterialOutlinedTextField
 
-class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate,UITextViewDelegate {
+
+class ProviderLocation: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    
+    
+    
     var sehirler: [Sehir] = []
     var ilceler: [String] = []
     var selectedSehir: String?
-    var jobid : Int = 0
-    var reservationDay :String =  ""
-    var reservationMonth :String =  ""
-    var reservationYear :String =  ""
-    var reservationHour :String =  ""
+    lazy var progresBar:JGProgressHUD = {
+        let progresBar = JGProgressHUD(style: .light)
+        progresBar.textLabel.text = "Kaydınız Gerçekleşiyor"
+        return  progresBar
+    }()
+    
+    
     
     lazy var sehirDropdown: UITableView = {
         let tableView = UITableView()
@@ -30,6 +44,7 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         return tableView
     }()
     
+    
     lazy var ilceDropdown: UITableView = {
         let tableView = UITableView()
         tableView.layer.borderWidth = 1
@@ -40,17 +55,33 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         tableView.isHidden = true  // Başlangıçta gizli
         return tableView
     }()
-    let userModel:User = {
-        let model = UserManager.shared.getUser()
-        return model
+    
+    lazy var nameSurnameText:UITextView = {
+        let infoText = UITextView()
+        infoText.text = "Nerede Hizmet Veriyorsun?"
+        infoText.textColor = .black
+        infoText.textAlignment = .center
+        infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
+        infoText.isEditable = false
+        return infoText
     }()
     
+    lazy var nameSurnameText2:UITextView = {
+        let infoText = UITextView()
+        infoText.text = "Sana yakın bölgelerden iş fırsatlarını göndereceğiz "
+        infoText.textColor = .black
+        infoText.textAlignment = .center
+        infoText.font = UIFont(name: "Avenir", size: 12)
+        infoText.isEditable = false
+        return infoText
+    }()
+    
+
     
     lazy var location1:UITextField = {
         let location = MaterialOutlinedTextField()
-        location.text = userModel.nameSurname
-        location.backgroundColor = .white
-        location.placeholder = "Şehir"
+     
+        
         location.label.text = "Şehir"
         location.containerRadius = 6
         location.setOutlineLineWidth(0.3, for: .normal)
@@ -70,9 +101,8 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
     }()
     lazy var location2:UITextField = {
         let location = MaterialOutlinedTextField()
-        location.text = userModel.nameSurname
-        location.placeholder = "İlçe"
-        location.backgroundColor = .white
+      
+   
         location.label.text = "İlçe"
         location.containerRadius = 6
         location.setOutlineLineWidth(0.3, for: .normal)
@@ -91,9 +121,8 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
     
     lazy var location3:UITextField = {
         let location = MaterialOutlinedTextField()
-        location.text = userModel.nameSurname
-        location.placeholder = "Mahalle"
-        location.backgroundColor = .white
+       
+     
         location.label.text = "Mahalle"
         location.containerRadius = 6
         location.setOutlineLineWidth(0.3, for: .normal)
@@ -109,92 +138,57 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         return location
     }()
 
-    
-    
-    
-    
-    var instance:[String:String] = [:]
-    
-    let nextButton: UIButton = {
+    lazy var registerBtn:UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Tamamla", for: .normal)
+        button.setTitle("Devam", for: .normal)
+        button.alpha = 0.5
         button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
         button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
-        button.layer.cornerRadius = 6
-        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 1, height: 1)
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowRadius = 2
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         return button
+        
     }()
-    
-    lazy var infoText:UITextView = {
-        let infoText = UITextView()
-        infoText.textColor = .black
-        infoText.font = UIFont(name: "Avenir", size: 14)
-        infoText.isEditable = false
-        infoText.textAlignment = .center
-        infoText.delegate = self
-        infoText.backgroundColor = .clear
-        infoText.text = "Bilmemiz gereken başka hangi detaylar var?"
-        return infoText
-    }()
-    
-    
-    lazy var textBox: UITextView = {
-        let textBox = UITextView()
-        textBox.translatesAutoresizingMaskIntoConstraints = false // Auto Layout kullanabilmek için
-        textBox.text = "Ekstra bilgileri girin..."
-        textBox.textColor = UIColor.lightGray // Placeholder rengi
-        textBox.backgroundColor = .white
-        textBox.layer.cornerRadius = 12
-        textBox.layer.borderWidth = 0.3
-        textBox.layer.borderColor =  UIColor.lightGray.cgColor
-        textBox.font = UIFont(name: "Avenir", size: 12)
-        textBox.textAlignment = .left // Yazı hizalaması
-        textBox.returnKeyType = .done // Klavyede "Tamam" tuşu
-        textBox.delegate = self
-        textBox.layer.masksToBounds = false // Kenar yuvarlamasının gölgesini göstermek için
-        return textBox
-    }()
-
-    var key : String = ""
-    
-    lazy var navigationTitle:UITextView = {
-        let titleLabel = UITextView()
-        titleLabel.text = "Rezervasyon"
-        titleLabel.textColor = .black // Başlık rengi
-        titleLabel.font = UIFont(name: "Avenier", size: 12)
-        titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = UIColor(hex: "#F1FAFE")
-        return titleLabel
+    let userModel:User = {
+        let model = UserManager.shared.getUser()
+        return model
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        setupCustomBackButton()
+        navigationItem.title = ""
         view.backgroundColor = UIColor(hex: "#F1FAFE")
+        setupCustomBackButton()
         fetchSehirler()
         adress()
-       
-        key = infoText.text.replacingOccurrences(of: "?", with: "")
-        Jobİnformation.shared.addInfo(key: key, value: textBox.text)
-        
+      
+        navigationController?.isNavigationBarHidden = false
+        view.backgroundColor = .white
+        view.addSubview(nameSurnameText)
+        view.addSubview(nameSurnameText2)
         view.addSubview(location1)
         view.addSubview(sehirDropdown)
         view.addSubview(ilceDropdown)
         view.addSubview(location2)
         view.addSubview(location3)
+        view.addSubview(registerBtn)
         desing()
         
-        
+        // TextField değişikliklerini izliyoruz
+         location1.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+         location2.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+         location3.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+    
     
     func setupCustomBackButton() {
           let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
           backButton.tintColor = .black // Rengi değiştirilebilir
           navigationItem.leftBarButtonItem = backButton
-          navigationItem.titleView = navigationTitle
       }
     @objc func backButtonTapped() {
           // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
@@ -202,9 +196,11 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
       }
     
     
+    
+    
     func adress (){
         
-        let parcalar = userModel.adress?.components(separatedBy: "-")
+        let parcalar = userModel.adress?.components(separatedBy: "/")
 
         // Sonuçları kontrol et
         if parcalar?.count == 3 {
@@ -219,22 +215,47 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
             print("Beklenen formatta bir adres değil.")
         }
         
+        
+        
     }
     
-    func desing(){
     
-        view.addSubview(nextButton)
-        view.addSubview(infoText)
-        view.addSubview(textBox)
+    @objc func textFieldDidChange(textField: UITextField) {
+        // Tüm alanların boş veya sadece boşluk içerip içermediğini kontrol ediyoruz
+        if location1.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+           location2.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+           location3.text!.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            registerBtn.isEnabled = false
+            registerBtn.alpha = 0.5
+        } else {
+            registerBtn.isEnabled = true
+            registerBtn.alpha = 1
+        }
+    }
+
+    
+    
+    func desing(){
+        
+        nameSurnameText.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 10, left: 40, bottom: 0, right: 40),size: .init(width: 0, height: 40))
+        
+        nameSurnameText2.anchor(top: nameSurnameText.bottomAnchor,
+                                bottom: nil,
+                                leading: view.leadingAnchor,
+                                trailing: view.trailingAnchor,
+                                padding: .init(top: 0, left: 0, bottom: 0,
+                                               right: 0),size: .init(width: 0, height: 40))
+      
         
         
         
         
-        location1.anchor(top: textBox.bottomAnchor,
+        
+        location1.anchor(top: nameSurnameText2.bottomAnchor,
                     bottom: nil,
-                    leading: textBox.leadingAnchor,
-                    trailing: textBox.trailingAnchor,
-                    padding: .init(top: 40, left: 0, bottom: 0, right: 0),
+                    leading: nameSurnameText.leadingAnchor,
+                    trailing: nameSurnameText.trailingAnchor,
+                    padding: .init(top: 20, left: 0, bottom: 0, right: 0),
                     size: .init(width: 0, height: 40))
         
         
@@ -246,10 +267,10 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         
         location2.anchor(top: location1.bottomAnchor,
                     bottom: nil,
-                    leading: textBox.leadingAnchor,
-                    trailing: textBox.trailingAnchor,
-                    padding: .init(top: 12, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 36))
+                         leading: nameSurnameText.leadingAnchor,
+                    trailing: nameSurnameText.trailingAnchor,
+                    padding: .init(top: 20, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 40))
         ilceDropdown.anchor(top: location2.bottomAnchor,
                             bottom: nil,
                                    leading: location2.leadingAnchor,
@@ -257,40 +278,41 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
                                    size: .init(width: 0, height: 200))
         location3.anchor(top: location2.bottomAnchor,
                     bottom: nil,
-                    leading: textBox.leadingAnchor,
-                    trailing: textBox.trailingAnchor,
-                    padding: .init(top: 12, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 36))
+                    leading: nameSurnameText.leadingAnchor,
+                    trailing: nameSurnameText.trailingAnchor,
+                    padding: .init(top: 20, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 40))
         
         
         
-        
-        
-        nextButton.anchor(top: nil,
-                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                          leading: textBox.leadingAnchor,
-                          trailing: textBox.trailingAnchor,
-                          padding: .init(top: 0, left: 0, bottom: 30, right: 0),
-                          size: .init(width: 0, height: 30))
-        
-        infoText.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                        bottom: nil,
-                        leading: textBox.leadingAnchor,
-                        trailing: textBox.trailingAnchor,
-                        padding: .init(top: 0, left: 0, bottom: 0, right: 20),
-                        size: .init(width: 0, height: 50))
-        
-        
-        textBox.anchor(top: infoText.bottomAnchor,
-                       bottom: nil,
-                       leading: view.leadingAnchor,
-                       trailing: view.trailingAnchor,
-                       padding: .init(top: 12, left: 20, bottom: 0, right: 20),
-                       size: .init(width: 0, height: 120))
+    
+        registerBtn.anchor(top: nil,
+                           bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                           leading: location3.leadingAnchor,
+                           trailing: location3.trailingAnchor,
+                           padding: .init(top: 0, left: 0, bottom:22, right: 0))
+
+   
         
     }
     
     
+    
+
+    
+    @objc func nextButtonTapped(click : UIButton!){
+        
+        
+        
+        let adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
+        
+        
+        
+        ServiceProviderRegistration.rgİnformation.adrees = adress
+        navigationController?.pushViewController(ServiceDetailPage(), animated: true)
+        
+        
+    }
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == location1 {
             view.bringSubviewToFront(sehirDropdown)
@@ -304,7 +326,6 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
             textField.resignFirstResponder()  // Klavyeyi kapatıyoruz
         }
     }
-    
     
     func fetchSehirler() {
         let ref = Database.database().reference()
@@ -327,9 +348,7 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
             }
         })
     }
-    
-    
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == sehirDropdown {
             return sehirler.count
@@ -363,62 +382,5 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
             ilceDropdown.isHidden = true
         }
     }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textBox.text == "Ekstra bilgileri girin..." {
-            textBox.text = ""
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textBox.text.isEmpty {
-            textBox.text = "Ekstra bilgileri girin..."
-        }
-    }
-    
-    @objc private func nextButtonTapped() {
-        // Text alanlarının boş olup olmadığını kontrol ediyoruz
-        guard let location1Text = location1.text, !location1Text.isEmpty,
-              let location2Text = location2.text, !location2Text.isEmpty,
-              let location3Text = location3.text, !location3Text.isEmpty,
-              let textBoxText = textBox.text, !textBoxText.isEmpty, textBoxText != "Ekstra bilgileri girin..." else {
-            
-            // Eğer herhangi bir alan boşsa uyarı mesajı gösteriyoruz
-            let alert = UIAlertController(title: "Eksik Bilgi", message: "Lütfen tüm alanları doldurun.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Tamam", style: .default))
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
-        
-        Jobİnformation.shared.addInfo(key: key, value: textBox.text)
-        let user = UserManager.shared.getUser()
-        let uniqueID = UUID().uuidString
-        let ref = Database.database().reference().child("Jobs").child(user.id!).child(String(jobid))
-        instance = Jobİnformation.shared.information
-        
-       
-        let adress = (self.location1.text ?? "") + "/" + (self.location2.text ?? "") + "/" + (self.location3.text ?? "")
-        let yeni = JobModel(nameSurname: user.nameSurname!,detail:Jobİnformation.shared.jobDetail ?? "bos" , id: user.id!, information: instance,adress: adress,reservationDate: "\(reservationDay) \(reservationMonth)-\(reservationHour)")
-        let dictionary = yeni.toDictionary()
-        
-        
-        
-        ref.setValue(dictionary) { (error, _) in
-            if let error = error {
-                print("İşlem başarısız oldu: \(error.localizedDescription)")
-            } else {
-                print("İşlem başarıyla tamamlandı.")
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-        }
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
-      
-    }
-    
-    
-    
+ 
 }

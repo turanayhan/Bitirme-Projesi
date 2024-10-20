@@ -24,7 +24,7 @@ class SplashScreen: UIViewController {
         logoText.text = "Hizmet"
         logoText.isEditable = false
         logoText.font = UIFont(name: "Chalkduster", size: 40)
-        logoText.textColor = .systemYellow
+        logoText.textColor = UIColor(hex: "40A6F8")
         logoText.textAlignment = .right
         return logoText
     }()
@@ -42,7 +42,7 @@ class SplashScreen: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //ekrana geçme fonksiyonu
+       
         
         logoTimer()
         view.backgroundColor = .white
@@ -74,11 +74,12 @@ class SplashScreen: UIViewController {
         
         if UserManager.shared.isLoginControl(){
             print("dsc",UserManager.shared.getUser().status ?? "yok")
+            
             if UserManager.shared.getUser().status == "Recipient" {
                 self.navigationController?.pushViewController(ServiceRecipient(), animated: true)
                 self.timer?.invalidate()
             }
-            else{
+            else if UserManager.shared.getUser().status == "Provider"{
                 self.navigationController?.pushViewController(ServiceProvider(), animated: true)
                 self.timer?.invalidate()
                 

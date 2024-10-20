@@ -26,13 +26,14 @@ class ResarvationHz: UICollectionViewCell,  UITableViewDelegate, UITableViewData
     
     lazy var container : UIView = {
         let container = UIView()
+        container.backgroundColor = .clear
         return container
     }()
 
     lazy var itemTitle:UILabel = {
         let itemTitle = UILabel()
         itemTitle.font = UIFont.boldSystemFont(ofSize: 24)
-        itemTitle.textColor = .systemYellow
+        itemTitle.textColor = .black
         itemTitle.textAlignment = .center
         itemTitle.font = UIFont(name: "Avenir", size: 18)
         return itemTitle
@@ -41,6 +42,7 @@ class ResarvationHz: UICollectionViewCell,  UITableViewDelegate, UITableViewData
     lazy var item: UITableView = {
         let item = UITableView()
         item.separatorStyle = .none
+        item.backgroundColor = .clear
         item.dataSource = self
         item.delegate = self
         item.register(ResarvationVr.self, forCellReuseIdentifier: "re")
@@ -51,6 +53,7 @@ class ResarvationHz: UICollectionViewCell,  UITableViewDelegate, UITableViewData
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.backgroundColor = .clear
         contentView.addSubview(container)
         container.addSubview(item)
         container.addSubview(itemTitle)
@@ -87,6 +90,7 @@ class ResarvationHz: UICollectionViewCell,  UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "re", for: indexPath) as! ResarvationVr
+        cell.backgroundColor = UIColor(hex: "#F1FAFE")
         cell.question = model?.question
         cell.answer = model?.answers[indexPath.row]
       

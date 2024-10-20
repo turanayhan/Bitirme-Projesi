@@ -21,18 +21,18 @@ class OfferPage: UIViewController , UITableViewDataSource, UITableViewDelegate  
       // TableView tanımı
       let tableView: UITableView = {
           let table = UITableView()
+          table.backgroundColor = .clear
           table.translatesAutoresizingMaskIntoConstraints = false
           return table
       }()
       
       override func viewDidLoad() {
           super.viewDidLoad()
-   
+          view.backgroundColor = UIColor(hex: "#F1FAFE")
           getData()
-         
-         
           navigationItem.title = ""
           view.addSubview(tableView)
+          
           
 
           tableView.delegate = self

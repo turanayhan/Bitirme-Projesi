@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import MaterialOutlinedTextField
 import Firebase
 
 class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -16,6 +16,10 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
     var ilceler: [String] = []
     var selectedSehir: String?
     
+    let t = MaterialOutlinedTextField()
+   
+
+
     lazy var sehirDropdown: UITableView = {
         let tableView = UITableView()
         tableView.layer.borderWidth = 1
@@ -47,115 +51,180 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
     
     lazy var container:UIView = {
         let container = UIView()
+        container.backgroundColor = .white
+        container.layer.cornerRadius = 16
+        container.layer.borderWidth = 0.3
+        container.layer.borderColor =  UIColor.lightGray.cgColor
         return container
     }()
     
-    lazy var info:UILabel = {
+  
+    
+    lazy var header:UILabel = {
         let info = UILabel()
         info.backgroundColor = UIColor.clear
-        info.font = UIFont(name: "Avenir-Medium", size: 20)
-        info.text = "Hesap Bilgilerim"
+        info.font = UIFont(name: "Avenir-Medium", size: 11)
+        info.text = "Kişisel Bilgiler"
         return info
     }()
     
-    lazy var nameSurname:UITextField = {
-        let nameSurname = UITextField()
-        let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
+    lazy var header2:UILabel = {
+        let info = UILabel()
+        info.backgroundColor = UIColor.clear
+        info.font = UIFont(name: "Avenir", size: 9)
+        info.text = "Kişisel Bilgilerinizi Düzenleyin"
+        return info
+    }()
+    
+    lazy var nameSurname:MaterialOutlinedTextField = {
+        let nameSurname = MaterialOutlinedTextField()
         nameSurname.text = userModel.nameSurname
-        nameSurname.borderStyle = .roundedRect
-        nameSurname.keyboardType = .emailAddress
-        nameSurname.font = UIFont(name: "Avenir", size: 16)
-        label.font = UIFont(name: "Avenir-Medium", size: 16)
-        label.text = "Ad Soyad"
-        nameSurname.addSubview(label)
+        nameSurname.placeholder = "Ad Soyad"
+        nameSurname.label.text = "Ad Soyad"
+        nameSurname.containerRadius = 6
+        nameSurname.setOutlineLineWidth(0.3, for: .normal)
+        nameSurname.setOutlineLineWidth(0.5, for: .editing)
+        nameSurname.clearButtonMode = .whileEditing
+        nameSurname.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        nameSurname.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .systemBlue, normalLabelColor: .black, outlineColor: .systemBlue), for: .editing)
+        
+        nameSurname.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        nameSurname.font = UIFont(name: "Avenir", size: 11)
         return nameSurname
     }()
     
+ 
 
     
     lazy var mail:UITextField = {
-        let mail = UITextField()
-        let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
-        mail.text =  userModel.email
-        mail.borderStyle = .roundedRect
-        mail.keyboardType = .emailAddress
-        label.text = "E-mail"
-        mail.font = UIFont(name: "Avenir", size: 16)
-        label.font = UIFont(name: "Avenir-Medium", size: 16)
-        mail.addSubview(label)
-        mail.isUserInteractionEnabled = false
+        let mail = MaterialOutlinedTextField()
+        mail.text = userModel.email
+        mail.placeholder = "E-Posta"
+        mail.label.text = "E-Posta"
+        mail.containerRadius = 6
+        mail.setOutlineLineWidth(0.3, for: .normal)
+        mail.setOutlineLineWidth(0.5, for: .editing)
+        mail.clearButtonMode = .whileEditing
+        mail.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        mail.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        mail.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        mail.font = UIFont(name: "Avenir", size: 11)
         return mail
     }()
     
     
     lazy var gsm:UITextField = {
-        let gsm = UITextField()
-        let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
+        let gsm = MaterialOutlinedTextField()
         gsm.text = userModel.gsm
-        gsm.borderStyle = .roundedRect
-        gsm.keyboardType = .emailAddress
-        label.text = "Telefon numarası"
-        gsm.font = UIFont(name: "Avenir", size: 16)
-        label.font = UIFont(name: "Avenir-Medium", size: 16)
-        gsm.addSubview(label)
+        gsm.placeholder = "Telefon"
+        gsm.label.text = "Telefon"
+        gsm.containerRadius = 6
+        gsm.setOutlineLineWidth(0.3, for: .normal)
+        gsm.setOutlineLineWidth(0.5, for: .editing)
+        gsm.clearButtonMode = .whileEditing
+        gsm.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        gsm.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        gsm.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        gsm.font = UIFont(name: "Avenir", size: 11)
         return gsm
     }()
     
     
     lazy var location1:UITextField = {
-        let location = UITextField()
-        let label = UILabel(frame: CGRect(x: 0, y: -30, width: 300, height: 30))
+        let location = MaterialOutlinedTextField()
+        location.text = userModel.nameSurname
         location.placeholder = "Şehir"
-        location.borderStyle = .roundedRect
-        location.keyboardType = .emailAddress
-        label.text = "İl / İlçe / Mahalle"
-        location.font = UIFont(name: "Avenir", size: 16)
-        label.font = UIFont(name: "Avenir-Medium", size: 16)
+        location.label.text = "Şehir"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
         location.delegate = self
-        location.addSubview(label)
         return location
+        
+       
+
     }()
-    
     lazy var location2:UITextField = {
-        let location2 = UITextField()
-        location2.placeholder = "ilçe"
-        location2.borderStyle = .roundedRect
-        location2.font = UIFont(name: "Avenir", size: 16)
-        location2.keyboardType = .emailAddress
-        location2.delegate = self
-        return location2
+        let location = MaterialOutlinedTextField()
+        location.text = userModel.nameSurname
+        location.placeholder = "İlçe"
+        location.label.text = "İlçe"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
+        location.delegate = self
+        return location
+        
     }()
     
     lazy var location3:UITextField = {
-        let location3 = UITextField()
-        location3.placeholder = "Mahalle"
-        location3.font = UIFont(name: "Avenir", size: 16)
-        location3.borderStyle = .roundedRect
-        location3.keyboardType = .emailAddress
-        return location3
+        let location = MaterialOutlinedTextField()
+        location.text = userModel.nameSurname
+        location.placeholder = "Mahalle"
+        location.label.text = "Mahalle"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
+        location.delegate = self
+        return location
     }()
+
     
     lazy var SaveButton:UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Güncelle", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitle("Kaydet", for: .normal)
+        button.alpha = 0.5
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 1, height: 1)
+        button.layer.shadowOpacity = 0.3
+        button.layer.shadowRadius = 2
         button.addTarget(self, action: #selector(self.buttonClicked), for: .touchUpInside)
         return button
     }()
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
-      
-    }
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSehirler()
         adress()
-        view.backgroundColor = .white
+        setupCustomBackButton()
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
+        view.addSubview(header)
+        view.addSubview(header2)
+        navigationItem.title = "Kişisel Bilgiler"
+        navigationController?.isNavigationBarHidden = false
+
         view.addSubview(container)
-        container.addSubview(info)
+    
         container.addSubview(nameSurname)
         container.addSubview(mail)
         container.addSubview(gsm)
@@ -173,9 +242,8 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
     
     func adress (){
         
-        let parcalar = userModel.adress?.components(separatedBy: "/")
+        let parcalar = userModel.adress?.components(separatedBy: "-")
 
-        // Sonuçları kontrol et
         if parcalar?.count == 3 {
             let il = parcalar?[0]
             location1.text = il
@@ -191,48 +259,64 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
         
         
     }
+    
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black
+        
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+        
+      }
 
     func desing(){
+        let screenHeight = UIScreen.main.bounds.height
         
-        container.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         bottom: view.bottomAnchor,
+        
+        header.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: container.leadingAnchor, trailing:  nil,padding: .init(top: 6, left: 0, bottom: 0, right: 0))
+        
+        
+        header2.anchor(top: header.bottomAnchor, bottom: nil, leading: header.leadingAnchor, trailing: header.trailingAnchor,padding: .init(top: 2, left: 0, bottom: 0, right: 0))
+        container.anchor(top: nil,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          leading: view.leadingAnchor,
                          trailing: view.trailingAnchor,
-                         padding: .init(top: 40, left: 30,
-                                        bottom: 0, right: 30))
-        info.anchor(top: container.topAnchor,
-                    bottom: nil, leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    size: .init(width: 0, height: 40))
+                         padding: .init(top: 0, left: 24,
+                                        bottom: 12, right: 24),size: .init(width: 0, height: screenHeight*0.75))
+
         
-        nameSurname.anchor(top: info.bottomAnchor,
+        nameSurname.anchor(top: container.topAnchor,
                     bottom: nil,
                     leading: container.leadingAnchor,
                     trailing: container.trailingAnchor,
-                    padding: .init(top: 50, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    padding: .init(top: 30, left: 12, bottom: 0, right: 12),
+                    size: .init(width: 0, height: 36))
   
         
         mail.anchor(top: nameSurname.bottomAnchor,
                     bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 50, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 30, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 36))
         
         gsm.anchor(top: mail.bottomAnchor,
                     bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 50, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 30, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 36))
         
         location1.anchor(top: gsm.bottomAnchor,
                     bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 50, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 30, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 36))
         
         
         sehirDropdown.anchor(top: location1.bottomAnchor,
@@ -243,10 +327,10 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
         
         location2.anchor(top: location1.bottomAnchor,
                     bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 5, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 30, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 36))
         ilceDropdown.anchor(top: location2.bottomAnchor,
                             bottom: nil,
                                    leading: location2.leadingAnchor,
@@ -254,31 +338,30 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
                                    size: .init(width: 0, height: 200))
         location3.anchor(top: location2.bottomAnchor,
                     bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 5, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 30, left: 0, bottom: 0, right: 0),
+                    size: .init(width: 0, height: 36))
         
-        SaveButton.anchor(top: location3.bottomAnchor,
-                    bottom: nil,
-                    leading: container.leadingAnchor,
-                    trailing: container.trailingAnchor,
-                    padding: .init(top: 10, left: 0, bottom: 0, right: 0),
-                    size: .init(width: 0, height: 40))
+        SaveButton.anchor(top: nil,
+                          bottom: container.bottomAnchor,
+                    leading: nameSurname.leadingAnchor,
+                    trailing: nameSurname.trailingAnchor,
+                    padding: .init(top: 0, left: 0, bottom: 12, right: 0),
+                    size: .init(width: 0, height: 30))
         
     }
     
 
     @objc func buttonClicked() {
-            print("Button Clicked!")
-        let id = UserManager.shared.getUser().id
-        
-        let adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
-        
-        let user = User(nameSurname: self.nameSurname.text, gsm: self.gsm.text, email: self.mail.text, id: id, status: "Recipient",adress: adress)
-        UserManager.shared.setUser(user: user)
-        
-        FirestoreManager().UserRecipientPush(user: user) { result in
+         
+        var user = UserManager.shared.getUser()
+        user.nameSurname = self.nameSurname.text
+        user.gsm = self.gsm.text
+        user.email = self.mail.text
+        user.adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
+
+        FirestoreManager().UserUpdatetPush(user: user) { result in
                 switch result {
                 case .success(let message):
                     print(message)
@@ -290,7 +373,7 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
                         print("Kullanıcı başarıyla kaydedildi")
                         self.navigationItem.title = ""
                         self.navigationController?.isNavigationBarHidden = true
-                        self.navigationController?.pushViewController(LoginPage(), animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
 
                 case .failure(let error): break
@@ -301,11 +384,12 @@ class UserPage: UIViewController , UITableViewDelegate, UITableViewDataSource, U
                 }
             }
       
-        _ = navigationController?.popToRootViewController(animated: true)
+      
         }
     
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        SaveButton.alpha = 1
         if textField == location1 {
             container.bringSubviewToFront(sehirDropdown)
             sehirDropdown.isHidden = false  // Şehir listesi gösteriliyor

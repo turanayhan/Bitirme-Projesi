@@ -22,7 +22,7 @@ class Profile: UITableViewCell {
     lazy var logo:UIImageView = {
         let logo = UIImageView()
         logo.image = UIImage(systemName: "chevron.forward")
-        logo.tintColor = .systemYellow
+        logo.tintColor = UIColor(hex: "40A6F8")
         logo.contentMode = .scaleAspectFill
      
         return logo
@@ -34,6 +34,8 @@ class Profile: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        contentView.backgroundColor = UIColor(hex: "#F1FAFE")
+     
         addSubview(titleLabel)
         addSubview(logo)
         NSLayoutConstraint.activate([
@@ -51,8 +53,8 @@ class Profile: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with user: UserProfile) {
-        titleLabel.text = user.name
+    func configure(with user: ProfilItem) {
+        titleLabel.text = user.header
     }
     
     

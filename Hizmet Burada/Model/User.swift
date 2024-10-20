@@ -15,7 +15,8 @@ struct User: Codable {
     var status : String?
     var adress : String?
     var profileImage : String?
-    
+    var answerSelection:[String]? = []
+    var extraİnformation  :String?
     enum CodingKeys: String, CodingKey {
         case nameSurname
         case gsm
@@ -24,5 +25,7 @@ struct User: Codable {
         case status
         case adress
         case profileImage
+        case answerSelection
+        case extraİnformation
     }
 }

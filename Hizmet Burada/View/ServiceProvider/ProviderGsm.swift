@@ -1,4 +1,11 @@
 //
+//  ProviderGsm.swift
+//  Hizmet Burada
+//
+//  Created by turan on 17.10.2024.
+//
+
+
 //  rgPhone.swift
 //  Hizmet Burada
 //
@@ -8,7 +15,7 @@
 import UIKit
 import JGProgressHUD
 
-class PhonePage: UIViewController, UITextFieldDelegate {
+class ProviderGsm: UIViewController, UITextFieldDelegate {
     
     let maxGsmCharacters = 10
 
@@ -25,6 +32,7 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         infoText.text = "Cep telefonun nedir?"
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
         infoText.isEditable = false
         return infoText
@@ -33,9 +41,10 @@ class PhonePage: UIViewController, UITextFieldDelegate {
     // Ek açıklama text view
     lazy var nameSurnameText2:UITextView = {
         let infoText = UITextView()
-        infoText.text = "Hem hizmetburada hem yeni müşterilerin sana bu numaradan\nulaşacak. "
+        infoText.text =  "Hem HizmetBurada hem de müşteriler size bu numara üzerinden ulaşacak."
         infoText.textColor = .black
         infoText.textAlignment = .center
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.font = UIFont(name: "Avenir", size: 11)
         infoText.isEditable = false
         return infoText
@@ -49,7 +58,8 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         stackView.spacing = 9
         return stackView
     }()
-    
+   
+
     // GSM TextField
     lazy var gsm: UITextField = {
         let gsm = UITextField()
@@ -58,11 +68,12 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         gsm.keyboardType = .numberPad // Numara girişine izin ver
         gsm.returnKeyType = .done // Klavye butonunu "Done" yap
         gsm.setPadding(left: 8, right: 0, top: 0, bottom: 0)
-        gsm.tintColor = .systemYellow
+        gsm.tintColor = UIColor(hex: "#40A6F8")
         gsm.font = UIFont(name: "Avenir", size: 15)
-        gsm.layer.borderWidth = 0.6 // Kenar kalınlığı
-        gsm.layer.borderColor = UIColor.systemYellow.cgColor // Kenar rengi
-        gsm.layer.cornerRadius = 5
+        
+        gsm.layer.borderWidth = 0.6 // Sınır kalınlığı
+        gsm.layer.borderColor = UIColor(hex: "40A6F8").cgColor // İstediğiniz renk
+        gsm.layer.cornerRadius = 5//
         gsm.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         gsm.delegate = self // Delegate atandı
         return gsm
@@ -75,7 +86,7 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         permissionCheckbox.frame = buttonFrame
         permissionCheckbox.addTarget(self, action: #selector(checkboxToggled), for: .touchUpInside)
         permissionCheckbox.isSelected = false
-        permissionCheckbox.tintColor = .systemYellow
+        permissionCheckbox.tintColor =  UIColor(hex: "#40A6F8")
         permissionCheckbox.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
         permissionCheckbox.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
         return permissionCheckbox
@@ -99,8 +110,8 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
         button.alpha = 0.5
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -114,7 +125,8 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         navigationItem.title = "Devam"
         navigationController?.isNavigationBarHidden = false
-        view.backgroundColor = .white
+        setupCustomBackButton()
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         navigationItem.title = ""
         stackView.addArrangedSubview(gsm)
         view.addSubview(permissionCheckbox)
@@ -125,6 +137,16 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         view.addSubview(label)
         design()
     }
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     
     // UI yerleşimi
     func design() {
@@ -177,7 +199,7 @@ class PhonePage: UIViewController, UITextFieldDelegate {
         
         // Eğer telefon numarası geçerli ve izin verilmişse, diğer sayfaya geç
         ServiceProviderRegistration.rgİnformation.gsm = phoneNumber
-        navigationController?.pushViewController(LocationPage(), animated: true)
+        navigationController?.pushViewController(ProfileImage(), animated: true)
     }
 
 

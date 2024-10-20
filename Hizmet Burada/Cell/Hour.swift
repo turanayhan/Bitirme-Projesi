@@ -22,7 +22,7 @@ class Hour: UICollectionViewCell {
         hourLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.layer.cornerRadius = 10
         contentView.layer.borderWidth = 0.5
-        contentView.layer.borderColor = UIColor.systemYellow.cgColor
+        contentView.layer.borderColor = UIColor.white.cgColor
     }
 
     required init?(coder: NSCoder) {
@@ -31,10 +31,10 @@ class Hour: UICollectionViewCell {
 
     func configure(isSelected: Bool) {
         if isSelected {
-            contentView.backgroundColor = .systemYellow
+            contentView.backgroundColor = UIColor(hex: "40A6F8")
             hourLabel.textColor = .white
         } else {
-            contentView.backgroundColor = .clear
+            contentView.backgroundColor = .white
             hourLabel.textColor = .black
         }
     }

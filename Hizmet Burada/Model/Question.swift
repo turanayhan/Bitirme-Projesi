@@ -8,8 +8,4 @@
 import Foundation
 
 
-struct Question {
-    
-    var
-    
-}
+

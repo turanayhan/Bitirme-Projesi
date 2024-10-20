@@ -9,28 +9,23 @@ import UIKit
 import FirebaseAuth
 import JGProgressHUD
 
-class MailPasswordPage: UIViewController, UITextFieldDelegate {
-    
+class RecipientMail: UIViewController, UITextFieldDelegate {
     lazy var nameSurnameText:UITextView = {
         let infoText = UITextView()
         infoText.text = "Hesap Oluştur"
         infoText.textColor = .black
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.textAlignment = .center
         infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
-        infoText.backgroundColor = .clear
         infoText.isEditable = false
         return infoText
     }()
-    lazy var progresBar: JGProgressHUD = {
-        let progresBar = JGProgressHUD(style: .light)
-        progresBar.textLabel.text = "Kaydınız Gerçekleşiyor"
-        return progresBar
-    }()
+    
     lazy var nameSurnameText2:UITextView = {
         let infoText = UITextView()
         infoText.text = "Mail ve şifreni belirleyerek kaydını kolayca tamamla"
         infoText.textColor = .black
-        infoText.backgroundColor = .clear
+        infoText.backgroundColor = UIColor(hex: "#F1FAFE")
         infoText.textAlignment = .center
         infoText.font = UIFont(name: "Avenir", size: 12)
         infoText.isEditable = false
@@ -46,6 +41,11 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
         return stackView
     }()
     
+     lazy var progresBar: JGProgressHUD = {
+         let progresBar = JGProgressHUD(style: .light)
+         progresBar.textLabel.text = "Kaydınız Gerçekleşiyor"
+         return progresBar
+     }()
     
     lazy var mail: UITextField = {
         let mail = UITextField()
@@ -106,12 +106,12 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
     }()
     
     
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         navigationItem.title = ""
         setupCustomBackButton()
         stackView.addArrangedSubview(mail)
@@ -136,6 +136,7 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
           // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
           navigationController?.popViewController(animated: true)
       }
+    
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
         guard let userInfo = notification.userInfo,
@@ -258,7 +259,7 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
             
             
             
-            let user = ServiceProviderRegistration.rgİnformation.createUser(status:"Provider")
+            let user = ServiceProviderRegistration.rgİnformation.createUser(status:"Recipient")
                     
 
                     FirestoreManager().UserRecipientPush(user: user) { result in
@@ -273,7 +274,10 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
                                     print("Kullanıcı başarıyla kaydedildi")
                                     self.navigationItem.title = ""
                                     self.navigationController?.isNavigationBarHidden = true
-                                    self.navigationController?.pushViewController(ProfileImage(), animated: true)
+                                    
+                                    var view = LoginPage()
+                                    view.status = "Recipient"
+                                    self.navigationController?.pushViewController(view, animated: true)
                                 }
 
                             case .failure(let error):
@@ -286,9 +290,12 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
                     
                 
                 }
+            }
+        
+   
         
         
         
     }
     
-}
+

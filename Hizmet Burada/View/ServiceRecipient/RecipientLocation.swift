@@ -8,9 +8,10 @@
 import UIKit
 import JGProgressHUD
 import FirebaseDatabase
+import MaterialOutlinedTextField
 
 
-class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+class RecipientLocation: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     
     
@@ -71,43 +72,71 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
 
     
     lazy var location1:UITextField = {
-        let location = UITextField()
-
-        location.placeholder = "Şehir"
-        location.borderStyle = .roundedRect
-        location.keyboardType = .emailAddress
-        location.font = UIFont(name: "Avenir", size: 16)
- 
+        let location = MaterialOutlinedTextField()
+     
+        
+        location.label.text = "Şehir"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
         location.delegate = self
-
         return location
+        
+       
+
     }()
     lazy var location2:UITextField = {
-        let location2 = UITextField()
-        location2.placeholder = "ilçe"
-        location2.borderStyle = .roundedRect
-        location2.font = UIFont(name: "Avenir", size: 16)
-        location2.keyboardType = .emailAddress
-        location2.delegate = self
-        return location2
+        let location = MaterialOutlinedTextField()
+      
+   
+        location.label.text = "İlçe"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
+        location.delegate = self
+        return location
+        
     }()
     
     lazy var location3:UITextField = {
-        let location3 = UITextField()
-        location3.placeholder = "Mahalle"
-        location3.font = UIFont(name: "Avenir", size: 16)
-        location3.borderStyle = .roundedRect
-        location3.keyboardType = .emailAddress
-        return location3
+        let location = MaterialOutlinedTextField()
+       
+     
+        location.label.text = "Mahalle"
+        location.containerRadius = 6
+        location.setOutlineLineWidth(0.3, for: .normal)
+        location.setOutlineLineWidth(0.5, for: .editing)
+        location.clearButtonMode = .whileEditing
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .black, outlineColor: .gray), for: .normal)
+        
+        location.setColorModel(ColorModel(textColor: .black, floatingLabelColor: .black, normalLabelColor: .systemBlue, outlineColor: .systemBlue), for: .editing)
+        
+        location.setColorModel(ColorModel(with: .disabled), for: .disabled)
+        location.font = UIFont(name: "Avenir", size: 11)
+        location.delegate = self
+        return location
     }()
 
     lazy var registerBtn:UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Devam", for: .normal)
         button.alpha = 0.5
-        button.isEnabled = false
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 10
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 1, height: 1)
@@ -125,6 +154,8 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = ""
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
+        setupCustomBackButton()
         fetchSehirler()
         adress()
       
@@ -145,6 +176,17 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
          location2.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
          location3.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
+    
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
     
     
     
@@ -220,7 +262,7 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
                     bottom: nil,
                          leading: nameSurnameText.leadingAnchor,
                     trailing: nameSurnameText.trailingAnchor,
-                    padding: .init(top: 5, left: 0, bottom: 0, right: 0),
+                    padding: .init(top: 20, left: 0, bottom: 0, right: 0),
                     size: .init(width: 0, height: 40))
         ilceDropdown.anchor(top: location2.bottomAnchor,
                             bottom: nil,
@@ -231,7 +273,7 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
                     bottom: nil,
                     leading: nameSurnameText.leadingAnchor,
                     trailing: nameSurnameText.trailingAnchor,
-                    padding: .init(top: 5, left: 0, bottom: 0, right: 0),
+                    padding: .init(top: 20, left: 0, bottom: 0, right: 0),
                     size: .init(width: 0, height: 40))
         
         
@@ -255,12 +297,10 @@ class LocationPage: UIViewController ,UITableViewDelegate, UITableViewDataSource
         
         
         
-        let adress = (self.location1.text ?? "") + "/" + (self.location2.text ?? "") + "/" + (self.location3.text ?? "")
-        
-        
+        let adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
         
         ServiceProviderRegistration.rgİnformation.adrees = adress
-        navigationController?.pushViewController(SelectionPage(), animated: true)
+        navigationController?.pushViewController(RecipientMail(), animated: true)
         
         
     }

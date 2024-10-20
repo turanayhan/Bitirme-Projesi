@@ -35,8 +35,9 @@ class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDeleg
       
       override func viewDidLoad() {
           super.viewDidLoad()
-          progresBar.show(in: self.view)
-          view.backgroundColor = .white
+    
+          view.backgroundColor = UIColor(hex: "#F1FAFE")
+         
    
           getData()
          
