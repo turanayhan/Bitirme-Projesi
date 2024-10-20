@@ -77,16 +77,23 @@ class Work: UITableViewCell {
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Detaylara Bak", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 1, height: 1)
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 12)
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
            return button
        }()
+    
+    let deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        let image = UIImage(systemName: "trash") // Silme simgesi
+        button.setImage(image, for: .normal)
+        button.tintColor = .red
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -99,6 +106,7 @@ class Work: UITableViewCell {
         cardView.addSubview(separatorLine)
         cardView.addSubview(profileImage)
         cardView.addSubview(nextButton)
+        cardView.addSubview(deleteButton)
         
        
         desing()
@@ -119,7 +127,7 @@ class Work: UITableViewCell {
         
         
         date.anchor(top: cardView.topAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 10, left: 0, bottom: 0, right: 0))
-        jobName.anchor(top: date.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 0, right: 0))
+        jobName.anchor(top: date.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 6, left: 0, bottom: 0, right: 0))
         
         
         separatorLine.anchor(top: jobName.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 0.5))
@@ -129,10 +137,11 @@ class Work: UITableViewCell {
         profileImage.anchor(top: jobStatus.bottomAnchor, bottom: nil, leading: nil, trailing: nil,padding: .init(top: 6, left: 0, bottom: 0, right: 0),size: .init(width: 60, height: 60))
         profileImage.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true
         
-        nextButton.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 0, left: 8, bottom: 8, right: 8),size: .init(width: 0, height: 36))
+        nextButton.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 0, left: 12, bottom: 8, right: 12),size: .init(width: 0, height: 26))
         
         
-        
+        deleteButton.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 12), size: .init(width: 20, height: 20))
+
         
     }
     @objc private func nextButtonTapped() {
@@ -140,6 +149,36 @@ class Work: UITableViewCell {
             return
         }
     
+    
+    @objc private func deleteButtonTapped() {
+        // Uyarı mesajı oluşturma
+        let alertController = UIAlertController(
+            title: "Silmek istediğinizden emin misiniz?",
+            message: "Bu işlem geri alınamaz. İlgili hizmeti kalıcı olarak silmek üzeresiniz.",
+            preferredStyle: .alert
+        )
+
+        // "Sil" butonu
+        let deleteAction = UIAlertAction(title: "Sil", style: .destructive) { _ in
+            // Silme işlemi burada yapılabilir
+            print("İşlem silindi")
+        }
+
+        // "İptal" butonu
+        let cancelAction = UIAlertAction(title: "İptal", style: .cancel) { _ in
+            print("Silme işlemi iptal edildi")
+        }
+
+        // Butonları ekleme
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+
+        // Uyarıyı sunma
+        if let topController = UIApplication.shared.keyWindow?.rootViewController {
+            topController.present(alertController, animated: true, completion: nil)
+        }
+    }
+
     
     
     

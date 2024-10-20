@@ -69,6 +69,7 @@ class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDeleg
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! WorkOp
           cell.selectionStyle = .none
+          cell.backgroundColor = .clear
           cell.modelDetail = JobModelList[indexPath.row]
      
           return cell
@@ -77,14 +78,11 @@ class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDeleg
       func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
           
          
-          let page = JobsDetailPage()
-          page.modelic = JobModelList[indexPath.row]
-          
-          navigationController?.pushViewController(page, animated: true)
       }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let calculatedHeight = screenHeight * 0.22
+        
            let minHeight: CGFloat = 170.0 // Belirlediğiniz minimum yükseklik
            return max(calculatedHeight, minHeight)
       

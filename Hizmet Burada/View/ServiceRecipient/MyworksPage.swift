@@ -66,6 +66,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     lazy var container : UIView = {
         
         let container = UIView()
+        container.isHidden = true
         container.backgroundColor = .clear
         return container
     }()
@@ -90,7 +91,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     
     override func viewWillAppear(_ animated: Bool) {
-        progresBar.show(in: self.view)
+       
         menu()
 
     }
@@ -98,10 +99,8 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        progresBar.show(in: self.view)
         getData()
-   
-
         navigationItem.title = ""
         view.addSubview(tableView)
         view.backgroundColor = UIColor(hex: "#F1FAFE")
@@ -134,22 +133,50 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
         container.addSubview(logo)
         container.addSubview(header)
         container.addSubview(descripiton)
-       
         
+        tableView.anchor(top: view.topAnchor,
+                         bottom: view.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor
+        )
+        container.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                         bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                         leading: view.leadingAnchor,
+                         trailing: view.trailingAnchor,
+                         size: .init(width: 0,
+                                     height: 0)
+        )
         
-        tableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
-        container.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor,size: .init(width: 0, height: 0))
-        
-        
-        logo.anchor(top: nil, bottom: header.topAnchor, leading: nil, trailing: nil,size: .init(width: width*0.7, height: width*0.7))
+        logo.anchor(top: nil,
+                    bottom: header.topAnchor,
+                    leading: nil,
+                    trailing: nil,
+                    size: .init(width: width*0.7, height: width*0.7)
+        )
         logo.centerXAnchor.constraint(equalTo: container.centerXAnchor).isActive = true
 
         
         
-        header.anchor(top: nil, bottom: descripiton.topAnchor, leading: container.leadingAnchor, trailing: container.trailingAnchor,size: .init(width: 0, height: 30))
+        header.anchor(top: nil,
+                      bottom: descripiton.topAnchor,
+                      leading: container.leadingAnchor,
+                      trailing: container.trailingAnchor,
+                      size: .init(width: 0,
+                                  height: 30)
+        )
        
         
-        descripiton.anchor(top: nil, bottom: container.bottomAnchor, leading: container.leadingAnchor, trailing: container.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 24, right: 0),size: .init(width: 0, height: 50))
+        descripiton.anchor(top: nil,
+                           bottom: container.bottomAnchor,
+                           leading: container.leadingAnchor,
+                           trailing: container.trailingAnchor,
+                           padding: .init(top: 0,
+                                          left: 0,
+                                          bottom: 24,
+                                          right: 0),
+                           size: .init(width: 0,
+                                       height: 50)
+        )
         
     }
     
@@ -162,6 +189,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! Work
+        cell.backgroundColor = .clear
         cell.selectionStyle = .none
         var model = JobModelList[indexPath.row]
         cell.date.text = model.announcementDate
@@ -177,7 +205,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
         } else {
             cell.profileImage.isHidden = true
             
-            // Doluysa hücre yüksekliği 200 px olsun
+           
         }
         
         return cell
@@ -211,6 +239,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
         ref.observeSingleEvent(of: .value) { snapshot in
             guard let jobsData = snapshot.value as? [String: [String: Any]] else {
                 print("Veri alınamadı veya beklenmeyen formatta.")
+                self.container.isHidden = false
                 self.progresBar.dismiss()
                 return
             }
@@ -235,6 +264,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
             // TableView'ı güncelleyin
             self.tableView.reloadData()
             print("Toplam \(self.JobModelList.count) iş modeli yüklendi.")
+            self.container.isHidden = true
             self.progresBar.dismiss()
         }
     }

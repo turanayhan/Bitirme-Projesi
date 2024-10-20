@@ -59,7 +59,7 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
     
     lazy var numberImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(systemName: "message")
+        profileImage.image = UIImage(systemName: "envelope.open")
         profileImage.tintColor = UIColor.lightGray.withAlphaComponent(0.2)
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
@@ -88,17 +88,14 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Detaylara Bak", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
+        button.setTitle("Teklif Ver", for: .normal)
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 4
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 1, height: 1)
-        button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 12)
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
-        return button
-    }()
+           return button
+       }()
     
     // Horizontal collection view ekleme
     lazy var collectionView: UICollectionView = {
@@ -163,16 +160,33 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
         // CollectionView constraint'leri
         collectionView.anchor(top: userInfo.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor, padding: .init(top: 10, left: 12, bottom: 10, right: 12), size: .init(width: 0, height: 30))
         
-        numberImage.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: nil,padding: .init(top: 0, left: 12, bottom: 6, right: 0),size: .init(width: 20, height: 20))
+        numberImage.anchor(top: numberOffer.topAnchor, bottom: numberOffer.bottomAnchor, leading: nil, trailing: numberOffer.leadingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 3),size: .init(width: 12, height: 12))
         
-        numberOffer.anchor(top: numberImage.topAnchor, bottom: numberImage.bottomAnchor, leading: numberImage.trailingAnchor, trailing: nil,padding: .init(top: 0, left: 8, bottom: 0, right: 0))
+        numberOffer.anchor(top: date.bottomAnchor, bottom: nil, leading: nil, trailing: date.trailingAnchor,padding: .init(top: 4, left: 0, bottom: 0, right: 0))
+        
+        nextButton.anchor(top: nil,
+                          bottom: cardView.bottomAnchor,
+                          leading: cardView.leadingAnchor,
+                          trailing: cardView.trailingAnchor,
+                          padding: .init(top: 0,
+                                         left: 12,
+                                         bottom: 8,
+                                         right: 12),
+                          size: .init(width: 0, height: 26)
+        )
         
   
     
     }
     
     @objc private func nextButtonTapped() {
-        return
+        
+        
+        
+         let pages = JobsDetailPage()
+        
+         
+    
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
