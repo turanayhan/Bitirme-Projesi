@@ -65,7 +65,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let logo = UIImageView()
         logo.image = UIImage(systemName:"person.crop.circle.dashed")
         logo.contentMode = .scaleAspectFill
-        logo.tintColor = .systemYellow
+        logo.tintColor = UIColor(hex: "#40A6F8")
      
         return logo
     }()
@@ -98,7 +98,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let text = UITextView()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName:  "calendar")
-        imageView.tintColor = .systemYellow
+        imageView.tintColor = UIColor(hex: "#40A6F8")
         text.textColor = .black
         text.font = UIFont(name: "Avenir", size: 10)
         text.isScrollEnabled = false
@@ -114,7 +114,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
 
         imageView.image = UIImage(systemName:  "location.fill")
-        imageView.tintColor = .systemYellow
+        imageView.tintColor = UIColor(hex: "#40A6F8")
         text.textColor = .black
         text.font = UIFont(name: "Avenir", size: 10)
         text.isScrollEnabled = false
@@ -129,7 +129,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let text = UITextView()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName:  "phone.fill")
-        imageView.tintColor = .systemYellow
+        imageView.tintColor = UIColor(hex: "#40A6F8")
         text.textColor = .black
         text.backgroundColor = .clear
         text.font = UIFont(name: "Avenir", size: 10)
@@ -145,7 +145,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 3
+        stackView.spacing = 4
         return stackView
     }()
     
@@ -279,7 +279,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         textBox.text = "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver."
         textBox.backgroundColor = UIColor(hex: "#E3F2FD")
         textBox.backgroundColor = .white
-        textBox.layer.cornerRadius = 16
+        textBox.layer.cornerRadius = 4
         textBox.layer.borderWidth = 0.3
         textBox.layer.borderColor =  UIColor.lightGray.cgColor
         textBox.font = UIFont(name: "Avenir", size: 10)
@@ -290,11 +290,11 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Teklif Ver", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        button.setTitle("Teklif Ver(7,59)", for: .normal)
         button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
         button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 4
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 12)
         button.layer.shadowOpacity = 0.3
         button.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         return button
