@@ -7,7 +7,18 @@
 
 import UIKit
 
+protocol CustomCellDelegate: AnyObject {
+    func didTapButton(in cell: WorkOp)
+}
+
+
+
 class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    
+    
+    weak var delegate: CustomCellDelegate?
+    
     var modelDetail: JobModel? {
         didSet {
             jobName.text = modelDetail?.nameSurname
@@ -17,6 +28,14 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
             collectionView.reloadData()
         }
     }
+    
+    
+    
+    
+    
+    
+    
+    
 
     lazy var separatorLine: UIView = {
         let separatorLine = UIView()
@@ -180,13 +199,7 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     @objc private func nextButtonTapped() {
-        
-        
-        
-         let pages = JobsDetailPage()
-        
-         
-    
+        delegate?.didTapButton(in: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

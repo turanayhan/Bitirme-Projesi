@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import JGProgressHUD
 
-class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDelegate {
+class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDelegate, CustomCellDelegate {
     
     
     
@@ -68,6 +68,7 @@ class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDeleg
       
       func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! WorkOp
+          cell.delegate = self
           cell.selectionStyle = .none
           cell.backgroundColor = .clear
           cell.modelDetail = JobModelList[indexPath.row]
@@ -154,6 +155,16 @@ class OpportunityPage: UIViewController ,UITableViewDataSource, UITableViewDeleg
             completion(value)
         }
     }
+    
+    
+    func didTapButton(in cell: WorkOp) {
+         if let indexPath = tableView.indexPath(for: cell) {
+             var view = JobsDetailPage()
+             view.modelic = JobModelList[indexPath.row]
+             navigationController?.pushViewController(view, animated: true)
+
+         }
+     }
         
     }
 

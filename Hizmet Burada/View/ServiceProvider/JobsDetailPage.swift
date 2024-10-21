@@ -76,8 +76,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         infoText.text = "Turan Ayhan"
         infoText.textColor = .black
         infoText.textAlignment = .left
-        infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
-       
+        infoText.font = UIFont(name: "Avenir-Heavy", size: 14)
         
         return infoText
     }()
@@ -87,7 +86,8 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         infoText.text = "Boş Ev Temizliği"
         infoText.textColor = .black
         infoText.textAlignment = .left
-        infoText.font = UIFont(name: "Helvetica-Bold", size: 12)
+        infoText.backgroundColor = .clear
+        infoText.font = UIFont(name: "Avenir-Heavy", size: 10)
        
         
         return infoText
@@ -96,12 +96,13 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     
     lazy var textCalender : UITextView = {
         let text = UITextView()
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName:  "calendar")
         imageView.tintColor = .systemYellow
         text.textColor = .black
-        text.font = UIFont(name: "Thonburi", size: 12)
+        text.font = UIFont(name: "Avenir", size: 10)
         text.isScrollEnabled = false
+        text.backgroundColor = .clear
         text.isEditable = false
         text.text = "     Pazartesi , 15 Ocak - 09:00"
         text.textAlignment = .justified
@@ -110,13 +111,15 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     }()
     lazy var textLocation : UITextView = {
         let text = UITextView()
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
+
         imageView.image = UIImage(systemName:  "location.fill")
         imageView.tintColor = .systemYellow
         text.textColor = .black
-        text.font = UIFont(name: "Thonburi", size: 12)
+        text.font = UIFont(name: "Avenir", size: 10)
         text.isScrollEnabled = false
         text.isEditable = false
+        text.backgroundColor = .clear
         text.text = "     Şifa Mah, Battalgazi, Malatya"
         text.textAlignment = .justified
         text.addSubview(imageView)
@@ -124,11 +127,12 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     }()
     lazy var textPhone : UITextView = {
         let text = UITextView()
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 20, height: 20))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 7, width: 16, height: 16))
         imageView.image = UIImage(systemName:  "phone.fill")
         imageView.tintColor = .systemYellow
         text.textColor = .black
-        text.font = UIFont(name: "Thonburi", size: 12)
+        text.backgroundColor = .clear
+        text.font = UIFont(name: "Avenir", size: 10)
         text.isScrollEnabled = false
         text.isEditable = false
         text.text = "     Müşteriyi Arayabilirsin"
@@ -141,7 +145,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 3
         return stackView
     }()
     
@@ -150,7 +154,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         answer1.text = "Evin Büyüklüğü nedir?"
         answer1.textColor = .black
         answer1.textAlignment = .left
-        answer1.font = UIFont(name: "Helvetica-Bold", size: 12)
+        answer1.font = UIFont(name: "Avenir-Heavy", size: 10)
         return answer1
     }()
     
@@ -159,7 +163,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         question1.text = "  3+1"
         question1.textColor = .black
         question1.textAlignment = .left
-        question1.font = UIFont(name: "Helvetica", size: 12)
+        question1.font = UIFont(name: "Avenir", size: 10)
         return question1
     }()
     
@@ -168,7 +172,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         answer2.text = "Ev Kaç Metrekare?"
         answer2.textColor = .black
         answer2.textAlignment = .left
-        answer2.font = UIFont(name: "Helvetica-Bold", size: 12)
+        answer2.font = UIFont(name: "Avenir-Heavy", size: 10)
         return answer2
     }()
     
@@ -177,7 +181,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         question2.text = "  120"
         question2.textColor = .black
         question2.textAlignment = .left
-        question2.font = UIFont(name: "Helvetica", size: 12)
+        question2.font = UIFont(name: "Avenir", size: 10)
         return question2
     }()
     
@@ -186,7 +190,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         answer3.text = "Kaç Banyo?"
         answer3.textColor = .black
         answer3.textAlignment = .left
-        answer3.font = UIFont(name: "Helvetica-Bold", size: 12)
+        answer3.font = UIFont(name: "Avenir-Heavy", size: 10)
         return answer3
     }()
     
@@ -195,7 +199,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         question3.text = "  1"
         question3.textColor = .black
         question3.textAlignment = .left
-        question3.font = UIFont(name: "Helvetica", size: 12)
+        question3.font = UIFont(name: "Avenir", size: 10)
         return question3
     }()
     
@@ -205,7 +209,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         answer3.text = "İhtiyacın detayları neler?"
         answer3.textColor = .black
         answer3.textAlignment = .left
-        answer3.font = UIFont(name: "Helvetica-Bold", size: 12)
+        answer3.font = UIFont(name: "Avenir-Heavy", size: 10)
         return answer3
     }()
     
@@ -214,7 +218,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         question3.text = "  3+1 Ev temizlenecek eşya yok boş"
         question3.textColor = .black
         question3.textAlignment = .left
-        question3.font = UIFont(name: "Helvetica", size: 12)
+        question3.font = UIFont(name: "Avenir", size: 10)
         return question3
     }()
     
@@ -224,14 +228,14 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         infoText.text = "Teklif Ver"
         infoText.textColor = .black
         infoText.textAlignment = .left
-        infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
+        infoText.backgroundColor = .clear
+        infoText.font = UIFont(name: "Avenir-Heavy", size: 12)
         return infoText
     }()
     
     lazy var container : UIView = {
         let container = UIView()
-        container.backgroundColor = .white
-        container.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
+        container.backgroundColor = .clear
       return container
     }()
     
@@ -246,13 +250,15 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         priceText.text = "Fiyat(KDV) dahil)?"
         priceText.textColor = .black
         priceText.textAlignment = .left
-        priceText.font = UIFont(name: "Helvetica-Bold", size: 12)
+        priceText.backgroundColor = .clear
+        priceText.font = UIFont(name: "Avenir-Heavy", size: 10)
         return priceText
     }()
     
     lazy var priceTextField:UITextField = {
         let gsm = UITextField()
         gsm.borderStyle = .roundedRect
+        gsm.font = UIFont(name: "Avenir", size: 10)
         gsm.placeholder = "TL"
         return gsm
     }()
@@ -261,8 +267,9 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let priceText = UILabel()
         priceText.text = "Mesaj"
         priceText.textColor = .black
+        priceText.backgroundColor = .clear
         priceText.textAlignment = .left
-        priceText.font = UIFont(name: "Helvetica-Bold", size: 12)
+        priceText.font = UIFont(name: "Avenir-Heavy", size: 10)
         return priceText
     }()
     
@@ -271,15 +278,11 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let textBox = UITextView(frame: CGRect(x: 50, y: 100, width: 400, height: 300))
         textBox.text = "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver."
         textBox.backgroundColor = UIColor(hex: "#E3F2FD")
-        
-        textBox.layer.borderWidth = 0.6
-        textBox.layer.borderColor = UIColor(hex: "40A6F8").cgColor
-        textBox.layer.cornerRadius = 5.0
-        textBox.layer.shadowColor = UIColor.black.cgColor
-        textBox.layer.shadowOpacity = 0.1
-        textBox.layer.shadowOffset = CGSize(width: 1, height: 1)
-        textBox.layer.shadowRadius = 4.0
-        textBox.font = UIFont.systemFont(ofSize: 14.0)
+        textBox.backgroundColor = .white
+        textBox.layer.cornerRadius = 16
+        textBox.layer.borderWidth = 0.3
+        textBox.layer.borderColor =  UIColor.lightGray.cgColor
+        textBox.font = UIFont(name: "Avenir", size: 10)
         textBox.delegate = self
         return textBox
     }()
@@ -288,13 +291,11 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Teklif Ver", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemYellow
-        button.layer.cornerRadius = 10
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOffset = CGSize(width: 1, height: 1)
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 14)
+        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+        button.backgroundColor = UIColor(hex: "#40A6F8")
+        button.layer.cornerRadius = 4
         button.layer.shadowOpacity = 0.3
-        button.layer.shadowRadius = 2
         button.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         return button
     }()
@@ -303,7 +304,10 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        navigationController?.isNavigationBarHidden = false
+        setupCustomBackButton()
+        
+        view.backgroundColor = UIColor(hex: "#F1FAFE")
         view.addSubview(scrollView)
         scrollView.addSubview(imageProfile)
         scrollView.addSubview(nameSurnameText)
@@ -322,7 +326,6 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         stackView1.addArrangedSubview(question3)
         stackView1.addArrangedSubview(answer4)
         stackView1.addArrangedSubview(question4)
-     
         container.addSubview(container2)
         container2.addSubview(opportunityText)
         container2.addSubview(priceText)
@@ -335,12 +338,23 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         
     }
     
+    
+    func setupCustomBackButton() {
+          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
+          backButton.tintColor = .black // Rengi değiştirilebilir
+          navigationItem.leftBarButtonItem = backButton
+      }
+    @objc func backButtonTapped() {
+          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
+          navigationController?.popViewController(animated: true)
+      }
+    
 
     func desing(){
         
         scrollView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
-        imageProfile.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: 12, left: 20, bottom: 0, right: 0),size: .init(width: 44, height: 44))
+        imageProfile.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: 4, left: 20, bottom: 0, right: 0),size: .init(width: 32, height: 32))
         
         nameSurnameText.anchor(top: imageProfile.topAnchor, bottom: imageProfile.bottomAnchor, leading: imageProfile.trailingAnchor, trailing: view.trailingAnchor,padding: .init(top: 0, left: 12, bottom: 0, right: 0))
         
@@ -355,20 +369,20 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         
         opportunityText.anchor(top: stackView1.bottomAnchor, bottom: nil, leading: stackView1.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 16, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 30))
         
-        priceText.anchor(top: opportunityText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: view.trailingAnchor,size: .init(width: 0, height: 30))
+        priceText.anchor(top: opportunityText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: view.trailingAnchor,size: .init(width: 0, height: 25))
         
-        priceTextField.anchor(top: priceText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: stackView1.trailingAnchor,size: .init(width: 0, height: 30))
+        priceTextField.anchor(top: priceText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: stackView1.trailingAnchor,size: .init(width: 0, height: 25))
         
-        chatText.anchor(top: priceTextField.bottomAnchor, bottom: nil, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 16, left: 0, bottom: 0, right: 0))
+        chatText.anchor(top: priceTextField.bottomAnchor, bottom: nil, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 0, right: 0))
         
-        textBox.anchor(top: chatText.bottomAnchor, bottom: nextButton.topAnchor, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 16, left: 0, bottom: 6, right: 0))
+        textBox.anchor(top: chatText.bottomAnchor, bottom: nil, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 6, right: 0),size: .init(width: 0, height: view.layer.bounds.height*0.12))
         
         nextButton.anchor(top: nil,
                           bottom: view.safeAreaLayoutGuide.bottomAnchor,
                           leading: view.leadingAnchor,
                           trailing: view.trailingAnchor,
                           padding: .init(top: 10, left: 20, bottom: 30, right: 20),
-                          size: .init(width: 0, height: 40))
+                          size: .init(width: 0, height: 30))
     }
     
     
