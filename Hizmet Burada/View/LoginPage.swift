@@ -116,24 +116,16 @@ class LoginPage: UIViewController, UITextFieldDelegate {
     }()
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
+
         view.backgroundColor = UIColor(hex: "#F1FAFE")
       
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     override func viewDidLoad() {
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         super.viewDidLoad()
-        navigationItem.title = "Giriş Yap"
+        
         navigationController?.isNavigationBarHidden = false
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)

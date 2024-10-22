@@ -155,7 +155,7 @@ class RecipientLocation: UIViewController ,UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         navigationItem.title = ""
         view.backgroundColor = UIColor(hex: "#F1FAFE")
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         fetchSehirler()
         adress()
       
@@ -178,15 +178,7 @@ class RecipientLocation: UIViewController ,UITableViewDelegate, UITableViewDataS
     }
     
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     
     
     

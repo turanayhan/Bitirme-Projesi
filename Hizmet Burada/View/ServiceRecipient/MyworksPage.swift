@@ -88,14 +88,10 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
         return worksTableView
     }()
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
-       
-        menu()
-
+        customnNavigation()
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,16 +193,16 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
         let informationValues = Array(model.information.values)
         
         
-        
-        if model.information.isEmpty {
-            cell.profileImage.isHidden = false // Boşsa hücre yüksekliği 150 px olsun
+        if let bids = model.bids, !bids.isEmpty {
+            // Bids dizisi boş değil
+            cell.profileImage.isHidden = false
             cell.jobStatus.text = "Talebin için teklifler gelmeye başladı."
             cell.nextButton.setTitle("İletişime Geç", for: .normal)
         } else {
+            // Bids dizisi boş ya da nil
             cell.profileImage.isHidden = true
-            
-           
         }
+
         
         return cell
     }
@@ -234,16 +230,21 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     func getData() {
         guard let userId = UserManager.shared.getUser().id else { return }
-        
+
         let ref = Database.database().reference().child("Jobs").child(userId) // Kullanıcı ID'sine göre alt düğüme erişim
-        ref.observeSingleEvent(of: .value) { snapshot in
+        ref.observe(.value, with: { snapshot in // observeSingleEvent yerine observe kullanıldı
+            
+            // Veri alınamazsa veya beklenmedik bir formatta ise hata mesajı göster
             guard let jobsData = snapshot.value as? [String: [String: Any]] else {
                 print("Veri alınamadı veya beklenmeyen formatta.")
                 self.container.isHidden = false
                 self.progresBar.dismiss()
                 return
             }
-            
+
+            // JobModelList temizleniyor (Eski verilerden kurtulmak için)
+            self.JobModelList.removeAll()
+
             // Jobs içerisindeki her bir veriyi işleyelim
             for (_, jobDetails) in jobsData {
                 let address = jobDetails["adress"] as? String ?? "Adres yok"
@@ -252,58 +253,48 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
                 let nameSurname = jobDetails["nameSurname"] as? String ?? "İsim yok"
                 let id = jobDetails["id"] as? String ?? "ID yok"
                 let information = jobDetails["information"] as? [String: String] ?? [:]
-                let announcementDate = jobDetails["announcementDate"] as? String ?? "tarih yok"
-                
-                // JobModel nesnesini oluştur
-                let job = JobModel(nameSurname: nameSurname, detail: detail, id: id, information: information, adress: address,announcementDate: announcementDate, reservationDate: reservationDate)
-                
-                // JobModelList'e ekle
+                let announcementDate = jobDetails["announcementDate"] as? String ?? "Tarih yok"
+                let jobId = jobDetails["jobId"] as? String ?? ""
+
+                // Bids (Teklifler) verisini işleyelim
+                var bids: [BidModel] = []
+                if let bidsData = jobDetails["bids"] as? [String: [String: Any]] {
+                    for (bidId, bidDetails) in bidsData {  // Burada bidId'yi doğrudan anahtar olarak alıyoruz
+                        // Teklifin bilgilerini al
+                        if let bidDate = bidDetails["bidDate"] as? String,
+                           let message = bidDetails["message"] as? String,
+                           let price = bidDetails["price"] as? Double,
+                           let providerId = bidDetails["providerId"] as? String,
+                           let providerName = bidDetails["providerName"] as? String {
+
+                            // Teklif modelini oluştur
+                            let bid = BidModel(id: bidId, providerId: providerId, providerName: providerName, price: price, message: message, bidDate: bidDate, messages: [])
+                            
+                            // Teklifi listeye ekle
+                            bids.append(bid)
+                        }
+                    }
+                } else {
+                    print("Teklifler boş veya yanlış formatta.")
+                }
+
+                // İş modelini oluştur ve teklifleri ata
+                let job = JobModel(nameSurname: nameSurname, detail: detail, id: id, information: information, adress: address, announcementDate: announcementDate, reservationDate: reservationDate, bids: bids)
+
                 self.JobModelList.append(job)
             }
-            
+
             // TableView'ı güncelleyin
             self.tableView.reloadData()
             print("Toplam \(self.JobModelList.count) iş modeli yüklendi.")
             self.container.isHidden = true
             self.progresBar.dismiss()
-        }
+
+        })
     }
+
+
     
-    
-    func menu(){
-        let menuButton = UIBarButtonItem(
-            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
-            style: .plain,
-            target: self,
-            action: #selector(openMenu)
-        )
-        let titleLabel = UILabel()
-        titleLabel.text = "Hizmet Burada"
-        titleLabel.textColor = .black // Başlık rengi
-        titleLabel.font = UIFont(name: "Chalkduster", size: 15)
-        titleLabel.textAlignment = .center
-        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
-        navigationItem.leftBarButtonItem = menuButton
-        navigationItem.titleView = titleLabel
-        let menu = SideMenuNavigationController(rootViewController: Menu())
-        menu.leftSide = true // Sol taraftan açılacak
-        SideMenuManager.default.leftMenuNavigationController = menu
-        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
-    }
-    
-    
-    
-    
-    @objc func openMenu() {
-        if let menu = SideMenuManager.default.leftMenuNavigationController {
-            
-            present(menu, animated: true, completion: nil)
-            
-        }
-        
-        
-        
-        
-    }
+
     
 }

@@ -13,10 +13,12 @@ struct JobModel : Codable{
     var detail : String
     var id : String
     var information:[String:String] = [:]
-    var message : [Message]?
     var adress : String
     var announcementDate : String?
     var reservationDate : String?
+    var bids: [BidModel]?
+    var jobId : String?
+    var status : Bool = false
 
    
     enum CodingKeys: String, CodingKey {
@@ -24,10 +26,12 @@ struct JobModel : Codable{
         case detail
         case id
         case information
-        case message
         case adress
         case announcementDate
         case reservationDate
+        case jobId
+        case status
+     
     }
     
     
@@ -39,9 +43,10 @@ struct JobModel : Codable{
             "id": id,
             "information": information,
             "adress":adress,
-            "message": message?.map { $0.toDictionarym()},
             "announcementDate":date(),
-            "reservationDate" : reservationDate
+            "reservationDate" : reservationDate,
+            "jobId" : jobId,
+            "status" : status
         ]
     }
     

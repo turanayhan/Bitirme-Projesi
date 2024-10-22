@@ -25,7 +25,6 @@
 		05924CA42CC29E3400E054D7 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9A2CC29E3400E054D7 /* City.swift */; };
 		05924CA52CC29E3400E054D7 /* Profiltem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9E2CC29E3400E054D7 /* Profiltem.swift */; };
 		05924CA62CC29E3400E054D7 /* JobModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9C2CC29E3400E054D7 /* JobModel.swift */; };
-		05924CA72CC29E3400E054D7 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9D2CC29E3400E054D7 /* Message.swift */; };
 		05924CA82CC29E3400E054D7 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9F2CC29E3400E054D7 /* Question.swift */; };
 		05924CA92CC29E3400E054D7 /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C9B2CC29E3400E054D7 /* Comments.swift */; };
 		05924CAA2CC29E3400E054D7 /* ServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CA02CC29E3400E054D7 /* ServiceModel.swift */; };
@@ -74,6 +73,8 @@
 		05924D072CC29E6400E054D7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924D042CC29E6400E054D7 /* RegisterViewModel.swift */; };
 		05924D0A2CC29ED100E054D7 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 05924D092CC29ED100E054D7 /* SideMenu */; };
 		05924D172CC2A2B300E054D7 /* MaterialOutlinedTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 05924D162CC2A2B300E054D7 /* MaterialOutlinedTextField */; };
+		05CF22492CC7C862003AA269 /* BidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF22482CC7C856003AA269 /* BidModel.swift */; };
+		05CF224B2CC7D24D003AA269 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF224A2CC7D243003AA269 /* MessageModel.swift */; };
 		05DA1F572CAC467700A88207 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05DA1F562CAC467700A88207 /* GoogleService-Info.plist */; };
 		05E2A22E2AF7A40F00FA8057 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 05E2A22D2AF7A40F00FA8057 /* FirebaseAnalytics */; };
 		05E2A2302AF7A40F00FA8057 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05E2A22F2AF7A40F00FA8057 /* FirebaseAnalyticsSwift */; };
@@ -129,7 +130,6 @@
 		05924C9A2CC29E3400E054D7 /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		05924C9B2CC29E3400E054D7 /* Comments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		05924C9C2CC29E3400E054D7 /* JobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
-		05924C9D2CC29E3400E054D7 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		05924C9E2CC29E3400E054D7 /* Profiltem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profiltem.swift; sourceTree = "<group>"; };
 		05924C9F2CC29E3400E054D7 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		05924CA02CC29E3400E054D7 /* ServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceModel.swift; sourceTree = "<group>"; };
@@ -177,6 +177,8 @@
 		05924CE02CC29E5D00E054D7 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		05924D032CC29E6400E054D7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		05924D042CC29E6400E054D7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		05CF22482CC7C856003AA269 /* BidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidModel.swift; sourceTree = "<group>"; };
+		05CF224A2CC7D243003AA269 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		05DA1F562CAC467700A88207 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		05E36A382B04F9A600EC5845 /* AppNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigation.swift; sourceTree = "<group>"; };
 		05E642CA2AF3E03F00733AC6 /* Hizmet Burada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hizmet Burada.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,10 +257,11 @@
 		05924CA22CC29E3400E054D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				05CF224A2CC7D243003AA269 /* MessageModel.swift */,
+				05CF22482CC7C856003AA269 /* BidModel.swift */,
 				05924C9A2CC29E3400E054D7 /* City.swift */,
 				05924C9B2CC29E3400E054D7 /* Comments.swift */,
 				05924C9C2CC29E3400E054D7 /* JobModel.swift */,
-				05924C9D2CC29E3400E054D7 /* Message.swift */,
 				05924C9E2CC29E3400E054D7 /* Profiltem.swift */,
 				05924C9F2CC29E3400E054D7 /* Question.swift */,
 				05924CA02CC29E3400E054D7 /* ServiceModel.swift */,
@@ -530,7 +533,6 @@
 				05924CBD2CC29E5600E054D7 /* Util.swift in Sources */,
 				05924CAE2CC29E3B00E054D7 /* ServiceProvider.swift in Sources */,
 				05924CAF2CC29E3B00E054D7 /* ServiceRecipient.swift in Sources */,
-				05924CA72CC29E3400E054D7 /* Message.swift in Sources */,
 				05924CA82CC29E3400E054D7 /* Question.swift in Sources */,
 				05924CA92CC29E3400E054D7 /* Comments.swift in Sources */,
 				05924CAA2CC29E3400E054D7 /* ServiceModel.swift in Sources */,
@@ -540,6 +542,7 @@
 				05924C922CC29E2900E054D7 /* ResarvationVr.swift in Sources */,
 				05924CB62CC29E5000E054D7 /* Jobİnformation.swift in Sources */,
 				05924CB72CC29E5000E054D7 /* UserManager.swift in Sources */,
+				05CF224B2CC7D24D003AA269 /* MessageModel.swift in Sources */,
 				05924CB82CC29E5000E054D7 /* ServiceManager.swift in Sources */,
 				05924CE22CC29E5D00E054D7 /* Menu.swift in Sources */,
 				05924CE32CC29E5D00E054D7 /* SearchPage.swift in Sources */,
@@ -547,6 +550,7 @@
 				05924CE52CC29E5D00E054D7 /* ProviderMail.swift in Sources */,
 				05924CE62CC29E5D00E054D7 /* MailPasswordPage.swift in Sources */,
 				05924CE72CC29E5D00E054D7 /* RecipientLocation.swift in Sources */,
+				05CF22492CC7C862003AA269 /* BidModel.swift in Sources */,
 				05924CE82CC29E5D00E054D7 /* SecondScreen.swift in Sources */,
 				05924CE92CC29E5D00E054D7 /* BasicScreen.swift in Sources */,
 				05924CEA2CC29E5D00E054D7 /* ReservationPage.swift in Sources */,

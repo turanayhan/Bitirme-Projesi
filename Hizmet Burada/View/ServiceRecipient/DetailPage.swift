@@ -171,8 +171,8 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        setupCustomBackButton()
+      
+        setupCustomBackButton(with: "")
         view.backgroundColor = UIColor(hex: "#F1FAFE")
         fetchSehirler()
         adress()
@@ -190,16 +190,7 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-          navigationItem.titleView = navigationTitle
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     
     
     func adress (){
@@ -391,15 +382,15 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
         }
         
         Jobİnformation.shared.addInfo(key: key, value: textBox.text)
-        let user = UserManager.shared.getUser()
-        let uniqueID = UUID().uuidString
-        let ref = Database.database().reference().child("Jobs").child(user.id!).child(String(jobid))
-        instance = Jobİnformation.shared.information
-        
-       
-        let adress = (self.location1.text ?? "") + "/" + (self.location2.text ?? "") + "/" + (self.location3.text ?? "")
-        let yeni = JobModel(nameSurname: user.nameSurname!,detail:Jobİnformation.shared.jobDetail ?? "bos" , id: user.id!, information: instance,adress: adress,reservationDate: "\(reservationDay) \(reservationMonth)-\(reservationHour)")
-        let dictionary = yeni.toDictionary()
+             let user = UserManager.shared.getUser()
+             let uniqueID = UUID().uuidString
+             let ref = Database.database().reference().child("Jobs").child(user.id!).child(String(jobid))
+             instance = Jobİnformation.shared.information
+             
+            
+             let adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
+        let yeni = JobModel(nameSurname: user.nameSurname!,detail:Jobİnformation.shared.jobDetail ?? "bos" , id: user.id!, information: instance,adress: adress,reservationDate: "\(reservationDay) \(reservationMonth)-\(reservationHour)",jobId: String(jobid))
+             let dictionary = yeni.toDictionary()
         
         
         

@@ -97,7 +97,7 @@ class BasicScreen: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         view.backgroundColor = UIColor(hex: "#F1FAFE")
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         
         
 
@@ -118,15 +118,7 @@ class BasicScreen: UIViewController {
         }, completion: nil)
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
 
     func desing() {
         let screenWidth = UIScreen.main.bounds.width

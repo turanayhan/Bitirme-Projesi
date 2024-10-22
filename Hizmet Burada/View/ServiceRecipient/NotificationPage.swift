@@ -13,9 +13,9 @@ import Firebase
 class NotificationPage: UIViewController  {
     
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.customizeBackButton()
-      
+        customnNavigation()
     }
+
    
 
     override func viewDidLoad() {

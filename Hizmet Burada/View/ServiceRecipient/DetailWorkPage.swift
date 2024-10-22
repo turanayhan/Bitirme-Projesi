@@ -193,7 +193,7 @@ class DetailWorkPage: UIViewController , UICollectionViewDelegateFlowLayout,UICo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         collectionView.delegate = self
         collectionView.dataSource = self
         navigationController?.isNavigationBarHidden = false
@@ -215,16 +215,7 @@ class DetailWorkPage: UIViewController , UICollectionViewDelegateFlowLayout,UICo
         
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-          navigationItem.titleView = navigationTitle
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     
     func star() -> Double {
         // Eğer yorumlar mevcutsa

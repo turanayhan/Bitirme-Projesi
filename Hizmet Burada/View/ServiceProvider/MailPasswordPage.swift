@@ -112,8 +112,7 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         view.backgroundColor = .white
-        navigationItem.title = ""
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         stackView.addArrangedSubview(mail)
         stackView.addArrangedSubview(password)
         view.addSubview(stackView)
@@ -127,15 +126,7 @@ class MailPasswordPage: UIViewController, UITextFieldDelegate {
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+    
     
     @objc func keyboardWillShow(_ notification: NSNotification) {
         guard let userInfo = notification.userInfo,

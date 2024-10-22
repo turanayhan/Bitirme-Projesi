@@ -24,7 +24,29 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
             jobName.text = modelDetail?.nameSurname
             jobDetail.text = modelDetail?.detail
             date.text = modelDetail?.announcementDate
+            numberOffer.text =  "\(modelDetail?.bids?.count ?? 0) teklif aldı"
             items = modelDetail?.information.map { "\($0.value)" } ?? []
+            if modelDetail?.status == true {
+                nextButton.setTitle("Teklif verdin detaylara bak", for: .normal)
+                nextButton.backgroundColor = UIColor(hex: "E3F2FD")
+                nextButton.setTitleColor(UIColor(hex: "40A6F8"), for: .normal)
+            }
+            else {
+                nextButton.backgroundColor = UIColor(hex: "#40A6F8")
+                nextButton.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
+                if let bids = modelDetail?.bids, !bids.isEmpty {
+                    nextButton.setTitle("Teklif Ver", for: .normal)
+                    
+                  
+                } else {
+                    nextButton.setTitle("İlk teklif veren sen ol", for: .normal)
+                }
+                
+              
+                
+            }
+            
+            
             collectionView.reloadData()
         }
     }
@@ -108,8 +130,6 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
     let nextButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Teklif Ver", for: .normal)
-        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
-        button.backgroundColor = UIColor(hex: "#40A6F8")
         button.layer.cornerRadius = 4
         button.titleLabel?.font = UIFont(name: "Avenir", size: 12)
         button.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
@@ -139,7 +159,7 @@ class WorkOp: UITableViewCell, UICollectionViewDataSource, UICollectionViewDeleg
         jobStatus.numberOfLines = 0
         jobStatus.textAlignment = .left
         jobStatus.textColor = .darkGray
-        jobStatus.text = "1 teklif aldı"
+       
         return jobStatus
     }()
     

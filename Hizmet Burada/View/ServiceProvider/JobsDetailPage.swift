@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseDatabaseInternal
+import JGProgressHUD
 
 class JobsDetailPage: UIViewController ,UITextViewDelegate {
 
@@ -15,6 +16,26 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
                
                nameSurnameText.text = modelic?.nameSurname
                jobDetail.text = modelic?.detail
+               
+               if modelic?.status == true {
+                   nextButton.isEnabled = false
+                   nextButton.isHidden = true
+                   textBox.isHidden = true
+                   priceText.isHidden = true
+                   priceTextField.isHidden = true
+                   opportunityText.isHidden = true
+                   chatText.isHidden = true
+                
+             
+               }
+               else {
+                   nextButton.isEnabled = true
+                   nextButton.isHidden = false
+                   textBox.isHidden = false
+                   priceText.isHidden = false
+               }
+          
+               
                
                if let information = modelic?.information {
                    var index = 0
@@ -58,6 +79,11 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
            scrollView.showsVerticalScrollIndicator = false
            return scrollView
        }()
+    
+    lazy var progresBar: JGProgressHUD = {
+        let progresBar = JGProgressHUD(style: .light)
+        return progresBar
+    }()
     
     
     
@@ -300,12 +326,12 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         return button
     }()
     
-    var messageList : [Message] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        setupCustomBackButton()
+        setupCustomBackButton(with: "Detaylar")
+      
         
         view.backgroundColor = UIColor(hex: "#F1FAFE")
         view.addSubview(scrollView)
@@ -338,16 +364,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         
     }
     
-    
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+ 
     
 
     func desing(){
@@ -387,71 +404,68 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     
     
     @objc func loginClick(click :UIButton!){
-        let currentDate = Date()
+        
+        progresBar.show(in: self.view)
+        let date = Date() // Şu anki tarih ve zaman
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM yyyy" // "dd" = gün, "MMMM" = ay adı, "yyyy" = yıl
 
-        // Şu anki tarih ve saat bilgisini saniye cinsinden al
-        let timestamp = currentDate.timeIntervalSince1970
+        let currentDate = formatter.string(from: date) // Tarihi string olarak formatla
+     
 
-    
         
-        var msg = Message(senderID: UserManager.shared.getUser().id!, receiverID: modelic?.id ?? "0", text: textBox.text!, timestamp: timestamp, price: priceTextField.text!)
-       
+        let user = UserManager.shared.getUser()
         
-        
-        messageList.append(msg)
-        modelic?.message = messageList
+        let model = BidModel(id: user.id ?? "0", providerId: user.id ?? "0", providerName: user.nameSurname ?? "0", price:  Double(Int(priceTextField.text ?? "") ?? 0), message: textBox.text, bidDate: currentDate)
+        addBid(to: modelic?.id ?? "yok", bid: model)
 
-        let uniqueID = UUID().uuidString
-        let ref = Database.database().reference().child("teklifler").child(modelic!.id)
-        let dictionary = modelic!.toDictionary()
-        ref.updateChildValues(dictionary) { (error, _) in
-            if let error = error {
-                print("İşlem başarısız oldu: \(error.localizedDescription)")
-            } else {
-                
-                
-                self.pushMessage(a: msg)
-             
-            }
-        }
-        
-        
-        
-        
-        
         
     }
     
-    
-    
-    func pushMessage(a :Message){
+    func addBid(to jobId: String, bid: BidModel) {
+        let ref = Database.database().reference().child("Jobs").child(jobId).child(modelic?.jobId ?? "3122").child("bids").child(bid.id)
+        let bidData: [String: Any] = [
+            "providerId": bid.providerId,
+            "providerName": bid.providerName,
+            "price": bid.price,
+            "message": bid.message,
+            "bidDate": bid.bidDate,
+        ]
         
-        let currentDate = Date()
-        let timestamp = currentDate.timeIntervalSince1970
-        let timestampString = String(format: "%.0f", timestamp)
-        let uniqueID = UUID().uuidString
-        
-        let ref = Database.database().reference().child("mesajlar").child(timestampString)
-     
-        
-     
-        
-        
-        
-        ref.updateChildValues(a.toDictionarym()) { (error, _) in
+        ref.setValue(bidData) { error, _ in
             if let error = error {
-                print("İşlem başarısız oldu: \(error.localizedDescription)")
+                print("Teklif eklenirken hata oluştu: \(error.localizedDescription)")
+                self.progresBar.dismiss(afterDelay: 2.0)
             } else {
-                
-                self.navigationController?.pushViewController(OfferPage(), animated: true)
-             
+                print("Teklif başarıyla eklendi.")
+                self.progresBar.dismiss(afterDelay: 2.0)
+                self.navigationController?.popViewController(animated: true)
+               
             }
         }
-        
-        
-        
-        
     }
+
+    
+    
+    func addMessage(to jobId: String, bidId: String, message: MessageModel) {
+        let ref = Database.database().reference().child("Jobs").child(jobId).child("bids").child(bidId).child("messages").childByAutoId()
+        let messageData: [String: Any] = [
+            "senderId": message.senderId,
+            "senderName": message.senderName,
+            "messageText": message.messageText,
+            "timestamp": message.timestamp
+        ]
+        
+        ref.setValue(messageData) { error, _ in
+            if let error = error {
+                print("Mesaj eklenirken hata oluştu: \(error.localizedDescription)")
+            } else {
+                print("Mesaj başarıyla eklendi.")
+            }
+        }
+    }
+
+
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textBox.text == "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver." {

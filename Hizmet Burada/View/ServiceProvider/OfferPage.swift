@@ -25,12 +25,16 @@ class OfferPage: UIViewController , UITableViewDataSource, UITableViewDelegate  
           table.translatesAutoresizingMaskIntoConstraints = false
           return table
       }()
+    override func viewWillAppear(_ animated: Bool) {
+        customnNavigation()
+    }
+
       
       override func viewDidLoad() {
           super.viewDidLoad()
           view.backgroundColor = UIColor(hex: "#F1FAFE")
           getData()
-          navigationItem.title = ""
+       
           view.addSubview(tableView)
           
           

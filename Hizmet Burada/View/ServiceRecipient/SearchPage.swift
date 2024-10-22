@@ -46,7 +46,7 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        menu()
+        customnNavigation()
 
     }
     
@@ -135,40 +135,7 @@ class SearchPage: UIViewController,UITableViewDataSource, UITableViewDelegate  {
     
     
     
-    func menu(){
-        let menuButton = UIBarButtonItem(
-            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
-            style: .plain,
-            target: self,
-            action: #selector(openMenu)
-        )
-        let titleLabel = UILabel()
-        titleLabel.text = "Hizmet Burada"
-        titleLabel.textColor = .black // Başlık rengi
-        titleLabel.font = UIFont(name: "Chalkduster", size: 15)
-        titleLabel.textAlignment = .center
-        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
-        navigationItem.leftBarButtonItem = menuButton
-        navigationItem.titleView = titleLabel
-        let menu = SideMenuNavigationController(rootViewController: Menu())
-        menu.leftSide = true // Sol taraftan açılacak
-        SideMenuManager.default.leftMenuNavigationController = menu
-        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
-    }
-    
-    
-        
-        
-    @objc func openMenu() {
-        if let menu = SideMenuManager.default.leftMenuNavigationController {
-    
-            present(menu, animated: true, completion: nil)
-            
-        }
-        
-        
 
-    }
 
 
 

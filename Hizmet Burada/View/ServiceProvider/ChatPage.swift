@@ -12,7 +12,7 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // Mesajlar
   
-    var messageList: [Message] = []
+    var messageList: [MessageModel] = []
     var receiverID : String?
         
        
@@ -158,10 +158,10 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: Chat.identifier, for: indexPath) as! Chat
             
             
-            cell.messageLabelSend.text = messageList[indexPath.row].text
-            cell.messageLabelRecaiver.text = messageList[indexPath.row].text
+            cell.messageLabelSend.text = messageList[indexPath.row].messageText
+            cell.messageLabelRecaiver.text = messageList[indexPath.row].messageText
        
-            if UserManager.shared.getUser().id == messageList[indexPath.row].senderID {
+            if UserManager.shared.getUser().id == messageList[indexPath.row].senderId {
                 cell.messageLabelSend.isHidden = false
                 cell.messageLabelRecaiver.isHidden = true
                 
@@ -193,9 +193,7 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
         let currentDate = Date()
         let timestamp = currentDate.timeIntervalSince1970
         
-        
-        pushMessage(a: Message(senderID: UserManager.shared.getUser().id ?? "", receiverID:receiverID ?? "", text: messageInputView.text ?? "", timestamp: timestamp, price: ""))
-        messageInputView.text = ""
+ 
        
         
         
@@ -204,38 +202,7 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     func getMessage(){
-        
-        let ref = Database.database().reference().child("mesajlar")
-    
-        ref.observe(.value, with: { snapshot in
-            
-                self.messageList.removeAll()
-                self.tableView.reloadData()
-         
-            if let value = snapshot.value as? [String: Any] {
-               
-                for (_,data) in value {
-                    
-                    if let veri = (data as? [String: Any]) {
-                        
-    
-                        let message = Message(senderID: veri["senderID"] as! String, receiverID: veri["receiverID"] as! String, text: veri["text"] as! String, timestamp: veri["timestamp"] as! Double, price: veri["price"] as! String)
-                        
-                        self.messageList.append(message)
-                        self.tableView.reloadData()
-             
-                        
-                               }
-                }
-                
-    
-                      self.messageList.sort { $0.timestamp < $1.timestamp }
-                      self.tableView.reloadData()
-        
-                   }
-        }) { (error) in
-            print("Error: \(error.localizedDescription)")
-        }
+
         
         
         
@@ -243,28 +210,9 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         
     
-    func pushMessage(a :Message){
+    func pushMessage(){
         
-        messageList.removeAll()
-        tableView.reloadData()
-        
-        let currentDate = Date()
-        let timestamp = currentDate.timeIntervalSince1970
-        let timestampString = String(format: "%.0f", timestamp)
-        
-        _ = UUID().uuidString
-        
-        let ref = Database.database().reference().child("mesajlar").child(timestampString)
-     
-        ref.updateChildValues(a.toDictionarym()) { (error, _) in
-            if let error = error {
-                print("İşlem başarısız oldu: \(error.localizedDescription)")
-            } else {
-                
-            
-             
-            }
-        }
+
         
         
         

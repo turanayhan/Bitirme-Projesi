@@ -34,7 +34,6 @@ class Work: UITableViewCell {
   
     let date: UILabel = {
         let date = UILabel()
-       
         date.textColor = .darkGray
         date.textAlignment = .center
         date.font = UIFont(name: "Avenir", size: 11)
@@ -52,7 +51,7 @@ class Work: UITableViewCell {
     
     lazy var profileImage: UIImageView = {
        let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "logo")
+        profileImage.image = UIImage(named: "10780359_19197068")
         profileImage.contentMode = .scaleAspectFill
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 12
@@ -132,7 +131,7 @@ class Work: UITableViewCell {
         
         separatorLine.anchor(top: jobName.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 0.5))
         
-        jobStatus.anchor(top: separatorLine.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 8, left: 12, bottom: 0, right: 12),size: .init(width: 0, height: 50))
+        jobStatus.anchor(top: separatorLine.bottomAnchor, bottom: nil, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 8, left: 12, bottom: 0, right: 12),size: .init(width: 0, height: 0))
         
         profileImage.anchor(top: jobStatus.bottomAnchor, bottom: nil, leading: nil, trailing: nil,padding: .init(top: 6, left: 0, bottom: 0, right: 0),size: .init(width: 60, height: 60))
         profileImage.centerXAnchor.constraint(equalTo: cardView.centerXAnchor).isActive = true

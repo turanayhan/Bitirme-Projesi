@@ -6,6 +6,7 @@
 //
 import Foundation
 import UIKit
+import SideMenu
 
 
 extension UIView {
@@ -106,17 +107,7 @@ extension UITextField {
         self.addSubview(topPadding)
         self.addSubview(bottomPadding)
     }
-    
-    
-    
-    
-    
-  
 
-  
-
-    
-    
     
 }
 
@@ -142,4 +133,63 @@ extension UIColor {
 
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
     }
+}
+
+extension UIViewController {
+
+    func customnNavigation() {
+        let menuButton = UIBarButtonItem(
+            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
+            style: .plain,
+            target: self,
+            action: #selector(openMenu)
+        )
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "Hizmet Burada"
+        titleLabel.textColor = .black // Başlık rengi
+        titleLabel.font = UIFont(name: "Chalkduster", size: 15)
+        titleLabel.textAlignment = .center
+        
+        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
+        navigationItem.leftBarButtonItem = menuButton
+        navigationItem.titleView = titleLabel
+        
+        // Menü ayarları
+        let menu = SideMenuNavigationController(rootViewController: Menu())
+        menu.leftSide = true // Sol taraftan açılacak
+        SideMenuManager.default.leftMenuNavigationController = menu
+        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
+    }
+
+    @objc func openMenu() {
+        if let menu = SideMenuManager.default.leftMenuNavigationController {
+            present(menu, animated: true, completion: nil)
+        }
+    }
+        func setupCustomBackButton(with title: String) {
+        let backButton = UIBarButtonItem(
+            image: UIImage(systemName: "chevron.backward"),
+            style: .plain,
+            target: self,
+            action: #selector(backButtonTapped)
+        )
+        
+        backButton.tintColor = .black
+        
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textColor = .black // Başlık rengi
+        titleLabel.font = UIFont(name: "Chalkduster", size: 15)
+        titleLabel.textAlignment = .center
+        navigationItem.leftBarButtonItem = backButton
+        navigationItem.titleView = titleLabel
+    }
+
+
+    @objc func backButtonTapped() {
+         navigationController?.popViewController(animated: true)
+     }
+
+    
 }

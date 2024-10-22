@@ -110,8 +110,8 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        setupCustomBackButton()
+    
+        setupCustomBackButton(with:"")
         view.backgroundColor = UIColor(hex: "#F1FAFE")
       
         collectionView.delegate = self
@@ -124,16 +124,7 @@ class DatePage: UIViewController, UICollectionViewDelegate, UICollectionViewData
         
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-          navigationItem.titleView = navigationTitle
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     
     func generateDays() {
         let calendar = Calendar.current

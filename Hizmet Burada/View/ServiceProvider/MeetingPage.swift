@@ -8,6 +8,11 @@
 import UIKit
 
 class MeetingPage: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        customnNavigation()
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()

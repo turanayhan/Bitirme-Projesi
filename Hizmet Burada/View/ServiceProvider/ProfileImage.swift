@@ -88,7 +88,7 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
         super.viewDidLoad()
         
         view.backgroundColor = UIColor(hex: "#F1FAFE")
-        setupCustomBackButton()
+        setupCustomBackButton(with: "")
         view.addSubview(profileImageText)
         view.addSubview(profileImageText2)
         view.addSubview(profileImage)
@@ -96,15 +96,7 @@ class ProfileImage: UIViewController , UIImagePickerControllerDelegate, UINaviga
         desing()
     }
     
-    func setupCustomBackButton() {
-          let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonTapped))
-          backButton.tintColor = .black // Rengi değiştirilebilir
-          navigationItem.leftBarButtonItem = backButton
-      }
-    @objc func backButtonTapped() {
-          // Geri gitme işlemi (isteğe bağlı olarak bir uyarı da eklenebilir)
-          navigationController?.popViewController(animated: true)
-      }
+
     
     
     func desing() {

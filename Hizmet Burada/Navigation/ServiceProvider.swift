@@ -60,24 +60,7 @@ class ServiceProvider: UITabBarController {
         
         
         
-        
-        let menuButton = UIBarButtonItem(
-            image: UIImage(systemName: "line.horizontal.3"), // Menü ikonu
-            style: .plain,
-            target: self,
-            action: #selector(openMenu)
-        )
-        menuButton.tintColor = .black // Simge rengi (isteğe bağlı)
 
-        navigationItem.leftBarButtonItem = menuButton
-        
-        // Menü ayarları
-        let menu = SideMenuNavigationController(rootViewController: Menu())
-        menu.leftSide = true // Sol taraftan açılacak
-        SideMenuManager.default.leftMenuNavigationController = menu
-        
-        // Kaydırarak menü açmayı etkinleştir
-        SideMenuManager.default.addPanGestureToPresent(toView: self.view)
         
         
         
@@ -86,14 +69,7 @@ class ServiceProvider: UITabBarController {
         
     }
     
-    
-    @objc func openMenu() {
-        if let menu = SideMenuManager.default.leftMenuNavigationController {
-    
-            present(menu, animated: true, completion: nil)
-            
-        }
-    }
+
     override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
         
@@ -102,8 +78,8 @@ class ServiceProvider: UITabBarController {
         tabBar.isTranslucent = false
         tabBar.barTintColor = UIColor(hex: "#E3F2FD")
             if navigationController != nil {
-                self.navigationController?.setNavigationBarHidden(true, animated: true)
-                self.navigationController?.isNavigationBarHidden = false
+      
+                self.navigationController?.isNavigationBarHidden = true
             }
         }
     
