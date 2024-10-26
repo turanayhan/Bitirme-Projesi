@@ -24,6 +24,8 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
                        }
                    }
                }
+               
+               
 
                
                nameSurnameText.text = modelic?.nameSurname
@@ -338,6 +340,9 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         return button
     }()
     
+    
+    var chatManager = ChatManager()
+    
 
     
     override func viewDidLoad() {
@@ -451,22 +456,38 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
             } else {
                 print("Teklif başarıyla eklendi.")
                 
-                let chatManager = ChatManager()
+               
                 
                 var userID = UserManager.shared.getUser().id
                 let recipientID = self.modelic?.id
+                var detail = self.modelic?.detail
+                var price = self.priceTextField.text
+                
+                let text = "Merhaba, talep ettiğiniz \(detail ?? "belirtilmeyen") işini  \(price ?? "1") TL karşılığında en iyi şekilde yapabilirim."
+                
+                
+                
                        
-                chatManager.createChat(participants: [userID!, recipientID!]) { chatID in
+                self.chatManager.createChat(participants: [userID!, recipientID!]) { chatID in
                     if let chatID = chatID {
                         print("Sohbet başarıyla oluşturuldu. Chat ID: \(chatID)")
+                        self.sendMessage(chatId: chatID, senderId: userID!, recipientId: recipientID!, text: text)
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     } else {
                         print("Sohbet oluşturulamadı.")
                     }
                 }
-
-
-
-                
                 self.progresBar.dismiss(afterDelay: 2.0)
                 self.navigationController?.popViewController(animated: true)
                
@@ -476,6 +497,23 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
 
     
  
+    
+    func sendMessage(chatId:String,senderId:String,recipientId:String,text:String) {
+        
+        chatManager.sendMessage(chatID: chatId, senderID: senderId, recipientID: recipientId, text: text) { result in
+            switch result {
+            case .success():
+                print("Mesaj başarıyla gönderildi.")
+            
+    
+            case .failure(let error):
+                print("Mesaj gönderme hatası: \(error.localizedDescription)")
+            }
+        }
+        
+    
+        
+    }
 
 
     

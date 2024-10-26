@@ -700,8 +700,8 @@
             filePath = "Hizmet Burada/View/ServiceProvider/JobsDetailPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "modelic"
             landmarkType = "24">
          </BreakpointContent>
@@ -716,8 +716,8 @@
             filePath = "Hizmet Burada/View/ServiceProvider/JobsDetailPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "modelic"
             landmarkType = "24">
          </BreakpointContent>
@@ -924,8 +924,8 @@
             filePath = "Hizmet Burada/View/ServiceProvider/JobsDetailPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "modelic"
             landmarkType = "24">
          </BreakpointContent>
@@ -956,8 +956,8 @@
             filePath = "Hizmet Burada/View/ServiceProvider/ChatPage.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "getMessages(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -992,22 +992,6 @@
             endingLineNumber = "106"
             landmarkName = "observeMessages(chatID:completion:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "20119BFA-BA98-4F5B-9E77-A07060B5F269"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hizmet Burada/Cell/Chat.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
-            landmarkName = "modelic"
-            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

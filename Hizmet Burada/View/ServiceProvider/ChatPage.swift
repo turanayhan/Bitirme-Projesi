@@ -35,6 +35,9 @@ class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
             tableView.separatorStyle = .none
             tableView.allowsSelection = false
             tableView.backgroundColor = .clear
+            tableView.estimatedRowHeight = 44 // Öngörülen minimum yükseklik
+            tableView.rowHeight = UITableView.automaticDimension
+
             return tableView
         }()
         
@@ -271,7 +274,7 @@ class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
          
          
          let nameLabel = UILabel()
-         nameLabel.text = "Turan Ayhan" // Kullanıcı adı
+        nameLabel.text = userRecipient?.nameSurname // Kullanıcı adı
          nameLabel.font = UIFont(name: "Avenir-heavy", size: 14)
          nameLabel.textColor = .black
         let nameLabel2 = UILabel()
@@ -353,25 +356,17 @@ class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .clear
         
         let message = messageList[indexPath.row]
-        
-        // Mesaj göndericisini kontrol et
+        cell.modelic = message
         if message.senderID == userSender?.id{
-            cell.messageLabelSend.text = message.text
-            cell.messageLabelSend.isHidden = false
-            cell.messageLabelRecaiver.isHidden = true
+            cell.configure(sentByCurrentUser: true)
         } else {
-            cell.messageLabelRecaiver.text = message.text
-            cell.messageLabelRecaiver.isHidden = false
-            cell.messageLabelSend.isHidden = true
+            cell.configure(sentByCurrentUser: false)
         }
         
         return cell
     }
 
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 36  // Örnek: Hücre yüksekliği 80 piksel
-        }
+
     
     
     

@@ -174,6 +174,10 @@ class Message: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
         cell.selectionStyle = .none
         cell.model = chatList[indexPath.row].participantsInfo[0]
         cell.question = chatList[indexPath.row].chat
+        
+        
+        
+        
         return cell
     }
 
