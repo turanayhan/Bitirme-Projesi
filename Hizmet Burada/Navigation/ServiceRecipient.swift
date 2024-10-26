@@ -14,7 +14,7 @@ class ServiceRecipient: UITabBarController {
         let vc1 = SearchPage()
         let vc2 = MyworksPage()
         let vc3 = NotificationPage()
-        let vc4 = ProfilePage()
+        let vc4 = Message()
         
         vc1.title = "Hizmet Al"
         vc2.title = "İşlerim"

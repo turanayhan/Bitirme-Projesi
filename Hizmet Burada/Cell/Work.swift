@@ -7,8 +7,15 @@
 
 import UIKit
 
+protocol WorkDelegate: AnyObject {
+    func didTapButton(in cell: Work)
+}
 
-class Work: UITableViewCell {
+
+class Work: UITableViewCell , UITableViewDelegate, UITableViewDataSource {
+    
+    
+    weak var delegate: WorkDelegate?
     
     lazy var separatorLine:UIView = {
         
@@ -84,16 +91,34 @@ class Work: UITableViewCell {
            return button
        }()
     
-    let deleteButton: UIButton = {
+
+    
+    
+    lazy var dropdownButton: UIButton = {
         let button = UIButton(type: .system)
-        let image = UIImage(systemName: "trash") // Silme simgesi
+        let image = UIImage(systemName:"ellipsis") // Resmin ismini gir
         button.setImage(image, for: .normal)
-        button.tintColor = .red
-        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .black  // Resmin rengini ayarlayabilirsin
+        button.layer.borderColor = UIColor.lightGray.cgColor
+   
+        button.addTarget(self, action: #selector(toggleDropdown), for: .touchUpInside)
         return button
     }()
     
+    
+    lazy var ilceDropdown: UITableView = {
+        let tableView = UITableView()
+        tableView.layer.borderWidth = 0.5
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.cornerRadius = 5
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none  // Alt çizgiyi kaldır
+        tableView.isHidden = true  // Başlangıçta gizli
+        return tableView
+    }()
+    let ilceList = ["Tekliflere bak", "Detaylara bak", "Talebi iptal et"]  // İlçeler
+    var selectedIlce: String?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -105,8 +130,8 @@ class Work: UITableViewCell {
         cardView.addSubview(separatorLine)
         cardView.addSubview(profileImage)
         cardView.addSubview(nextButton)
-        cardView.addSubview(deleteButton)
-        
+        cardView.addSubview(dropdownButton)
+        cardView.addSubview(ilceDropdown)
        
         desing()
      
@@ -114,9 +139,53 @@ class Work: UITableViewCell {
        
     }
     
+    
+    
+    
+    // TableView için kaç satır olacağını belirtiyoruz
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return ilceList.count
+    }
+
+    // Her bir hücre için veriyi sağlıyoruz
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") ?? UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.textLabel?.text = ilceList[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Avenir", size: 10)
+        cell.selectionStyle = .none
+
+
+        return cell
+    }
+    // UITableViewDelegate metodunu ekliyoruz
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 36 // Burada istediğin sabit yüksekliği belirleyebilirsin
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedIlce = ilceList[indexPath.row]
+        
+        // Dropdown butonunun başlığını güncelle
+        dropdownButton.setTitle(selectedIlce, for: .normal)
+        ilceDropdown.isHidden = true  // Dropdown'u gizle
+        
+  
+    }
+
+    
+    
+    @objc func toggleDropdown() {
+        ilceDropdown.isHidden.toggle()
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func nextButtonTapped2() {
+        delegate?.didTapButton(in: self)
+    }
+    
     
     func desing(){
         
@@ -139,13 +208,21 @@ class Work: UITableViewCell {
         nextButton.anchor(top: nil, bottom: cardView.bottomAnchor, leading: cardView.leadingAnchor, trailing: cardView.trailingAnchor,padding: .init(top: 0, left: 12, bottom: 8, right: 12),size: .init(width: 0, height: 26))
         
         
-        deleteButton.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 12), size: .init(width: 20, height: 20))
-
+        dropdownButton.anchor(top: cardView.topAnchor, bottom: nil, leading: nil, trailing: cardView.trailingAnchor, padding: .init(top: 10, left: 0, bottom: 0, right: 12), size: .init(width: 20, height: 20))
         
+        ilceDropdown.anchor(top: dropdownButton.bottomAnchor,
+                            bottom: nextButton.topAnchor,
+                                   leading: nil,
+                                   trailing: cardView.trailingAnchor,
+                            padding: .init(top: 0, left: 0, bottom: 0, right: 6),
+                            
+                                   size: .init(width: 100, height: 0))
+
+    
     }
     @objc private func nextButtonTapped() {
      
-            return
+        nextButtonTapped2()
         }
     
     

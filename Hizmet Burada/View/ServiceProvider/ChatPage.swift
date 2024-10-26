@@ -8,135 +8,328 @@
 import UIKit
 import FirebaseDatabaseInternal
 
-class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Mesajlar
-  
+    var chatmanager = ChatManager()
+    var id: String?
+    
+    var userRecipient : User?
+    var userSender  :User?
+    
     var messageList: [MessageModel] = []
-    var receiverID : String?
-        
-       
     
-    
-    
-    
-    
-    lazy var imageProfile:UIImageView = {
-        let logo = UIImageView()
-        logo.image = UIImage(systemName:"person.crop.circle.dashed")
-        logo.contentMode = .scaleAspectFill
-        logo.tintColor = .systemYellow
-     
-        return logo
-    }()
-    
-    
-    lazy var nameSurnameText:UILabel = {
-        let infoText = UILabel()
-        infoText.text = "Turan Ayhan"
-        infoText.textColor = .black
-        infoText.textAlignment = .left
-        
-        infoText.font = UIFont(name: "Helvetica-Bold", size: 16)
-       
-        
-        return infoText
-    }()
-    
-    
-    
+    var modelic : ChatWithUsersModel? {
+        didSet {
+            
+            id = modelic?.chat.chatID
+            
+            userRecipient = modelic?.participantsInfo[0]
+            userSender = UserManager.shared.getUser()
+            
+        }
+    }
+
         let tableView: UITableView = {
             let tableView = UITableView()
             tableView.translatesAutoresizingMaskIntoConstraints = false
             tableView.separatorStyle = .none
             tableView.allowsSelection = false
+            tableView.backgroundColor = .clear
             return tableView
         }()
         
-        // Mesaj giriş alanı
-    let messageInputView: UITextField = {
-           let textField = UITextField()
-           textField.translatesAutoresizingMaskIntoConstraints = false
-           textField.placeholder = "Mesajınızı buraya yazın..."
-           textField.borderStyle = .roundedRect
-           textField.layer.cornerRadius = 16
-           textField.clipsToBounds = true
-           textField.backgroundColor = .systemYellow
+    lazy var rightButton: UIButton = {
+        let rightButton = UIButton(type: .system)
+        if let image = UIImage(systemName: "photo") {
+            let largerImage = image.withConfiguration(UIImage.SymbolConfiguration(pointSize: 24, weight: .light))
+            rightButton.tintColor = .lightGray
+            rightButton.setImage(largerImage, for: .normal)
+        }
+    
+        rightButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        return rightButton
+    }()
+    
+    lazy var leftButton:UIButton = {
+        
+        let leftButton = UIButton(type: .system)
+        if let image = UIImage(systemName: "plus") {
+            let largerImage = image.withConfiguration(UIImage.SymbolConfiguration(pointSize: 28, weight: .light))
+            leftButton.setImage(largerImage, for: .normal)
+        }
+        leftButton.tintColor = .lightGray
 
-           let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-           imageView.image = UIImage(systemName: "plus.message.fill") // İstediğiniz ikonu
-           imageView.tintColor = .gray
+        leftButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        return leftButton
+    }()
+    
+    let messageInputView: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Mesajınızı buraya yazın..."
+        textField.borderStyle = .roundedRect
+        textField.layer.cornerRadius = 4
+        textField.clipsToBounds = true
+        textField.backgroundColor = UIColor(hex: "E3F2FD")
+        textField.font = UIFont.systemFont(ofSize: 12)
+        return textField
+    }()
+    
+    lazy var sendButton: UIButton = {
+        let button = UIButton(type: .system)
+        
+        // Gönder simgesini ekle
+        if let sendIcon = UIImage(systemName: "paperplane.circle.fill") {
+            let resizedIcon = sendIcon.withConfiguration(UIImage.SymbolConfiguration(pointSize: 32, weight: .medium))
+            button.setImage(resizedIcon, for: .normal)
+        }
+        
+  
+        button.tintColor = UIColor(hex: "40A6F8")
+        
+       
+        button.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        return button
+    }()
+
+    
+
+    // Input view genişlik ölçüleri
+    let expandedWidth: CGFloat = UIScreen.main.bounds.width * 0.8
+    let collapsedWidth: CGFloat = UIScreen.main.bounds.width * 0.65
+    var messageInputWidthConstraint: NSLayoutConstraint?
+
+    @objc func textFieldDidChange() {
+        // `Send` butonunu metin dolu olduğunda göster, boş olduğunda gizle
+        sendButton.isHidden = messageInputView.text!.isEmpty
+
+        // Yeni genişliği ayarlamadan önce mevcut constraint'i kaldır
+        messageInputWidthConstraint?.isActive = false
+
+        // İçerik varsa küçült, yoksa genişliği eski haline getir
+        let newWidth = messageInputView.text!.isEmpty ? expandedWidth : collapsedWidth
+        messageInputWidthConstraint = messageInputView.widthAnchor.constraint(equalToConstant: newWidth)
+        messageInputWidthConstraint?.isActive = true
+        
+        // Animasyon ile layout güncelle
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    @objc func sendMessage() {
+        guard let text = messageInputView.text, !text.isEmpty else {
+            print("Mesaj boş olamaz.")
+            return
+        }
+
+        // Mesaj gönderildikten sonra input temizlenir ve genişliği eski haline döner
+        messageInputView.text = ""
+        sendButton.isHidden = true
+
+        // Eski genişliğe döndürmek için mevcut constraint'i kaldır ve yenisini uygula
+        messageInputWidthConstraint?.isActive = false
+        messageInputWidthConstraint = messageInputView.widthAnchor.constraint(equalToConstant: expandedWidth)
+        messageInputWidthConstraint?.isActive = true
+
+        self.chatmanager.sendMessage(chatID: id ?? "0", senderID: userSender?.id ?? "0", recipientID: userRecipient?.id ?? "0", text: text) { result in
+            switch result {
+            case .success():
+                print("Mesaj başarıyla gönderildi.")
             
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("Mesaj gönderme hatası: \(error.localizedDescription)")
+            }
+        }
         
-           return textField
-       }()
         
-        // Gönderme butonu
-    let sendButton: UIButton = {
-           let button = UIButton()
-           button.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
-           button.translatesAutoresizingMaskIntoConstraints = false
-           let iconImageView = UIImageView(image: UIImage(systemName: "paperplane.circle.fill"))
-           iconImageView.tintColor = .systemYellow
-           button.addSubview(iconImageView)
-           iconImageView.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               iconImageView.leadingAnchor.constraint(equalTo: button.leadingAnchor),
-               iconImageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
-               iconImageView.widthAnchor.constraint(equalToConstant: 56),
-               iconImageView.heightAnchor.constraint(equalToConstant: 56)
-           ])
- 
-          
-           
-           return button
-       }()
         
+      
+
+        
+        
+
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+
+
+
+  
+  
+
+    let containerView = UIView()
+
         override func viewDidLoad() {
             super.viewDidLoad()
-            view.backgroundColor = .white
-            
+            setDefaultBackgroundColor()
+            getMessages(id: id ?? "0")
+            setupCustomBackButtons(with: "")
+            sendButton.isHidden = true
+
+      
             // TableView konfigürasyonu
             tableView.delegate = self
             tableView.dataSource = self
             tableView.register(Chat.self, forCellReuseIdentifier: Chat.identifier)
             
             // Gönderme butonuna eylem ekleme
-            sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
             
             // View'e elemanları ekleme
             view.addSubview(tableView)
             view.addSubview(messageInputView)
+            view.addSubview(leftButton)
+            view.addSubview(rightButton)
             view.addSubview(sendButton)
-            view.addSubview(imageProfile)
-            view.addSubview(nameSurnameText)
-            getMessage()
+            messageInputWidthConstraint = messageInputView.widthAnchor.constraint(equalToConstant: expandedWidth)
+               messageInputWidthConstraint?.isActive = true
+
+            messageInputView.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
             
             
-            
+                  NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+                  NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+
+    
             desing()
-          
             
+            // Ekrana dokunma algılayıcı ekleme
+               let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+               view.addGestureRecognizer(tapGesture)
+    
+
         }
+    
+    @objc func dismissKeyboard() {
+        messageInputView.resignFirstResponder()
+    }
+    
+    
+    func getMessages(id: String) {
+   
+
+
+        chatmanager.observeMessages(chatID: id) { [weak self] newMessages in
+            self?.messageList.removeAll()
+            self?.messageList.append(contentsOf: newMessages)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+                
+                // Mesaj sayısını kontrol et ve uygun bir işlem yap
+                if self?.messageList.isEmpty == true {
+                    // Eğer mesaj yoksa, kullanıcıya bilgi verebilirsiniz
+                    print("Henüz mesaj yok.")
+                }
+            }
+        }
+    }
+
+        
+        
+    
+    
+ 
+      @objc func handleKeyboardShow(notification: Notification) {
+          guard let userInfo = notification.userInfo,
+                let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+          
+          // Klavye yüksekliği kadar alt alanı yukarı kaldır
+          let keyboardHeight = keyboardFrame.height
+          UIView.animate(withDuration: 0.3) {
+              self.view.frame.origin.y = -keyboardHeight
+          }
+      }
+
+      // Klavye kapandığında çağrılan metod
+      @objc func handleKeyboardHide(notification: Notification) {
+          UIView.animate(withDuration: 0.3) {
+              self.view.frame.origin.y = 0
+          }
+      }
+    
+    
+    
+    
+    func setupCustomBackButtons(with title: String) {
+         // Geri düğmesi
+         let backButton = UIBarButtonItem(
+             image: UIImage(systemName: "chevron.backward"),
+             style: .plain,
+             target: self,
+             action: #selector(backButtonTapped)
+         )
+         backButton.tintColor = .black
+         navigationItem.leftBarButtonItem = backButton
+       
+        
+         let profileImageView = UIImageView()
+        profileImageView.image = UIImage(systemName: "person.crop.circle.dashed") // Profil resmi adı
+         profileImageView.contentMode = .scaleAspectFill
+         profileImageView.layer.cornerRadius = 18 // Yuvarlak yapmak için
+         profileImageView.layer.masksToBounds = true
+         
+         
+         let nameLabel = UILabel()
+         nameLabel.text = "Turan Ayhan" // Kullanıcı adı
+         nameLabel.font = UIFont(name: "Avenir-heavy", size: 14)
+         nameLabel.textColor = .black
+        let nameLabel2 = UILabel()
+        nameLabel2.text = "Profili görmek için dokun" // Kullanıcı adı
+        nameLabel2.font = UIFont(name: "Avenir", size: 10)
+        nameLabel2.textColor = .black
+       
+         let phoneButton = UIButton(type: .system)
+         phoneButton.setImage(UIImage(systemName: "phone.fill"), for: .normal) // Telefon ikonu
+      
+         phoneButton.addTarget(self, action: #selector(callButtonTapped), for: .touchUpInside)
+         navigationItem.titleView = containerView
+        
+        containerView.anchor(top: nil, bottom: nil, leading: nil, trailing: nil,size: .init(width: UIScreen.main.bounds.width * 0.8, height: 44))
+        
+         containerView.addSubview(profileImageView)
+         containerView.addSubview(nameLabel)
+         containerView.addSubview(nameLabel2)
+         containerView.addSubview(phoneButton)
+         messageInputView.addSubview(rightButton)
+        
+        profileImageView.anchor(top: nil, bottom: nil, leading: containerView.leadingAnchor, trailing: nil,size: .init(width: 42, height: 42))
+         profileImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        profileImageView.tintColor = UIColor(hex: "40A6F8")
+        nameLabel.anchor(top: profileImageView.topAnchor, bottom: nil, leading: profileImageView.trailingAnchor, trailing: nil,padding: .init(top: 0, left: 12, bottom: 0, right: 0))
+        nameLabel2.anchor(top: nameLabel.bottomAnchor, bottom: nil, leading: nameLabel.leadingAnchor, trailing: nil,padding: .init(top: 0, left: 0, bottom: 0, right: 0))
+        
+        phoneButton.anchor(top: nameLabel.topAnchor, bottom: nameLabel2.bottomAnchor, leading: nil, trailing: containerView.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 0))
+        phoneButton.tintColor = .black
+        
+        rightButton.anchor(top: nil, bottom: nil, leading: nil, trailing: messageInputView.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 4),size: .init(width: 0, height: 24))
+        
+     }
+
+     
+     @objc func callButtonTapped() {
+         print("Telefon butonuna tıklandı.")
+         // Telefon butonuna basıldığında yapılacak işlemler
+     }
+    
     
     
     func desing(){
+   
+        tableView.anchor(top:view.safeAreaLayoutGuide.topAnchor, bottom: messageInputView.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
+        messageInputView.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: leftButton.trailingAnchor, trailing: nil,padding: .init(top: 0, left: 6, bottom: 8, right: 12), size: .init(width: UIScreen.main.bounds.width * 0.8, height: 36))
         
-        imageProfile.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: 6, left: 12, bottom: 0, right: 0),size: .init(width: 44, height: 44))
-        
-        nameSurnameText.anchor(top: imageProfile.topAnchor, bottom: imageProfile.bottomAnchor, leading: imageProfile.trailingAnchor, trailing: view.trailingAnchor,padding: .init(top: 0, left: 12, bottom: 0, right: 0))
-        
-        
-        
-        tableView.anchor(top: imageProfile.bottomAnchor, bottom: messageInputView.topAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
-        
-        messageInputView.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: sendButton.leadingAnchor,padding: .init(top: 0, left: 16, bottom: 8, right: 12), size: .init(width: 0, height: 44))
-        
-        
-        sendButton.anchor(top: messageInputView.topAnchor, bottom: messageInputView.bottomAnchor, leading: nil, trailing: view.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 12),
-                          size: .init(width: 56, height: 56)
-        )
+        leftButton.anchor(top: nil, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: 0, left: 16, bottom: 0, right: 0),size: .init(width: 33, height: 33))
+        leftButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor).isActive = true
+        sendButton.anchor(top: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: messageInputView.trailingAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 4, bottom: 0, right: 8))
+            sendButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor).isActive = true
+        rightButton.anchor(top: nil, bottom: nil, leading: nil, trailing: messageInputView.trailingAnchor,
+                           padding: .init(top: 0, left: 0, bottom: 0, right: 4),
+                           size: .init(width: 30, height: 30)) // Boyutu biraz büyütün
+        rightButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor).isActive = true
+
+      
         
     }
     
@@ -146,7 +339,8 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // Gönderme butonuna tıklandığında çağrılan metod
         @objc func sendButtonTapped() {
-         
+            
+       
         }
         
         // TableViewDelegate ve TableViewDataSource metodları
@@ -154,28 +348,26 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
             return messageList.count
         }
         
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: Chat.identifier, for: indexPath) as! Chat
-            
-            
-            cell.messageLabelSend.text = messageList[indexPath.row].messageText
-            cell.messageLabelRecaiver.text = messageList[indexPath.row].messageText
-       
-            if UserManager.shared.getUser().id == messageList[indexPath.row].senderId {
-                cell.messageLabelSend.isHidden = false
-                cell.messageLabelRecaiver.isHidden = true
-                
-                
-            }
-            else {
-                
-                cell.messageLabelSend.isHidden = true
-                cell.messageLabelRecaiver.isHidden = false
-                
-            }
-  
-            return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Chat.identifier, for: indexPath) as! Chat
+        cell.backgroundColor = .clear
+        
+        let message = messageList[indexPath.row]
+        
+        // Mesaj göndericisini kontrol et
+        if message.senderID == userSender?.id{
+            cell.messageLabelSend.text = message.text
+            cell.messageLabelSend.isHidden = false
+            cell.messageLabelRecaiver.isHidden = true
+        } else {
+            cell.messageLabelRecaiver.text = message.text
+            cell.messageLabelRecaiver.isHidden = false
+            cell.messageLabelSend.isHidden = true
         }
+        
+        return cell
+    }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 36  // Örnek: Hücre yüksekliği 80 piksel
@@ -187,48 +379,9 @@ class ChatPage:UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @objc func loginClick(click :UIButton!){
         
-        messageList.removeAll()
-        tableView.reloadData()
-        
-        let currentDate = Date()
-        let timestamp = currentDate.timeIntervalSince1970
-        
- 
-       
-        
-        
+    
+    
         }
-    
-    
-    
-    func getMessage(){
 
         
-        
-        
     }
-        
-        
-    
-    func pushMessage(){
-        
-
-        
-        
-        
-        
-    }
-    
-    
-    
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-
-    

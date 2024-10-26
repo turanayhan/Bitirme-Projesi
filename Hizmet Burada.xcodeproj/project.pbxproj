@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052A54142CCA61D1000A88A5 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54132CCA61CB000A88A5 /* ChatManager.swift */; };
+		052A54162CCA6206000A88A5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54152CCA6200000A88A5 /* ChatModel.swift */; };
+		052A54182CCBA389000A88A5 /* messageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54172CCBA384000A88A5 /* messageCell.swift */; };
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
 		05924C8E2CC29E2900E054D7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C832CC29E2900E054D7 /* CustomTableViewCell.swift */; };
@@ -55,7 +58,7 @@
 		05924CF22CC29E5D00E054D7 /* MeetingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC12CC29E5D00E054D7 /* MeetingPage.swift */; };
 		05924CF32CC29E5D00E054D7 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CDD2CC29E5D00E054D7 /* LoginPage.swift */; };
 		05924CF42CC29E5D00E054D7 /* ProfileImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC42CC29E5D00E054D7 /* ProfileImage.swift */; };
-		05924CF52CC29E5D00E054D7 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC52CC29E5D00E054D7 /* ProfileService.swift */; };
+		05924CF52CC29E5D00E054D7 /* Mesage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC52CC29E5D00E054D7 /* Mesage.swift */; };
 		05924CF62CC29E5D00E054D7 /* OpportunityPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC32CC29E5D00E054D7 /* OpportunityPage.swift */; };
 		05924CF72CC29E5D00E054D7 /* DetailWorkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CCF2CC29E5D00E054D7 /* DetailWorkPage.swift */; };
 		05924CF82CC29E5D00E054D7 /* ProviderName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924CC92CC29E5D00E054D7 /* ProviderName.swift */; };
@@ -73,6 +76,8 @@
 		05924D072CC29E6400E054D7 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924D042CC29E6400E054D7 /* RegisterViewModel.swift */; };
 		05924D0A2CC29ED100E054D7 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 05924D092CC29ED100E054D7 /* SideMenu */; };
 		05924D172CC2A2B300E054D7 /* MaterialOutlinedTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 05924D162CC2A2B300E054D7 /* MaterialOutlinedTextField */; };
+		05AEBD912CC8E61800501126 /* WorkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEBD902CC8E61000501126 /* WorkDetail.swift */; };
+		05AEBD932CC8F08000501126 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEBD922CC8F07700501126 /* OfferCell.swift */; };
 		05CF22492CC7C862003AA269 /* BidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF22482CC7C856003AA269 /* BidModel.swift */; };
 		05CF224B2CC7D24D003AA269 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF224A2CC7D243003AA269 /* MessageModel.swift */; };
 		05DA1F572CAC467700A88207 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05DA1F562CAC467700A88207 /* GoogleService-Info.plist */; };
@@ -115,6 +120,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052A54132CCA61CB000A88A5 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		052A54152CCA6200000A88A5 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		052A54172CCBA384000A88A5 /* messageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = messageCell.swift; sourceTree = "<group>"; };
 		05924C812CC29E2900E054D7 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		05924C822CC29E2900E054D7 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		05924C832CC29E2900E054D7 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
@@ -149,7 +157,7 @@
 		05924CC22CC29E5D00E054D7 /* OfferPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferPage.swift; sourceTree = "<group>"; };
 		05924CC32CC29E5D00E054D7 /* OpportunityPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpportunityPage.swift; sourceTree = "<group>"; };
 		05924CC42CC29E5D00E054D7 /* ProfileImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImage.swift; sourceTree = "<group>"; };
-		05924CC52CC29E5D00E054D7 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		05924CC52CC29E5D00E054D7 /* Mesage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesage.swift; sourceTree = "<group>"; };
 		05924CC62CC29E5D00E054D7 /* ProviderGsm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderGsm.swift; sourceTree = "<group>"; };
 		05924CC72CC29E5D00E054D7 /* ProviderLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderLocation.swift; sourceTree = "<group>"; };
 		05924CC82CC29E5D00E054D7 /* ProviderMail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderMail.swift; sourceTree = "<group>"; };
@@ -177,6 +185,8 @@
 		05924CE02CC29E5D00E054D7 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		05924D032CC29E6400E054D7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		05924D042CC29E6400E054D7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		05AEBD902CC8E61000501126 /* WorkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetail.swift; sourceTree = "<group>"; };
+		05AEBD922CC8F07700501126 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
 		05CF22482CC7C856003AA269 /* BidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidModel.swift; sourceTree = "<group>"; };
 		05CF224A2CC7D243003AA269 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		05DA1F562CAC467700A88207 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -238,6 +248,8 @@
 		05924C8D2CC29E2900E054D7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				052A54172CCBA384000A88A5 /* messageCell.swift */,
+				05AEBD922CC8F07700501126 /* OfferCell.swift */,
 				05924C812CC29E2900E054D7 /* Chat.swift */,
 				05924C822CC29E2900E054D7 /* Comment.swift */,
 				05924C832CC29E2900E054D7 /* CustomTableViewCell.swift */,
@@ -257,6 +269,7 @@
 		05924CA22CC29E3400E054D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				052A54152CCA6200000A88A5 /* ChatModel.swift */,
 				05CF224A2CC7D243003AA269 /* MessageModel.swift */,
 				05CF22482CC7C856003AA269 /* BidModel.swift */,
 				05924C9A2CC29E3400E054D7 /* City.swift */,
@@ -282,6 +295,7 @@
 		05924CB52CC29E5000E054D7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				052A54132CCA61CB000A88A5 /* ChatManager.swift */,
 				05924CB02CC29E5000E054D7 /* FirestoreManager.swift */,
 				05924CB12CC29E5000E054D7 /* Jobİnformation.swift */,
 				05924CB22CC29E5000E054D7 /* ServiceManager.swift */,
@@ -309,7 +323,7 @@
 				05924CC22CC29E5D00E054D7 /* OfferPage.swift */,
 				05924CC32CC29E5D00E054D7 /* OpportunityPage.swift */,
 				05924CC42CC29E5D00E054D7 /* ProfileImage.swift */,
-				05924CC52CC29E5D00E054D7 /* ProfileService.swift */,
+				05924CC52CC29E5D00E054D7 /* Mesage.swift */,
 				05924CC62CC29E5D00E054D7 /* ProviderGsm.swift */,
 				05924CC72CC29E5D00E054D7 /* ProviderLocation.swift */,
 				05924CC82CC29E5D00E054D7 /* ProviderMail.swift */,
@@ -323,10 +337,11 @@
 		05924CDB2CC29E5D00E054D7 /* ServiceRecipient */ = {
 			isa = PBXGroup;
 			children = (
+				05924CD02CC29E5D00E054D7 /* MyworksPage.swift */,
+				05AEBD902CC8E61000501126 /* WorkDetail.swift */,
 				05924CCD2CC29E5D00E054D7 /* DatePage.swift */,
 				05924CCE2CC29E5D00E054D7 /* DetailPage.swift */,
 				05924CCF2CC29E5D00E054D7 /* DetailWorkPage.swift */,
-				05924CD02CC29E5D00E054D7 /* MyworksPage.swift */,
 				05924CD12CC29E5D00E054D7 /* NotificationPage.swift */,
 				05924CD22CC29E5D00E054D7 /* PasswordResetPage.swift */,
 				05924CD32CC29E5D00E054D7 /* ProfilePage.swift */,
@@ -547,13 +562,16 @@
 				05924CE22CC29E5D00E054D7 /* Menu.swift in Sources */,
 				05924CE32CC29E5D00E054D7 /* SearchPage.swift in Sources */,
 				05924CE42CC29E5D00E054D7 /* ServiceDetailPage.swift in Sources */,
+				05AEBD912CC8E61800501126 /* WorkDetail.swift in Sources */,
 				05924CE52CC29E5D00E054D7 /* ProviderMail.swift in Sources */,
 				05924CE62CC29E5D00E054D7 /* MailPasswordPage.swift in Sources */,
 				05924CE72CC29E5D00E054D7 /* RecipientLocation.swift in Sources */,
+				05AEBD932CC8F08000501126 /* OfferCell.swift in Sources */,
 				05CF22492CC7C862003AA269 /* BidModel.swift in Sources */,
 				05924CE82CC29E5D00E054D7 /* SecondScreen.swift in Sources */,
 				05924CE92CC29E5D00E054D7 /* BasicScreen.swift in Sources */,
 				05924CEA2CC29E5D00E054D7 /* ReservationPage.swift in Sources */,
+				052A54162CCA6206000A88A5 /* ChatModel.swift in Sources */,
 				05924CEB2CC29E5D00E054D7 /* OfferPage.swift in Sources */,
 				05924CEC2CC29E5D00E054D7 /* SelectionPage.swift in Sources */,
 				05924CED2CC29E5D00E054D7 /* UserPage.swift in Sources */,
@@ -564,7 +582,7 @@
 				05924CF22CC29E5D00E054D7 /* MeetingPage.swift in Sources */,
 				05924CF32CC29E5D00E054D7 /* LoginPage.swift in Sources */,
 				05924CF42CC29E5D00E054D7 /* ProfileImage.swift in Sources */,
-				05924CF52CC29E5D00E054D7 /* ProfileService.swift in Sources */,
+				05924CF52CC29E5D00E054D7 /* Mesage.swift in Sources */,
 				05924CF62CC29E5D00E054D7 /* OpportunityPage.swift in Sources */,
 				05924CF72CC29E5D00E054D7 /* DetailWorkPage.swift in Sources */,
 				05924CF82CC29E5D00E054D7 /* ProviderName.swift in Sources */,
@@ -583,6 +601,8 @@
 				05924D072CC29E6400E054D7 /* RegisterViewModel.swift in Sources */,
 				05924CBA2CC29E5000E054D7 /* ServiceProviderRegistration.swift in Sources */,
 				05924C932CC29E2900E054D7 /* Profile.swift in Sources */,
+				052A54142CCA61D1000A88A5 /* ChatManager.swift in Sources */,
+				052A54182CCBA389000A88A5 /* messageCell.swift in Sources */,
 				05924C942CC29E2900E054D7 /* jobVr.swift in Sources */,
 				05924C952CC29E2900E054D7 /* Day.swift in Sources */,
 				05924C962CC29E2900E054D7 /* Comment.swift in Sources */,

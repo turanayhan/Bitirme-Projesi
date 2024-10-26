@@ -29,21 +29,28 @@ class OpportunityPage: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hex: "#F1FAFE")
+        setDefaultBackgroundColor()
         fetchJobData()
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+  
         tableView.register(WorkOp.self, forCellReuseIdentifier: "customCell")
-    }
-    
-    
-    func desing(){
-        tableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor)
+        
         
         
     }
+    
+    
+  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return jobList.count
     }
@@ -76,7 +83,6 @@ class OpportunityPage: UIViewController, UITableViewDataSource, UITableViewDeleg
                 print("Veri alınamadı")
                 return
             }
-            
             for (_, jobDetails) in fetchedJobs {
                 if let jobDetailDict = jobDetails as? [String: Any] {
                     for (_, jobInfo) in jobDetailDict {
@@ -89,8 +95,6 @@ class OpportunityPage: UIViewController, UITableViewDataSource, UITableViewDeleg
                             let announcementDate = jobInfoDict["announcementDate"] as? String ?? ""
                             let jobId = jobInfoDict["jobId"] as? String ?? ""
                             var hasBid = false // Teklif durumu
-
-                            // Teklif verisini işleyelim
                             var bids: [BidModel] = []
                             if let bidsData = jobInfoDict["bids"] as? [String: [String: Any]] {
                                 for (bidId, bidInfoDict) in bidsData {
@@ -103,7 +107,6 @@ class OpportunityPage: UIViewController, UITableViewDataSource, UITableViewDeleg
                                        let price = bidInfoDict["price"] as? Double,
                                        let providerId = bidInfoDict["providerId"] as? String,
                                        let providerName = bidInfoDict["providerName"] as? String {
-                                        // Teklif modelini oluştur
                                         let bid = BidModel(id: bidId, providerId: providerId, providerName: providerName, price: price, message: message, bidDate: bidDate, messages: [])
                                         bids.append(bid)
                                     }

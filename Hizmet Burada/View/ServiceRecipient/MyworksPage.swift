@@ -10,7 +10,11 @@ import FirebaseDatabaseInternal
 import SideMenu
 import JGProgressHUD
 
-class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate {
+class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate , WorkDelegate {
+   
+    
+   
+    
     
     
     
@@ -185,6 +189,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! Work
+        cell.delegate = self
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         var model = JobModelList[indexPath.row]
@@ -209,11 +214,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        
-        let page = ChatPage()
-        page.receiverID = UserManager.shared.getUser().id
-        
-        navigationController?.pushViewController(page, animated: true)
+    
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -279,7 +280,7 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
                 }
 
                 // İş modelini oluştur ve teklifleri ata
-                let job = JobModel(nameSurname: nameSurname, detail: detail, id: id, information: information, adress: address, announcementDate: announcementDate, reservationDate: reservationDate, bids: bids)
+                let job = JobModel(nameSurname: nameSurname, detail: detail, id: id, information: information, adress: address, announcementDate: announcementDate, reservationDate: reservationDate, bids: bids,jobId: jobId)
 
                 self.JobModelList.append(job)
             }
@@ -294,7 +295,17 @@ class MyworksPage: UIViewController ,UITableViewDataSource, UITableViewDelegate 
     }
 
 
-    
+ 
+
+    func didTapButton(in cell: Work) {
+        
+        if let indexPath = tableView.indexPath(for: cell) {
+            let detailViewController = WorkDetail()
+            detailViewController.modelic = JobModelList[indexPath.row]
+            navigationController?.pushViewController(detailViewController, animated: true)
+        }
+        
+    }
 
     
 }

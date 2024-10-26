@@ -12,13 +12,21 @@ import UIKit
 class Chat: UITableViewCell {
     static let identifier = "ChatCell"
     
+    var modelic : MessageModel? {
+        didSet {
+            
+            messageLabelSend.text = modelic?.text
+            messageLabelRecaiver.text = modelic?.text
+            
+        }
+    }
+    
     let messageLabelRecaiver: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.text = "Bu ilk mesajımızdır"
         label.font = UIFont.systemFont(ofSize: 14) // Yazı boyutunu ayarla
-        label.backgroundColor = UIColor.systemYellow
         label.textColor = UIColor.black
         label.layer.cornerRadius = 10
         label.layer.borderWidth = 0.3

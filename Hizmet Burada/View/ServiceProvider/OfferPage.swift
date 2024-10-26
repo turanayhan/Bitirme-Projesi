@@ -88,7 +88,7 @@ class OfferPage: UIViewController , UITableViewDataSource, UITableViewDelegate  
           
          
           let page = ChatPage()
-          page.receiverID = JobModelList[indexPath.row].id
+        
           
           navigationController?.pushViewController(page, animated: true)
       }

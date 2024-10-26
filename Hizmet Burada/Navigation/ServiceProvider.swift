@@ -22,7 +22,7 @@ class ServiceProvider: UITabBarController {
         let vc1 = OpportunityPage()
         let vc2 = OfferPage()
         let vc3 = MeetingPage()
-        let vc4 = ProfileService()
+        let vc4 = Message()
         
         let smallSize = CGSize(width: 20, height: 20) // Küçültmek istediğiniz boyut
         

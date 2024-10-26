@@ -9,44 +9,31 @@ import UIKit
 import FirebaseDatabaseInternal
 import JGProgressHUD
 
-class JobsDetailPage: UIViewController ,UITextViewDelegate {
+class WorkDetail: UIViewController ,UITextViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource , OfferCellDelegate{
+
+    
 
     var modelic : JobModel? {
            didSet {
                
-               
-               if let bids = modelic?.bids as? [String: Any] {
-                   for (key, value) in bids {
-                       if UserManager.shared.getUser().id == key {
-                           
-                           
-                           
-                       }
-                   }
-               }
-
-               
-               nameSurnameText.text = modelic?.nameSurname
                jobDetail.text = modelic?.detail
+               let bids = modelic?.bids
                
-               if modelic?.status == true {
-                   nextButton.isEnabled = false
-                   nextButton.isHidden = true
-                   textBox.isHidden = true
-                   priceText.isHidden = true
-                   priceTextField.isHidden = true
-                   opportunityText.isHidden = true
-                   chatText.isHidden = true
+               if let bids = bids, bids.isEmpty {
+                   logo.isHidden = false
+                   offerText.isHidden = false
+                   collectionView.isHidden = true
+                   
+                 
                 
-             
+               } else {
+                   logo.isHidden = true
+                   offerText.isHidden = true
+                   collectionView.isHidden = false
+            
                }
-               else {
-                   nextButton.isEnabled = true
-                   nextButton.isHidden = false
-                   textBox.isHidden = false
-                   priceText.isHidden = false
-               }
-          
+              
+                         
                
                
                if let information = modelic?.information {
@@ -86,10 +73,9 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
        
     
     
-    lazy var scrollView: UIScrollView = {
-           let scrollView = UIScrollView()
-           scrollView.showsVerticalScrollIndicator = false
-           return scrollView
+    lazy var container: UIView = {
+           let container = UIView()
+           return container
        }()
     
     lazy var progresBar: JGProgressHUD = {
@@ -97,27 +83,6 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         return progresBar
     }()
     
-    
-    
-    lazy var imageProfile:UIImageView = {
-        let logo = UIImageView()
-        logo.image = UIImage(systemName:"person.crop.circle.dashed")
-        logo.contentMode = .scaleAspectFill
-        logo.tintColor = UIColor(hex: "#40A6F8")
-     
-        return logo
-    }()
-    
-    
-    lazy var nameSurnameText:UILabel = {
-        let infoText = UILabel()
-        infoText.text = "Turan Ayhan"
-        infoText.textColor = .black
-        infoText.textAlignment = .left
-        infoText.font = UIFont(name: "Avenir-Heavy", size: 14)
-        
-        return infoText
-    }()
     
     lazy var jobDetail:UILabel = {
         let infoText = UILabel()
@@ -183,7 +148,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.distribution = .fill
-        stackView.spacing = 4
+        stackView.spacing = 6
         return stackView
     }()
     
@@ -194,6 +159,14 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         answer1.textAlignment = .left
         answer1.font = UIFont(name: "Avenir-Heavy", size: 10)
         return answer1
+    }()
+    
+    lazy var logo: UIImageView = {
+        let logo = UIImageView()
+        logo.image = UIImage(named: "job-6956074")
+        logo.contentMode = .scaleAspectFit
+        logo.backgroundColor = .clear
+        return logo
     }()
     
     lazy var question1:UILabel = {
@@ -263,7 +236,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     
     lazy var opportunityText:UILabel = {
         let infoText = UILabel()
-        infoText.text = "Teklif Ver"
+        infoText.text = "Teklif Bilgileri"
         infoText.textColor = .black
         infoText.textAlignment = .left
         infoText.backgroundColor = .clear
@@ -271,7 +244,7 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         return infoText
     }()
     
-    lazy var container : UIView = {
+    lazy var container3 : UIView = {
         let container = UIView()
         container.backgroundColor = .clear
       return container
@@ -283,60 +256,26 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
       return container
     }()
     
-    lazy var priceText:UILabel = {
-        let priceText = UILabel()
-        priceText.text = "Fiyat(KDV) dahil)?"
-        priceText.textColor = .black
-        priceText.textAlignment = .left
-        priceText.backgroundColor = .clear
-        priceText.font = UIFont(name: "Avenir-Heavy", size: 10)
-        return priceText
+    lazy var collectionView:UICollectionView = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            cv.translatesAutoresizingMaskIntoConstraints = false
+            cv.showsHorizontalScrollIndicator = false
+        cv.register(OfferCell.self, forCellWithReuseIdentifier: "cell")
+        cv.backgroundColor = .clear
+            return cv
+        }()
+    
+    lazy var offerText:UILabel = {
+        let offerText = UILabel()
+        offerText.text = "Talebin için teklifler toplanıyor."
+        offerText.textColor = .black
+        offerText.textAlignment = .left
+        offerText.font = UIFont(name: "Avenir", size: 10)
+        return offerText
     }()
-    
-    lazy var priceTextField:UITextField = {
-        let gsm = UITextField()
-        gsm.borderStyle = .roundedRect
-        gsm.font = UIFont(name: "Avenir", size: 10)
-        gsm.placeholder = "TL"
-        return gsm
-    }()
-    
-    lazy var chatText:UILabel = {
-        let priceText = UILabel()
-        priceText.text = "Mesaj"
-        priceText.textColor = .black
-        priceText.backgroundColor = .clear
-        priceText.textAlignment = .left
-        priceText.font = UIFont(name: "Avenir-Heavy", size: 10)
-        return priceText
-    }()
-    
-    
-    lazy var textBox:UITextView = {
-        let textBox = UITextView(frame: CGRect(x: 50, y: 100, width: 400, height: 300))
-        textBox.text = "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver."
-        textBox.backgroundColor = UIColor(hex: "#E3F2FD")
-        textBox.backgroundColor = .white
-        textBox.layer.cornerRadius = 4
-        textBox.layer.borderWidth = 0.3
-        textBox.layer.borderColor =  UIColor.lightGray.cgColor
-        textBox.font = UIFont(name: "Avenir", size: 10)
-        textBox.delegate = self
-        return textBox
-    }()
-    
-    
-    let nextButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Teklif Ver(7,59)", for: .normal)
-        button.setTitleColor(UIColor(hex: "E3F2FD"), for: .normal)
-        button.backgroundColor = UIColor(hex: "#40A6F8")
-        button.layer.cornerRadius = 4
-        button.titleLabel?.font = UIFont(name: "Avenir", size: 12)
-        button.layer.shadowOpacity = 0.3
-        button.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
-        return button
-    }()
+
     
 
     
@@ -344,15 +283,15 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         super.viewDidLoad()
         setupCustomBackButton(with: "Detaylar")
       
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         view.backgroundColor = UIColor(hex: "#F1FAFE")
-        view.addSubview(scrollView)
-        scrollView.addSubview(imageProfile)
-        scrollView.addSubview(nameSurnameText)
-        scrollView.addSubview(jobDetail)
-        scrollView.addSubview(stackView1)
-        scrollView.addSubview(container)
-        scrollView.addSubview(nextButton)
+        view.addSubview(container3)
+      
+  
+        container3.addSubview(jobDetail)
+        container3.addSubview(stackView1)
+        container3.addSubview(container)
         stackView1.addArrangedSubview(textCalender)
         stackView1.addArrangedSubview(textLocation)
         stackView1.addArrangedSubview(textPhone)
@@ -366,10 +305,10 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         stackView1.addArrangedSubview(question4)
         container.addSubview(container2)
         container2.addSubview(opportunityText)
-        container2.addSubview(priceText)
-        container2.addSubview(priceTextField)
-        container2.addSubview(chatText)
-        container2.addSubview(textBox)
+        container2.addSubview(collectionView)
+        container2.addSubview(logo)
+        container2.addSubview(offerText)
+       
         desing()
         
         
@@ -381,16 +320,20 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
 
     func desing(){
         
-        scrollView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
+       
+        container3.anchor(
+            top: view.safeAreaLayoutGuide.topAnchor,
+            bottom: view.safeAreaLayoutGuide.bottomAnchor,
+            leading: view.leadingAnchor,
+            trailing: view.trailingAnchor,
+            padding: .init(top: 6, left: 20, bottom: 8, right: 12)
+        )
+
+    
         
-        imageProfile.anchor(top: view.safeAreaLayoutGuide.topAnchor, bottom: nil, leading: view.leadingAnchor, trailing: nil,padding: .init(top: 4, left: 20, bottom: 0, right: 0),size: .init(width: 32, height: 32))
+        jobDetail.anchor(top: container3.topAnchor, bottom: nil, leading: container3.leadingAnchor, trailing: container3.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 30))
         
-        nameSurnameText.anchor(top: imageProfile.topAnchor, bottom: imageProfile.bottomAnchor, leading: imageProfile.trailingAnchor, trailing: view.trailingAnchor,padding: .init(top: 0, left: 12, bottom: 0, right: 0))
-        
-        
-        jobDetail.anchor(top: imageProfile.bottomAnchor, bottom: nil, leading: imageProfile.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 8, left: 4, bottom: 0, right: 0),size: .init(width: 0, height: 30))
-        
-        stackView1.anchor(top: jobDetail.bottomAnchor, bottom: nil, leading: jobDetail.leadingAnchor, trailing: jobDetail.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right:20))
+        stackView1.anchor(top: jobDetail.bottomAnchor, bottom: nil, leading: jobDetail.leadingAnchor, trailing: jobDetail.trailingAnchor,padding: .init(top: 0, left: 0, bottom: 0, right:0))
       
         container.anchor(top: stackView1.bottomAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 6, left: 0, bottom: 0, right: 0))
      
@@ -398,41 +341,67 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
         
         opportunityText.anchor(top: stackView1.bottomAnchor, bottom: nil, leading: stackView1.leadingAnchor, trailing: view.trailingAnchor,padding: .init(top: 16, left: 0, bottom: 0, right: 0),size: .init(width: 0, height: 30))
         
-        priceText.anchor(top: opportunityText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: view.trailingAnchor,size: .init(width: 0, height: 25))
+        collectionView.anchor(top:opportunityText.bottomAnchor,
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                              leading: container3.leadingAnchor,
+                              trailing: container3.trailingAnchor,
+                              padding: .init(top: 0, left: 0, bottom: 10, right: 0),
+                              size: .init(width: 0, height: 0 ))
         
-        priceTextField.anchor(top: priceText.bottomAnchor, bottom: nil, leading: opportunityText.leadingAnchor, trailing: stackView1.trailingAnchor,size: .init(width: 0, height: 25))
+        offerText.anchor(top: opportunityText.bottomAnchor, bottom: nil, leading: container3.leadingAnchor, trailing: container3.trailingAnchor)
         
-        chatText.anchor(top: priceTextField.bottomAnchor, bottom: nil, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 0, right: 0))
+        let logoSize = UIScreen.main.bounds.width*0.8
+
+        logo.anchor(top:nil,
+                    bottom: container3.bottomAnchor,
+                              leading: nil,
+                              trailing: nil,
+                              padding: .init(top: 0, left: 10, bottom: 0, right: 0),
+                    size: .init(width: logoSize, height: logoSize ))
         
-        textBox.anchor(top: chatText.bottomAnchor, bottom: nil, leading: priceTextField.leadingAnchor, trailing: stackView1.trailingAnchor,padding: .init(top: 8, left: 0, bottom: 6, right: 0),size: .init(width: 0, height: view.layer.bounds.height*0.12))
-        
-        nextButton.anchor(top: nil,
-                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
-                          leading: view.leadingAnchor,
-                          trailing: view.trailingAnchor,
-                          padding: .init(top: 10, left: 20, bottom: 30, right: 20),
-                          size: .init(width: 0, height: 30))
+        logo.centerXAnchor.constraint(equalTo: container3.centerXAnchor).isActive = true
     }
     
     
     @objc func loginClick(click :UIButton!){
         
-        progresBar.show(in: self.view)
-        let date = Date() // Şu anki tarih ve zaman
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM yyyy" // "dd" = gün, "MMMM" = ay adı, "yyyy" = yıl
-
-        let currentDate = formatter.string(from: date) // Tarihi string olarak formatla
-     
-
-        
-        let user = UserManager.shared.getUser()
-        
-        let model = BidModel(id: user.id ?? "0", providerId: user.id ?? "0", providerName: user.nameSurname ?? "0", price:  Double(Int(priceTextField.text ?? "") ?? 0), message: textBox.text, bidDate: currentDate)
-        addBid(to: modelic?.id ?? "yok", bid: model)
+      
 
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: collectionView.frame.width/2, height: collectionView.frame.height*0.9)
+        }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+          
+           print("Tıklanan öğe indeksiiii: \(indexPath.item)")
+        
+       }
+    
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return  modelic?.bids?.count ?? 0
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OfferCell
+            cell.modelic = modelic?.bids?[indexPath.row]
+            cell.delegate = self
+       
+            return cell
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func addBid(to jobId: String, bid: BidModel) {
         let ref = Database.database().reference().child("Jobs").child(jobId).child(modelic?.jobId ?? "3122").child("bids").child(bid.id)
@@ -450,23 +419,6 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
                 self.progresBar.dismiss(afterDelay: 2.0)
             } else {
                 print("Teklif başarıyla eklendi.")
-                
-                let chatManager = ChatManager()
-                
-                var userID = UserManager.shared.getUser().id
-                let recipientID = self.modelic?.id
-                       
-                chatManager.createChat(participants: [userID!, recipientID!]) { chatID in
-                    if let chatID = chatID {
-                        print("Sohbet başarıyla oluşturuldu. Chat ID: \(chatID)")
-                    } else {
-                        print("Sohbet oluşturulamadı.")
-                    }
-                }
-
-
-
-                
                 self.progresBar.dismiss(afterDelay: 2.0)
                 self.navigationController?.popViewController(animated: true)
                
@@ -475,21 +427,20 @@ class JobsDetailPage: UIViewController ,UITextViewDelegate {
     }
 
     
+  
+
+
+    
+    func didTapButton(in cell: OfferCell) {
+        
+        if let indexPath = collectionView.indexPath(for: cell) {
+            let view = ChatPage()
+    
+            navigationController?.pushViewController(view, animated: true)
+        }
+        
+    }
  
-
-
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textBox.text == "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver." {
-            textBox.text = ""
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textBox.text.isEmpty {
-            textBox.text = "Müşterinin ihtiyacını anladığını göster. Onun ihtiyacına özel bir fiyat teklifi ver."
-        }
-    }
    
 
 }

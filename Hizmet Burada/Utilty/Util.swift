@@ -1,13 +1,6 @@
-//
-//  Constrait.swift
-//  Hizmet Burada
-//
-//  Created by turan on 2.11.2023.
-//
 import Foundation
 import UIKit
 import SideMenu
-
 
 extension UIView {
     func centerAnchor(size: CGSize = .zero) {
@@ -190,6 +183,10 @@ extension UIViewController {
     @objc func backButtonTapped() {
          navigationController?.popViewController(animated: true)
      }
+    
+    func setDefaultBackgroundColor() {
+          view.backgroundColor = UIColor(hex: "#F1FAFE") 
+      }
 
     
 }
