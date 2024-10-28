@@ -233,7 +233,7 @@ class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
  
-      @objc func handleKeyboardShow(notification: Notification) {
+   @objc func handleKeyboardShow(notification: Notification) {
           guard let userInfo = notification.userInfo,
                 let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
           
@@ -245,7 +245,7 @@ class ChatPage: UIViewController, UITableViewDataSource, UITableViewDelegate {
       }
 
       // Klavye kapandığında çağrılan metod
-      @objc func handleKeyboardHide(notification: Notification) {
+  @objc func handleKeyboardHide(notification: Notification) {
           UIView.animate(withDuration: 0.3) {
               self.view.frame.origin.y = 0
           }

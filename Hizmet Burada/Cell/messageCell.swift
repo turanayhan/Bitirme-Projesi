@@ -23,6 +23,20 @@ class messageCell: UITableViewCell {
 
   
         }
+        
+        
+    }
+    
+    var lastMessage : LastMessage? {
+        
+        
+        didSet {
+            
+            chat.text = lastMessage?.text
+            
+
+  
+        }
     }
 
     lazy var container: UIView = {

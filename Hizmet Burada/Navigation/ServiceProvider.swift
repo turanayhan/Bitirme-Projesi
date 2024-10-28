@@ -21,7 +21,7 @@ class ServiceProvider: UITabBarController {
         super.viewDidLoad()
         let vc1 = OpportunityPage()
         let vc2 = OfferPage()
-        let vc3 = MeetingPage()
+        let vc3 = NotificationPage()
         let vc4 = Message()
         
         let smallSize = CGSize(width: 20, height: 20) // Küçültmek istediğiniz boyut
@@ -29,13 +29,13 @@ class ServiceProvider: UITabBarController {
         
         vc1.tabBarItem.image = resizeImage(UIImage(systemName: "flame.fill")!, targetSize: smallSize)
         vc2.tabBarItem.image = resizeImage(UIImage(systemName: "bag.fill")!, targetSize: smallSize)
-        vc3.tabBarItem.image = resizeImage(UIImage(systemName: "calendar")!, targetSize: smallSize)
-        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "bell.fill")!, targetSize: smallSize)
+        vc3.tabBarItem.image = resizeImage(UIImage(systemName: "bell.fill")!, targetSize: smallSize)
+        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "bubble.left.fill")!, targetSize: smallSize)
         
         vc1.title = "Fırsatlar"
         vc2.title = "Teklifler"
-        vc3.title = "Randevu"
-        vc4.title = "Bildirimler"
+        vc3.title = "Bildirimler"
+        vc4.title = "Mesajalr"
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
         let nav3 = UINavigationController(rootViewController: vc3)

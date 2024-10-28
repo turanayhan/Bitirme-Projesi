@@ -57,12 +57,10 @@ class Chat: UITableViewCell {
             bubbleView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             bubbleView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             bubbleView.widthAnchor.constraint(lessThanOrEqualToConstant: UIScreen.main.bounds.width * 0.75),
-            bubbleView.widthAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.width / 4),
-            
+            bubbleView.widthAnchor.constraint(greaterThanOrEqualToConstant: UIScreen.main.bounds.width / 5),
             messageLabel.topAnchor.constraint(equalTo: bubbleView.topAnchor, constant: 6),
             messageLabel.leadingAnchor.constraint(equalTo: bubbleView.leadingAnchor, constant: 6),
             messageLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -6),
-            
             timestampLabel.topAnchor.constraint(equalTo: messageLabel.bottomAnchor, constant: 4),
             timestampLabel.trailingAnchor.constraint(equalTo: bubbleView.trailingAnchor, constant: -6),
             timestampLabel.bottomAnchor.constraint(equalTo: bubbleView.bottomAnchor, constant: -6)

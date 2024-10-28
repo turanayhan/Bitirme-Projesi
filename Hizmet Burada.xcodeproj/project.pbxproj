@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -78,6 +78,10 @@
 		05924D172CC2A2B300E054D7 /* MaterialOutlinedTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 05924D162CC2A2B300E054D7 /* MaterialOutlinedTextField */; };
 		05AEBD912CC8E61800501126 /* WorkDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEBD902CC8E61000501126 /* WorkDetail.swift */; };
 		05AEBD932CC8F08000501126 /* OfferCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AEBD922CC8F07700501126 /* OfferCell.swift */; };
+		05CE59022CCE41FC001D2D6E /* notificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE59012CCE41E4001D2D6E /* notificationCell.swift */; };
+		05CE59042CCE5177001D2D6E /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE59032CCE516F001D2D6E /* Notification.swift */; };
+		05CE59062CCE943E001D2D6E /* BusinessSuccessful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CE59052CCE942E001D2D6E /* BusinessSuccessful.swift */; };
+		05CE59092CCE976E001D2D6E /* FLAnimatedImage in Frameworks */ = {isa = PBXBuildFile; productRef = 05CE59082CCE976E001D2D6E /* FLAnimatedImage */; };
 		05CF22492CC7C862003AA269 /* BidModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF22482CC7C856003AA269 /* BidModel.swift */; };
 		05CF224B2CC7D24D003AA269 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CF224A2CC7D243003AA269 /* MessageModel.swift */; };
 		05DA1F572CAC467700A88207 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05DA1F562CAC467700A88207 /* GoogleService-Info.plist */; };
@@ -187,6 +191,9 @@
 		05924D042CC29E6400E054D7 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		05AEBD902CC8E61000501126 /* WorkDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkDetail.swift; sourceTree = "<group>"; };
 		05AEBD922CC8F07700501126 /* OfferCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferCell.swift; sourceTree = "<group>"; };
+		05CE59012CCE41E4001D2D6E /* notificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationCell.swift; sourceTree = "<group>"; };
+		05CE59032CCE516F001D2D6E /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		05CE59052CCE942E001D2D6E /* BusinessSuccessful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSuccessful.swift; sourceTree = "<group>"; };
 		05CF22482CC7C856003AA269 /* BidModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BidModel.swift; sourceTree = "<group>"; };
 		05CF224A2CC7D243003AA269 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		05DA1F562CAC467700A88207 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -196,6 +203,10 @@
 		05E642D62AF3E04000733AC6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05E642DB2AF3E04000733AC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		05CE590A2CCE99B8001D2D6E /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		05E642C72AF3E03F00733AC6 /* Frameworks */ = {
@@ -209,6 +220,7 @@
 				05E2A2302AF7A40F00FA8057 /* FirebaseAnalyticsSwift in Frameworks */,
 				05E2A2662AF7AD8600FA8057 /* FirebasePerformance in Frameworks */,
 				05E2A26C2AF7AD8600FA8057 /* FirebaseStorage in Frameworks */,
+				05CE59092CCE976E001D2D6E /* FLAnimatedImage in Frameworks */,
 				05E2A2522AF7AD8600FA8057 /* FirebaseFirestore in Frameworks */,
 				05E2A2382AF7A7F800FA8057 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				05E2A25A2AF7AD8600FA8057 /* FirebaseFunctionsCombine-Community in Frameworks */,
@@ -248,6 +260,7 @@
 		05924C8D2CC29E2900E054D7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				05CE59012CCE41E4001D2D6E /* notificationCell.swift */,
 				052A54172CCBA384000A88A5 /* messageCell.swift */,
 				05AEBD922CC8F07700501126 /* OfferCell.swift */,
 				05924C812CC29E2900E054D7 /* Chat.swift */,
@@ -269,6 +282,7 @@
 		05924CA22CC29E3400E054D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				05CE59032CCE516F001D2D6E /* Notification.swift */,
 				052A54152CCA6200000A88A5 /* ChatModel.swift */,
 				05CF224A2CC7D243003AA269 /* MessageModel.swift */,
 				05CF22482CC7C856003AA269 /* BidModel.swift */,
@@ -316,6 +330,7 @@
 		05924CCC2CC29E5D00E054D7 /* ServiceProvider */ = {
 			isa = PBXGroup;
 			children = (
+				05924CD12CC29E5D00E054D7 /* NotificationPage.swift */,
 				05924CBE2CC29E5D00E054D7 /* ChatPage.swift */,
 				05924CBF2CC29E5D00E054D7 /* JobsDetailPage.swift */,
 				05924CC02CC29E5D00E054D7 /* MailPasswordPage.swift */,
@@ -337,12 +352,12 @@
 		05924CDB2CC29E5D00E054D7 /* ServiceRecipient */ = {
 			isa = PBXGroup;
 			children = (
+				05CE59052CCE942E001D2D6E /* BusinessSuccessful.swift */,
 				05924CD02CC29E5D00E054D7 /* MyworksPage.swift */,
 				05AEBD902CC8E61000501126 /* WorkDetail.swift */,
 				05924CCD2CC29E5D00E054D7 /* DatePage.swift */,
 				05924CCE2CC29E5D00E054D7 /* DetailPage.swift */,
 				05924CCF2CC29E5D00E054D7 /* DetailWorkPage.swift */,
-				05924CD12CC29E5D00E054D7 /* NotificationPage.swift */,
 				05924CD22CC29E5D00E054D7 /* PasswordResetPage.swift */,
 				05924CD32CC29E5D00E054D7 /* ProfilePage.swift */,
 				05924CD42CC29E5D00E054D7 /* RecipientGsm.swift */,
@@ -407,6 +422,7 @@
 		05E642CC2AF3E03F00733AC6 /* Hizmet Burada */ = {
 			isa = PBXGroup;
 			children = (
+				05CE590A2CCE99B8001D2D6E /* Resources */,
 				05924D052CC29E6400E054D7 /* ViewModel */,
 				05924CE12CC29E5D00E054D7 /* View */,
 				05924CBC2CC29E5600E054D7 /* Utilty */,
@@ -436,6 +452,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				05CE590A2CCE99B8001D2D6E /* Resources */,
 			);
 			name = "Hizmet Burada";
 			packageProductDependencies = (
@@ -476,6 +495,7 @@
 				0554E7532AF7FCA20056183D /* JGProgressHUD */,
 				05924D092CC29ED100E054D7 /* SideMenu */,
 				05924D162CC2A2B300E054D7 /* MaterialOutlinedTextField */,
+				05CE59082CCE976E001D2D6E /* FLAnimatedImage */,
 			);
 			productName = "Hizmet Burada";
 			productReference = 05E642CA2AF3E03F00733AC6 /* Hizmet Burada.app */;
@@ -511,6 +531,7 @@
 				0554E7522AF7FCA20056183D /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				05924D082CC29ED100E054D7 /* XCRemoteSwiftPackageReference "SideMenu" */,
 				05924D152CC2A2B300E054D7 /* XCRemoteSwiftPackageReference "MaterialOutlinedTextField" */,
+				05CE59072CCE976E001D2D6E /* XCRemoteSwiftPackageReference "FLAnimatedImage" */,
 			);
 			productRefGroup = 05E642CB2AF3E03F00733AC6 /* Products */;
 			projectDirPath = "";
@@ -561,6 +582,7 @@
 				05924CB82CC29E5000E054D7 /* ServiceManager.swift in Sources */,
 				05924CE22CC29E5D00E054D7 /* Menu.swift in Sources */,
 				05924CE32CC29E5D00E054D7 /* SearchPage.swift in Sources */,
+				05CE59042CCE5177001D2D6E /* Notification.swift in Sources */,
 				05924CE42CC29E5D00E054D7 /* ServiceDetailPage.swift in Sources */,
 				05AEBD912CC8E61800501126 /* WorkDetail.swift in Sources */,
 				05924CE52CC29E5D00E054D7 /* ProviderMail.swift in Sources */,
@@ -570,6 +592,7 @@
 				05CF22492CC7C862003AA269 /* BidModel.swift in Sources */,
 				05924CE82CC29E5D00E054D7 /* SecondScreen.swift in Sources */,
 				05924CE92CC29E5D00E054D7 /* BasicScreen.swift in Sources */,
+				05CE59022CCE41FC001D2D6E /* notificationCell.swift in Sources */,
 				05924CEA2CC29E5D00E054D7 /* ReservationPage.swift in Sources */,
 				052A54162CCA6206000A88A5 /* ChatModel.swift in Sources */,
 				05924CEB2CC29E5D00E054D7 /* OfferPage.swift in Sources */,
@@ -589,6 +612,7 @@
 				05924CF92CC29E5D00E054D7 /* SplashScreen.swift in Sources */,
 				05924CFA2CC29E5D00E054D7 /* RecipientGsm.swift in Sources */,
 				05924CFB2CC29E5D00E054D7 /* ProviderGsm.swift in Sources */,
+				05CE59062CCE943E001D2D6E /* BusinessSuccessful.swift in Sources */,
 				05924CFC2CC29E5D00E054D7 /* NotificationPage.swift in Sources */,
 				05924CFD2CC29E5D00E054D7 /* ProviderLocation.swift in Sources */,
 				05924CFE2CC29E5D00E054D7 /* RecipientName.swift in Sources */,
@@ -846,6 +870,14 @@
 				minimumVersion = 0.1.1;
 			};
 		};
+		05CE59072CCE976E001D2D6E /* XCRemoteSwiftPackageReference "FLAnimatedImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Flipboard/FLAnimatedImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.17;
+			};
+		};
 		05E2A22C2AF7A40F00FA8057 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -876,6 +908,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 05924D152CC2A2B300E054D7 /* XCRemoteSwiftPackageReference "MaterialOutlinedTextField" */;
 			productName = MaterialOutlinedTextField;
+		};
+		05CE59082CCE976E001D2D6E /* FLAnimatedImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05CE59072CCE976E001D2D6E /* XCRemoteSwiftPackageReference "FLAnimatedImage" */;
+			productName = FLAnimatedImage;
 		};
 		05E2A22D2AF7A40F00FA8057 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

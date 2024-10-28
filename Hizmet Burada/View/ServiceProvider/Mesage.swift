@@ -174,6 +174,7 @@ class Message: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
         cell.selectionStyle = .none
         cell.model = chatList[indexPath.row].participantsInfo[0]
         cell.question = chatList[indexPath.row].chat
+        cell.lastMessage = chatList[indexPath.row].chat.lastMessage
         
         
         
@@ -186,7 +187,7 @@ class Message: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
         // Animate the selection
         UIView.animate(withDuration: 0.3) {
             if let selectedCell = tableView.cellForRow(at: indexPath) as? messageCell {
-                selectedCell.backgroundColor = UIColor.white // Seçili arka plan rengi
+   
             }
             let detailViewController = ChatPage()
             detailViewController.modelic = self.chatList[indexPath.row]
@@ -228,7 +229,7 @@ class Message: UIViewController ,UITableViewDataSource, UITableViewDelegate  {
                             return
                         }
                         
-                        let model = ChatModel(chatID: chatID, participants: chat.participants, timestamp: chat.timestamp)
+                        let model = ChatModel(chatID: chatID, participants: chat.participants, timestamp: chat.timestamp,lastMessage: chat.lastMessage)
                         
                         self.getUserİnfo(userIds: model.participants) { users in
                             let chatWithUsersModel = ChatWithUsersModel(chat: model, participantsInfo: users)

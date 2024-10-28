@@ -19,14 +19,14 @@ class ServiceRecipient: UITabBarController {
         vc1.title = "Hizmet Al"
         vc2.title = "İşlerim"
         vc3.title = "Bildirimler"
-        vc4.title = "Hesabım"
+        vc4.title = "Mesajlar"
         
         let smallSize = CGSize(width: 20, height: 20) // Küçültmek istediğiniz boyut
         
         vc1.tabBarItem.image = resizeImage(UIImage(systemName: "magnifyingglass")!, targetSize: smallSize)
         vc2.tabBarItem.image = resizeImage(UIImage(systemName: "square.and.pencil")!, targetSize: smallSize)
         vc3.tabBarItem.image = resizeImage(UIImage(systemName: "bell.fill")!, targetSize: smallSize)
-        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "person.crop.circle")!, targetSize: smallSize)
+        vc4.tabBarItem.image = resizeImage(UIImage(systemName: "bubble.left.fill")!, targetSize: smallSize)
         
         
         let nav1 = UINavigationController(rootViewController: vc1)

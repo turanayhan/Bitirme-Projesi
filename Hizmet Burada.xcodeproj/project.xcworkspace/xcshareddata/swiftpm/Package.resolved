@@ -1,5 +1,5 @@
 {
-  "originHash" : "7640808ad712a6df881e066020a486deaa931cca56a157fa35ce4de7ab29396b",
+  "originHash" : "01660aaa930876c361c16e03b8bac47abac6881fe9e28956fd6a7586de4b92b1",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "8872dbd7d947acf757abab933da10e83c1842280",
         "version" : "10.17.0"
+      }
+    },
+    {
+      "identity" : "flanimatedimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Flipboard/FLAnimatedImage.git",
+      "state" : {
+        "revision" : "d4f07b6f164d53c1212c3e54d6460738b1981e9f",
+        "version" : "1.0.17"
       }
     },
     {

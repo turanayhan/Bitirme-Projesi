@@ -11,6 +11,13 @@ struct ChatModel {
     let chatID: String
     let participants: [String]
     let timestamp: Date
+    let lastMessage: LastMessage?
+}
+
+struct LastMessage {
+    let text: String
+    let timestamp: Date
+    let senderID: String
 }
 
 

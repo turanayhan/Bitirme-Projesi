@@ -8,7 +8,7 @@ class ChatManager {
     // Sohbet oluşturma
     func createChat(participants: [String], completion: @escaping (String?) -> Void) {
         let chatID = UUID().uuidString
-        let chat = ChatModel(chatID: chatID, participants: participants, timestamp: Date())
+        let chat = ChatModel(chatID: chatID, participants: participants, timestamp: Date(), lastMessage: nil)
 
         db.child("chats").child(chatID).setValue([
             "participants": participants,
@@ -74,14 +74,30 @@ class ChatManager {
             "timestamp": timestamp
         ]
 
+        // Mesajı ekliyoruz
         db.child("chats").child(chatID).child("messages").child(messageID).setValue(messageData) { error, _ in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(()))
+                // Son mesajı güncellemek için ek veri oluşturuyoruz
+                let lastMessageData: [String: Any] = [
+                    "text": text,
+                    "timestamp": timestamp,
+                    "senderID": senderID
+                ]
+
+                // `lastMessage` alanını güncelliyoruz
+                self.db.child("chats").child(chatID).child("lastMessage").setValue(lastMessageData) { error, _ in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(()))
+                    }
+                }
             }
         }
     }
+
 
     // Kullanıcıya ait sohbetleri çekme
     func fetchUserChats(userID: String, completion: @escaping ([String]) -> Void) {
@@ -121,7 +137,6 @@ class ChatManager {
         }
     }
 
-    // Sohbet bilgilerini gözlemleme
     func observeChat(chatID: String, completion: @escaping (ChatModel?) -> Void) {
         db.child("chats").child(chatID).observe(.value) { snapshot in
             guard let data = snapshot.value as? [String: Any] else {
@@ -129,18 +144,36 @@ class ChatManager {
                 return
             }
 
+            // ChatModel ana bilgilerini oluşturuyoruz
+            let chatID = chatID
+            let participants = data["participants"] as? [String] ?? []
+            let timestamp = Date(timeIntervalSince1970: data["timestamp"] as? TimeInterval ?? 0)
+
+            // LastMessage bilgilerini alıyoruz
+            var lastMessage: LastMessage? = nil
+            if let lastMessageData = data["lastMessage"] as? [String: Any] {
+                let messageText = lastMessageData["text"] as? String ?? ""
+                let messageTimestamp = Date(timeIntervalSince1970: lastMessageData["timestamp"] as? TimeInterval ?? 0)
+                let senderID = lastMessageData["senderID"] as? String ?? ""
+                lastMessage = LastMessage(text: messageText, timestamp: messageTimestamp, senderID: senderID)
+            }
+
+            // ChatModel'u oluşturup completion ile döndürüyoruz
             let chat = ChatModel(
                 chatID: chatID,
-                participants: data["participants"] as? [String] ?? [],
-                timestamp: Date(timeIntervalSince1970: data["timestamp"] as? TimeInterval ?? 0)
+                participants: participants,
+                timestamp: timestamp,
+                lastMessage: lastMessage
             )
-
+            
             completion(chat)
+            
         } withCancel: { error in
             print("Sohbet bilgilerini alma hatası: \(error.localizedDescription)")
             completion(nil)
         }
     }
+
     
     
     

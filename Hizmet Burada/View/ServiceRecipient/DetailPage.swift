@@ -14,10 +14,14 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
     var ilceler: [String] = []
     var selectedSehir: String?
     var jobid : Int = 0
+    var jobDetail : String?
     var reservationDay :String =  ""
     var reservationMonth :String =  ""
     var reservationYear :String =  ""
     var reservationHour :String =  ""
+    
+    
+  
     
     lazy var sehirDropdown: UITableView = {
         let tableView = UITableView()
@@ -390,6 +394,7 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
             
              let adress = (self.location1.text ?? "") + "-" + (self.location2.text ?? "") + "-" + (self.location3.text ?? "")
         let yeni = JobModel(nameSurname: user.nameSurname!,detail:Jobİnformation.shared.jobDetail ?? "bos" , id: user.id!, information: instance,adress: adress,reservationDate: "\(reservationDay) \(reservationMonth)-\(reservationHour)",jobId: String(jobid))
+        jobDetail = yeni.detail
              let dictionary = yeni.toDictionary()
         
         
@@ -399,7 +404,14 @@ class DetailPage: UIViewController ,UITableViewDelegate, UITableViewDataSource, 
                 print("İşlem başarısız oldu: \(error.localizedDescription)")
             } else {
                 print("İşlem başarıyla tamamlandı.")
-                self.navigationController?.popToRootViewController(animated: true)
+                
+                var page = BusinessSuccessful()
+                page.headerText = self.jobDetail ?? ""
+
+                self.navigationController?.pushViewController(page, animated: true)
+
+                
+                
             }
         }
 
