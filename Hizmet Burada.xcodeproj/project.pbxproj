@@ -10,6 +10,7 @@
 		052A54142CCA61D1000A88A5 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54132CCA61CB000A88A5 /* ChatManager.swift */; };
 		052A54162CCA6206000A88A5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54152CCA6200000A88A5 /* ChatModel.swift */; };
 		052A54182CCBA389000A88A5 /* messageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052A54172CCBA384000A88A5 /* messageCell.swift */; };
+		0544E0642CCF82F000BE421F /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 0544E0632CCF82F000BE421F /* FirebaseFunctions */; };
 		0554E7512AF7F6EA0056183D /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7502AF7F6EA0056183D /* ProgressHUD */; };
 		0554E7542AF7FCA20056183D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 0554E7532AF7FCA20056183D /* JGProgressHUD */; };
 		05924C8E2CC29E2900E054D7 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05924C832CC29E2900E054D7 /* CustomTableViewCell.swift */; };
@@ -222,6 +223,7 @@
 				05E2A26C2AF7AD8600FA8057 /* FirebaseStorage in Frameworks */,
 				05CE59092CCE976E001D2D6E /* FLAnimatedImage in Frameworks */,
 				05E2A2522AF7AD8600FA8057 /* FirebaseFirestore in Frameworks */,
+				0544E0642CCF82F000BE421F /* FirebaseFunctions in Frameworks */,
 				05E2A2382AF7A7F800FA8057 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				05E2A25A2AF7AD8600FA8057 /* FirebaseFunctionsCombine-Community in Frameworks */,
 				05E2A26A2AF7AD8600FA8057 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -496,6 +498,7 @@
 				05924D092CC29ED100E054D7 /* SideMenu */,
 				05924D162CC2A2B300E054D7 /* MaterialOutlinedTextField */,
 				05CE59082CCE976E001D2D6E /* FLAnimatedImage */,
+				0544E0632CCF82F000BE421F /* FirebaseFunctions */,
 			);
 			productName = "Hizmet Burada";
 			productReference = 05E642CA2AF3E03F00733AC6 /* Hizmet Burada.app */;
@@ -889,6 +892,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0544E0632CCF82F000BE421F /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05E2A22C2AF7A40F00FA8057 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
 		0554E7502AF7F6EA0056183D /* ProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0554E74F2AF7F6EA0056183D /* XCRemoteSwiftPackageReference "ProgressHUD" */;
